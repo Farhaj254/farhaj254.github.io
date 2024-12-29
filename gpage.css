@@ -1,1 +1,24 @@
+/* General styles */
+body {
+  margin: 0; /* Removes default body margin */
+  font-family: 'Arial', sans-serif; /* Sets font family */
+  background-image: url("path/to/background_image.jpg"); /* Sets background image */
+  background-size: cover; /* Covers entire viewport with image */
+  background-repeat: no-repeat; /* Prevents image repetition */
+  background-position: center; /* Centers background image */
+  height: 100vh; /* Sets body height to 100% of viewport height */
+}
 
+h1 {
+  text-align: center; /* Centers the text */
+  color: white; /* Sets text color to white */
+  font-size: 4rem; /* Sets font size */
+  margin-top: 20vh; /* Adds top margin */
+}
+
+/* Responsiveness styles */
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 2rem; /* Adjusts font size for smaller screens */
+  }
+}
