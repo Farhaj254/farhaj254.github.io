@@ -2,7 +2,7 @@
 body {
   margin: 0; /* Removes default body margin */
   font-family: 'Arial', sans-serif; /* Sets font family */
-  background-image: url("https://img.freepik.com/free-photo/cool-geometric-triangular-figure-neon-laser-light-great-backgrounds_181624-11068.jpg"); /* Sets background image */
+  background-image: https://img.freepik.com/free-photo/cool-geometric-triangular-figure-neon-laser-light-great-backgrounds_181624-11068.jpg ; /* Sets background image */
   background-size: cover; /* Covers entire viewport with image */
   background-repeat: no-repeat; /* Prevents image repetition */
   background-position: center; /* Centers background image */
