@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,18 +12,16 @@
 <body>
     <nav>
         <a href="#" class="logo">
-            <box-icon name='game' type='solid' color='#00FFFF' ></box-icon>Game<span>/></span>
+            <box-icon name='game' type='solid' color='#00FFFF'></box-icon>Game<span>/></span>
         </a>
-        <div class="menuToggle" onclick="toggleMenu()">
-        </div>
+        <div class="menuToggle" onclick="toggleMenu()"></div>
         <ul class="navigation">
-            <li><a href="#games" onclick="toggleMenu()">Game</a></li>
+            <li><a href="#games" onclick="toggleMenu()">Games</a></li>
             <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-
         </ul>
     </nav>
 
-    <!-- games -->
+    <!-- Games Section -->
     <section id="games" class="game">
         <div class="title">
             <lord-icon
@@ -37,7 +36,9 @@
         <div class="content">
             <div class="box" data-aos="flip-left">
                 <div class="imgBx">
-                    <a href="pubg.html" target="_blank" style="text-decoration: none; color: inherit;"> 
+                    <a href="pubg.html" target="_blank" style="text-decoration: none; color: inherit;">
+                        <img src="media/games/pubg.jpg" alt="Pubg">
+                    </a>
                 </div>
                 <div class="text">
                     <h3>Pubg</h3>
@@ -45,15 +46,19 @@
             </div>
             <div class="box" data-aos="flip-right">
                 <div class="imgBx">
-                    <a href="cod.html" target="_blank" style="text-decoration: none; color: inherit;"> 
+                    <a href="cod.html" target="_blank" style="text-decoration: none; color: inherit;">
+                        <img src="media/games/cod.jpg" alt="Call Of Duty: Mobile">
+                    </a>
                 </div>
                 <div class="text">
-                    <h3>Call Of Duty:Mobile</h3>
+                    <h3>Call Of Duty: Mobile</h3>
                 </div>
             </div>
             <div class="box" data-aos="flip-left">
                 <div class="imgBx">
-                    <a href="minecraft.html" target="_blank" style="text-decoration: none; color: inherit;"> 
+                    <a href="minecraft.html" target="_blank" style="text-decoration: none; color: inherit;">
+                        <img src="media/games/minecraft.jpg" alt="Minecraft">
+                    </a>
                 </div>
                 <div class="text">
                     <h3>Minecraft</h3>
@@ -61,7 +66,9 @@
             </div>
             <div class="box" data-aos="flip-right">
                 <div class="imgBx">
-                    <a href=".html" target="_blank" style="text-decoration: none; color: inherit;"> 
+                    <a href="lords.html" target="_blank" style="text-decoration: none; color: inherit;">
+                        <img src="media/games/lords.jpg" alt="Lords Mobile">
+                    </a>
                 </div>
                 <div class="text">
                     <h3>Lords Mobile</h3>
@@ -69,25 +76,28 @@
             </div>
             <div class="box" data-aos="flip-left">
                 <div class="imgBx">
-                    
-                    <a href="pokemon.html" target="_blank" style="text-decoration: none; color: inherit;"> 
+                    <a href="pokemon.html" target="_blank" style="text-decoration: none; color: inherit;">
+                        <img src="media/games/pokemon.jpg" alt="Pokémon Unite">
+                    </a>
                 </div>
                 <div class="text">
-                    <h3>Pokemob Unite</h3>
+                    <h3>Pokémon Unite</h3>
                 </div>
             </div>
             <div class="box" data-aos="flip-right">
                 <div class="imgBx">
-                
+                    <a href="freefire.html" target="_blank" style="text-decoration: none; color: inherit;">
+                        <img src="media/games/freefire.jpg" alt="Garena Free Fire">
+                    </a>
                 </div>
                 <div class="text">
                     <h3>Garena Free Fire</h3>
                 </div>
             </div>
         </div>
-    </div>
     </section>
-    <!-- contact  -->
+
+    <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="content">
             <div class="text">
@@ -95,18 +105,18 @@
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis a impedit nulla neque alias temporibus.</p>
             </div>
             <div class="contactForm">
-                <form action="mesage.php">
+                <form action="message.php">
                     <div class="row100">
                         <div class="inputBox50">
-                            <input type="text" name="fullname" id="" placeholder="Full Name">
+                            <input type="text" name="fullname" placeholder="Full Name" required>
                         </div>
                         <div class="inputBox50">
-                            <input type="email" name="fullname" id="" placeholder="Email Adress">
+                            <input type="email" name="email" placeholder="Email Address" required>
                         </div>
                     </div>
                     <div class="row100">
                         <div class="inputBox100">
-                            <textarea name="messages" placeholder="Message"></textarea>
+                            <textarea name="messages" placeholder="Message" required></textarea>
                         </div>
                     </div>
                     <div class="row100">
@@ -117,18 +127,15 @@
                 </form>
             </div>
             <div class="social">
-                <li><a href="https://www.linkedin.com/in/smruti-ranjan-nayak/"><img src="media/icon/linkedin.png" alt=""></a></li>
-                <li><a href="https://www.instagram.com/sm8uti/"><img src="media/icon/instagram.png" alt=""></a></li>
-                <li><a href="#"><img src="media/icon/facebook.png" alt=""></a></li>
+                <li><a href="https://www.linkedin.com/in/smruti-ranjan-nayak/"><img src="media/icon/linkedin.png" alt="LinkedIn"></a></li>
+                <li><a href="https://www.instagram.com/sm8uti/"><img src="media/icon/instagram.png" alt="Instagram"></a></li>
+                <li><a href="#"><img src="media/icon/facebook.png" alt="Facebook"></a></li>
             </div>
         </div>
-        <p class="copyright">Desgin & Developed By<a href="https://github.com/sm8UTI/"> SM8UTI</a></p>
+        <p class="copyright">Designed & Developed By <a href="https://github.com/sm8UTI/">SM8UTI</a></p>
     </section>
-    <!-- ----- -->
 
-
-
-    <!-- script -->
+    <!-- Scripts -->
     <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
     <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -137,17 +144,17 @@
             offset: 300,
             duration: 2000,
         });
-    </script>
-    <script type="text/javascript">
-        window.addEventListener('scroll',function(){
+
+        window.addEventListener('scroll', function() {
             const header = document.querySelector('nav');
-            header.classList.toggle("sticky",window.scrollY > 0);
-        })
-        function toggleMenu(){
+            header.classList.toggle("sticky", window.scrollY > 0);
+        });
+
+        function toggleMenu() {
             const menuToggle = document.querySelector('.menuToggle');
             const navigation = document.querySelector('.navigation');
-            menuToggle.classList.toggle('active')
-            navigation.classList.toggle('active')
+            menuToggle.classList.toggle('active');
+            navigation.classList.toggle('active');
         }
     </script>
 </body>
