@@ -16,218 +16,199 @@
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
             display: flex;
-            justify-content: center;
-            align-items: center;
             flex-direction: column;
-            height: 100vh;
+            align-items: center;
             padding: 20px;
         }
 
         #content-container {
-            text-align: center;
             background-color: #fff;
-            width: 100%;
-            max-width: 960px;
+            width: 90%;
+            max-width: 1200px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 30px;
+            padding: 20px;
+            position: relative;
         }
 
-        /* Game Info */
-        #game-info {
-            margin-bottom: 20px;
-        }
-
-        #game-info h3 {
-            font-size: 2rem;
-            color: #007BFF;
-            margin-bottom: 10px;
-        }
-
-        #game-info p {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        /* Game Window */
         #game-container {
             position: relative;
-            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
             height: 500px;
-            max-height: 600px;
+        }
+
+        #game-iframe {
+            width: 70%;
+            height: 100%;
+            border: 2px solid #007BFF;
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        .ad-box {
+            position: absolute;
+            width: 150px;
+            height: 100%;
+            background-color: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .ad-box.left {
+            left: 0;
+        }
+
+        .ad-box.right {
+            right: 0;
+        }
+
+        .close-ad {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+            line-height: 25px;
+            cursor: pointer;
+        }
+
+        #ad-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        #ad-overlay-content {
+            background-color: white;
+            width: 80%;
+            max-width: 500px;
+            height: 300px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        #ad-overlay .close-ad {
+            top: 5px;
+            right: 5px;
+        }
+
+        #play-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
             margin-top: 20px;
         }
 
-        /* Game Iframe */
-        #game-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 10px;
-        }
-
-        /* Play Button */
-        #play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #007BFF;
-            color: white;
-            font-size: 20px;
-            padding: 20px 40px;
-            border-radius: 5px;
-            cursor: pointer;
-            display: none; /* Hidden until the game is ready */
-            z-index: 2;
-        }
-
-        /* Game Boxes (Multiple Games) */
         .game-boxes {
             display: flex;
-            justify-content: space-around;
-            gap: 20px;
+            justify-content: space-between;
+            flex-wrap: wrap;
             margin-top: 40px;
         }
 
         .game-box {
-            width: 180px;
-            height: 250px;
+            width: 150px;
+            height: 200px;
             background-color: #007BFF;
             color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            line-height: 250px;
-            font-size: 1.1rem;
             border-radius: 8px;
             cursor: pointer;
+            margin: 10px;
             transition: transform 0.3s ease;
         }
 
         .game-box:hover {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
-        /* Ad Boxes */
-        .ad-box {
-            width: 100%;
-            height: 150px;
-            background-color: #f1f1f1;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Footer */
         footer {
             text-align: center;
             margin-top: 40px;
-            font-size: 14px;
-        }
-
-        footer a {
-            color: #007BFF;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <!-- Game Boxes -->
-    <div class="game-boxes">
-        <div class="game-box" onclick="openGame('game1')">Game 1</div>
-        <div class="game-box" onclick="openGame('game2')">Game 2</div>
-        <div class="game-box" onclick="openGame('game3')">Game 3</div>
-    </div>
-
     <div id="content-container">
-        <!-- Ad Box (Appears before the game starts) -->
-        <div class="ad-box">
-            <p>Advertise Here!</p>
-        </div>
-
-        <!-- Game Info -->
-        <div id="game-info">
-            <h3>Game Title: Ragdoll Archers</h3>
-            <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles.</p>
-        </div>
-
-        <!-- Game Window with Play Button -->
+        <!-- Game Window with Ads -->
         <div id="game-container">
-            <iframe id="game-iframe" src="about:blank" frameborder="0" scrolling="no"></iframe>
-            <div id="play-button" onclick="startGame()">Play Game</div>
+            <div class="ad-box left">Ad Space</div>
+            <iframe id="game-iframe" src="about:blank"></iframe>
+            <div class="ad-box right">Ad Space</div>
         </div>
 
-        <!-- Like/Dislike Buttons -->
-        <div class="like-dislike">
-            <button onclick="likeDislike('like')">Like</button>
-            <button onclick="likeDislike('dislike')">Dislike</button>
+        <!-- Ad Overlay -->
+        <div id="ad-overlay">
+            <div id="ad-overlay-content">
+                <button class="close-ad" onclick="closeAdOverlay()">×</button>
+                <p>Ad Content Goes Here</p>
+                <button id="play-button" onclick="startGame()">Play Game</button>
+            </div>
         </div>
 
-        <!-- Fullscreen Button -->
-        <a id="fullscreen-button" href="#" onclick="toggleFullscreen(); return false;">Full Screen</a>
-
-        <!-- Disqus Comment Section -->
-        <div id="disqus_thread"></div>
-        <script>
-            (function() {
-                var d = document, s = d.createElement('script');
-                s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js'; 
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        </script>
+        <!-- Game Boxes -->
+        <div class="game-boxes">
+            <div class="game-box" onclick="openGame('game1')">Game 1</div>
+            <div class="game-box" onclick="openGame('game2')">Game 2</div>
+            <div class="game-box" onclick="openGame('game3')">Game 3</div>
+        </div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 Game Portal. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-    </footer>
+    <footer>&copy; 2024 Game Portal</footer>
 
     <script>
-        // Open game in the iframe
         function openGame(game) {
             const iframe = document.getElementById('game-iframe');
-            const playButton = document.getElementById('play-button');
+            const adOverlay = document.getElementById('ad-overlay');
+
             if (game === 'game1') {
                 iframe.src = "https://bitlifeonline.github.io/ragdoll-archers/";
             } else if (game === 'game2') {
-                iframe.src = "about:blank"; // Another game URL here
+                iframe.src = "about:blank"; // Add another game URL
             } else if (game === 'game3') {
-                iframe.src = "about:blank"; // Another game URL here
+                iframe.src = "about:blank"; // Add another game URL
             }
-            playButton.style.display = 'block'; // Show play button
+
+            adOverlay.style.display = 'flex'; // Show Ad overlay
         }
 
-        // Start the game
+        function closeAdOverlay() {
+            const adOverlay = document.getElementById('ad-overlay');
+            adOverlay.style.display = 'none';
+        }
+
         function startGame() {
-            const iframe = document.getElementById('game-iframe');
-            iframe.contentWindow.location.reload(); // Restart game if needed
-        }
-
-        // Like/Dislike Button Logic
-        function likeDislike(action) {
-            if (action === 'like') {
-                alert('You liked the game!');
-            } else if (action === 'dislike') {
-                alert('You disliked the game!');
-            }
-        }
-
-        // Toggle Fullscreen for the Game
-        function toggleFullscreen() {
-            const iframe = document.getElementById('game-iframe');
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            } else if (iframe.mozRequestFullScreen) {
-                iframe.mozRequestFullScreen();
-            } else if (iframe.webkitRequestFullscreen) {
-                iframe.webkitRequestFullscreen();
-            } else if (iframe.msRequestFullscreen) {
-                iframe.msRequestFullscreen();
-            }
+            const adOverlay = document.getElementById('ad-overlay');
+            adOverlay.style.display = 'none'; // Hide overlay
         }
     </script>
 </body>
