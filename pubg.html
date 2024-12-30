@@ -126,11 +126,9 @@
         /* Buttons Container */
         .buttons-container {
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
             gap: 15px;
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
+            margin-top: 20px;
         }
 
         /* Like/Dislike Buttons */
@@ -147,6 +145,30 @@
 
         .like-dislike button:hover, #fullscreen-button:hover {
             background-color: #0056b3;
+        }
+
+        /* Blog Section */
+        #blog-section {
+            margin-top: 30px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+
+        #blog-section h4 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        #blog-textbox {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            resize: none;
+            margin-bottom: 15px;
         }
 
         /* Footer Section */
@@ -203,31 +225,41 @@
     </header>
 
     <div id="content-container">
-        <!-- Game Title Above the Iframe -->
-        <div id="game-info">
-            <h3>Game Title: Ragdoll Archers</h3>
-            <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
-        </div>
-
         <!-- Game Container with Play Button -->
         <div class="game-container">
             <div id="overlay">
                 <button id="play-button" onclick="startGame()">Play Game</button>
             </div>
             <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
+        </div>
 
-            <!-- Buttons below the Iframe -->
-            <div class="buttons-container">
-                <!-- Fullscreen Button -->
-                <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
+        <!-- Game Title & Description -->
+        <div id="game-info">
+            <h3>Game Title: Ragdoll Archers</h3>
+            <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
+        </div>
 
-                <!-- Like/Dislike Buttons -->
-                <div class="like-dislike">
-                    <button onclick="likeDislike('like')">Like</button>
-                    <button onclick="likeDislike('dislike')">Dislike</button>
-                </div>
+        <!-- Buttons below the Iframe -->
+        <div class="buttons-container">
+            <!-- Fullscreen Button -->
+            <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
+
+            <!-- Like/Dislike Buttons -->
+            <div class="like-dislike">
+                <button onclick="likeDislike('like')">Like</button>
+                <button onclick="likeDislike('dislike')">Dislike</button>
             </div>
         </div>
+
+        <!-- Admin Blog Section -->
+        <div id="blog-section">
+            <h4>Game Blog</h4>
+            <textarea id="blog-textbox" placeholder="Admin can write a blog related to the game here..."></textarea>
+            <button onclick="saveBlog()">Save Blog</button>
+        </div>
+
+        <!-- Disqus Comment Section -->
+        <div id="disqus_thread"></div>
     </div>
 
     <footer>
@@ -264,6 +296,24 @@
                 iframe.msRequestFullscreen();
             }
         }
+
+        // Save the blog (for admin use)
+        function saveBlog() {
+            const blog = document.getElementById('blog-textbox').value;
+            if (blog) {
+                alert('Blog saved successfully!');
+            } else {
+                alert('Please write a blog before saving.');
+            }
+        }
+
+        // Disqus Comment Section
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js'; // Replace YOUR_DISQUS_SHORTNAME with your Disqus shortname
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
     </script>
 </body>
 </html>
