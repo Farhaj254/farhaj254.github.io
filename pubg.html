@@ -5,16 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Portal</title>
     <style>
-        /* Reset and general styles here (same as before) */
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        /* Game Title and Description Section */
-        #game-info {
-            margin-top: 20px;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #content-container {
             text-align: center;
+            max-width: 800px;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         #game-info h3 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: #007BFF;
             margin-bottom: 10px;
         }
@@ -25,10 +45,20 @@
             margin-bottom: 20px;
         }
 
-        /* Like and Dislike Buttons */
+        /* Iframe Styling */
+        #game-iframe {
+            width: 100%;
+            height: 60vh;
+            max-height: 600px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        /* Like/Dislike Buttons */
         .like-dislike {
-            text-align: center;
-            margin-bottom: 30px;
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 20px;
         }
 
         .like-dislike button {
@@ -36,19 +66,39 @@
             color: white;
             border: none;
             padding: 10px 20px;
-            margin: 0 10px;
+            margin-right: 10px;
             cursor: pointer;
             font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
 
         .like-dislike button:hover {
             background-color: #0056b3;
         }
 
+        /* Fullscreen Button */
+        #fullscreen-button {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        #fullscreen-button:hover {
+            background-color: #0056b3;
+        }
+
         /* Comment Section */
         #comments-section {
-            margin-top: 40px;
-            text-align: center;
+            margin-top: 30px;
         }
 
         #comments-section h4 {
@@ -60,10 +110,10 @@
         #comment-box {
             width: 80%;
             padding: 10px;
-            margin-bottom: 10px;
             font-size: 16px;
             border-radius: 5px;
             border: 1px solid #ccc;
+            margin-bottom: 10px;
         }
 
         #submit-comment {
@@ -78,33 +128,42 @@
         #submit-comment:hover {
             background-color: #0056b3;
         }
+
+        /* Footer Styling */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Categories</a>
-        <a href="#">Top Games</a>
-        <a href="#">Login</a>
-    </nav>
-
     <div id="content-container">
-        <h2>Ragdoll Archers The Game</h2>
-
-        <iframe id="game-iframe" src="https://bitlifeonline.github.io/ragdoll-archers/" frameborder="0" scrolling="no"></iframe>
-
-        <!-- Game Title and Description -->
+        <h2>Ragdoll Archers</h2>
         <div id="game-info">
             <h3>Game Title: Ragdoll Archers</h3>
             <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers.</p>
         </div>
+        
+        <iframe id="game-iframe" src="https://bitlifeonline.github.io/ragdoll-archers/" frameborder="0" scrolling="no"></iframe>
 
         <!-- Like and Dislike Buttons -->
         <div class="like-dislike">
             <button onclick="likeDislike('like')">Like</button>
             <button onclick="likeDislike('dislike')">Dislike</button>
         </div>
+
+        <!-- Fullscreen Button -->
+        <a id="fullscreen-button" href="#" onclick="toggleFullscreen(); return false;">Full Screen</a>
 
         <!-- Comment Section -->
         <div id="comments-section">
@@ -115,11 +174,6 @@
             <div id="comment-list" style="margin-top: 20px;">
                 <!-- Comment list will appear here -->
             </div>
-        </div>
-
-        <!-- Fullscreen Button -->
-        <div id="fullscreen-button-container">
-            <a id="fullscreen-button" href="#" onclick="toggleFullscreen(); return false;">Full Screen</a>
         </div>
     </div>
 
