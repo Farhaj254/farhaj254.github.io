@@ -5,28 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Embed Game with Full Screen</title>
     <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
+            line-height: 1.6;
+            color: #333;
+            background: #f4f4f4;
             padding: 20px;
         }
+
+        /* Content Container */
         #content-container {
             text-align: center;
+            margin: 0 auto;
+            max-width: 800px;
         }
+
+        #content-container h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #007BFF;
+        }
+
+        /* Game Iframe */
         #game-iframe {
             width: 100%;
             height: 60vh;
             max-height: 600px;
+            border: 2px solid #007BFF;
+            border-radius: 10px;
         }
+
+        /* Fullscreen Button */
+        #fullscreen-button-container {
+            margin-top: 20px;
+        }
+
         #fullscreen-button {
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
             background-color: #007BFF;
             color: #fff;
-            border: none;
             border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
+
         #fullscreen-button:hover {
             background-color: #0056b3;
         }
@@ -39,12 +73,12 @@
         <iframe id="game-iframe" width="100%" height="600px" frameborder="0" scrolling="no" src="https://bitlifeonline.github.io/ragdoll-archers/"></iframe>
 
         <div id="fullscreen-button-container">
-            <button id="fullscreen-button">Full Screen</button>
+            <a id="fullscreen-button" href="#" onclick="toggleFullscreen(); return false;">Full Screen</a>
         </div>
     </div>
 
     <script>
-        document.getElementById('fullscreen-button').addEventListener('click', function() {
+        function toggleFullscreen() {
             const iframe = document.getElementById('game-iframe');
             if (iframe.requestFullscreen) {
                 iframe.requestFullscreen();
@@ -55,7 +89,7 @@
             } else if (iframe.msRequestFullscreen) { // IE/Edge
                 iframe.msRequestFullscreen();
             }
-        });
+        }
     </script>
 </body>
 </html>
