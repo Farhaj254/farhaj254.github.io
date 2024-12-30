@@ -123,13 +123,9 @@
         /* Buttons Container */
         .buttons-container {
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
             gap: 15px;
             margin-top: 20px;
-            position: absolute;
-            right: 20px;
-            bottom: 10px;
-            z-index: 3;
         }
 
         /* Like/Dislike Buttons */
@@ -178,18 +174,6 @@
                 <button id="play-button" onclick="startGame()">Play Game</button>
             </div>
             <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
-
-            <!-- Buttons Container -->
-            <div class="buttons-container">
-                <!-- Fullscreen Button -->
-                <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-
-                <!-- Like/Dislike Buttons -->
-                <div class="like-dislike">
-                    <button onclick="likeDislike('like')">Like</button>
-                    <button onclick="likeDislike('dislike')">Dislike</button>
-                </div>
-            </div>
         </div>
 
         <!-- Game Title & Description -->
@@ -203,6 +187,18 @@
             <h4>Game Article</h4>
             <textarea id="article-textbox" placeholder="Admin can write an article related to the game here..."></textarea>
             <button onclick="saveArticle()">Save Article</button>
+        </div>
+
+        <!-- Buttons Container below the iframe -->
+        <div class="buttons-container">
+            <!-- Fullscreen Button -->
+            <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
+
+            <!-- Like/Dislike Buttons -->
+            <div class="like-dislike">
+                <button onclick="likeDislike('like')">Like</button>
+                <button onclick="likeDislike('dislike')">Dislike</button>
+            </div>
         </div>
 
         <!-- Disqus Comment Section -->
