@@ -43,6 +43,40 @@
             margin-bottom: 10px;
         }
 
+        /* Buttons Container above the game description */
+        .buttons-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-bottom: 20px; /* Add space below the buttons */
+        }
+
+        .buttons-container button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons-container button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Game Description Section */
+        #game-description {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #game-description p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
         /* Game Container */
         .game-container {
             position: relative;
@@ -91,40 +125,6 @@
             transform: scale(1.05);
         }
 
-        /* Buttons Container above the description */
-        .buttons-container {
-            display: flex;
-            justify-content: flex-end;
-            gap: 15px;
-            margin-bottom: 20px; /* Add space below the buttons */
-        }
-
-        .buttons-container button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .buttons-container button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Game Description Section */
-        #game-description {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        #game-description p {
-            font-size: 1.1rem;
-            color: #555;
-        }
-
         /* Disqus Comment Section */
         #disqus_thread {
             margin-top: 40px;
@@ -166,17 +166,17 @@
             </div>
         </div>
 
+        <!-- Game Description Section -->
+        <div id="game-description">
+            <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
+        </div>
+
         <!-- Game Container with Play Button -->
         <div class="game-container">
             <div id="overlay">
                 <button id="play-button" onclick="startGame()">Play Game</button>
             </div>
             <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
-        </div>
-
-        <!-- Game Description Section -->
-        <div id="game-description">
-            <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
         </div>
 
         <!-- Disqus Comment Section -->
