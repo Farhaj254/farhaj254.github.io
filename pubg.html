@@ -18,6 +18,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
             padding: 20px;
         }
@@ -32,6 +33,7 @@
             padding: 30px;
         }
 
+        /* Game Info */
         #game-info {
             margin-bottom: 20px;
         }
@@ -48,62 +50,75 @@
             margin-bottom: 20px;
         }
 
-        /* Game Iframe */
-        #game-iframe {
+        /* Game Window */
+        #game-container {
+            position: relative;
             width: 100%;
             height: 500px;
             max-height: 600px;
+            margin-top: 20px;
+        }
+
+        /* Game Iframe */
+        #game-iframe {
+            width: 100%;
+            height: 100%;
             border: none;
             border-radius: 10px;
         }
 
-        /* Like/Dislike Buttons */
-        .like-dislike {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .like-dislike button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .like-dislike button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Fullscreen Button */
-        #fullscreen-button {
+        /* Play Button */
+        #play-button {
             position: absolute;
-            right: 20px;
-            bottom: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background-color: #007BFF;
             color: white;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 16px;
+            font-size: 20px;
+            padding: 20px 40px;
             border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
+            cursor: pointer;
+            display: none; /* Hidden until the game is ready */
+            z-index: 2;
         }
 
-        #fullscreen-button:hover {
-            background-color: #0056b3;
+        /* Game Boxes (Multiple Games) */
+        .game-boxes {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            margin-top: 40px;
         }
 
-        /* Disqus Comment Section */
-        #disqus_thread {
-            margin-top: 30px;
+        .game-box {
+            width: 180px;
+            height: 250px;
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            line-height: 250px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
 
+        .game-box:hover {
+            transform: scale(1.05);
+        }
+
+        /* Ad Boxes */
+        .ad-box {
+            width: 100%;
+            height: 150px;
+            background-color: #f1f1f1;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
         footer {
             text-align: center;
             margin-top: 40px;
@@ -121,14 +136,30 @@
     </style>
 </head>
 <body>
+    <!-- Game Boxes -->
+    <div class="game-boxes">
+        <div class="game-box" onclick="openGame('game1')">Game 1</div>
+        <div class="game-box" onclick="openGame('game2')">Game 2</div>
+        <div class="game-box" onclick="openGame('game3')">Game 3</div>
+    </div>
+
     <div id="content-container">
-        <div id="game-info">
-            <h3>Game Title: Ragdoll Archers</h3>
-            <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
+        <!-- Ad Box (Appears before the game starts) -->
+        <div class="ad-box">
+            <p>Advertise Here!</p>
         </div>
 
-        <!-- Game Iframe -->
-        <iframe id="game-iframe" src="https://bitlifeonline.github.io/ragdoll-archers/" frameborder="0" scrolling="no"></iframe>
+        <!-- Game Info -->
+        <div id="game-info">
+            <h3>Game Title: Ragdoll Archers</h3>
+            <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles.</p>
+        </div>
+
+        <!-- Game Window with Play Button -->
+        <div id="game-container">
+            <iframe id="game-iframe" src="about:blank" frameborder="0" scrolling="no"></iframe>
+            <div id="play-button" onclick="startGame()">Play Game</div>
+        </div>
 
         <!-- Like/Dislike Buttons -->
         <div class="like-dislike">
@@ -144,7 +175,7 @@
         <script>
             (function() {
                 var d = document, s = d.createElement('script');
-                s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js'; // Replace YOUR_DISQUS_SHORTNAME with your Disqus shortname
+                s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js'; 
                 s.setAttribute('data-timestamp', +new Date());
                 (d.head || d.body).appendChild(s);
             })();
@@ -156,6 +187,26 @@
     </footer>
 
     <script>
+        // Open game in the iframe
+        function openGame(game) {
+            const iframe = document.getElementById('game-iframe');
+            const playButton = document.getElementById('play-button');
+            if (game === 'game1') {
+                iframe.src = "https://bitlifeonline.github.io/ragdoll-archers/";
+            } else if (game === 'game2') {
+                iframe.src = "about:blank"; // Another game URL here
+            } else if (game === 'game3') {
+                iframe.src = "about:blank"; // Another game URL here
+            }
+            playButton.style.display = 'block'; // Show play button
+        }
+
+        // Start the game
+        function startGame() {
+            const iframe = document.getElementById('game-iframe');
+            iframe.contentWindow.location.reload(); // Restart game if needed
+        }
+
         // Like/Dislike Button Logic
         function likeDislike(action) {
             if (action === 'like') {
