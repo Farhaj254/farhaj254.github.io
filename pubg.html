@@ -94,6 +94,34 @@
             background-color: #0056b3;
             transform: scale(1.05);
         }
+
+        /* Buttons Container */
+        .buttons-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 10px;
+            position: absolute;
+            right: 30px;
+            bottom: 10px;
+            z-index: 3;
+        }
+
+        /* Like/Dislike Buttons */
+        .like-dislike button, #fullscreen-button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .like-dislike button:hover, #fullscreen-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -112,6 +140,18 @@
 
             <!-- Game Iframe -->
             <iframe id="game-iframe" src="https://bitlifeonline.github.io/ragdoll-archers/" frameborder="0" scrolling="no"></iframe>
+
+            <!-- Buttons Container -->
+            <div class="buttons-container">
+                <!-- Fullscreen Button -->
+                <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
+
+                <!-- Like/Dislike Buttons -->
+                <div class="like-dislike">
+                    <button onclick="likeDislike('like')">Like</button>
+                    <button onclick="likeDislike('dislike')">Dislike</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -122,6 +162,29 @@
             // Reload the iframe to restart the game
             const iframe = document.getElementById('game-iframe');
             iframe.src = iframe.src;
+        }
+
+        // Like/Dislike Button Logic
+        function likeDislike(action) {
+            if (action === 'like') {
+                alert('You liked the game!');
+            } else if (action === 'dislike') {
+                alert('You disliked the game!');
+            }
+        }
+
+        // Toggle Fullscreen for the Game
+        function toggleFullscreen() {
+            const iframe = document.getElementById('game-iframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) {
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
+            }
         }
     </script>
 </body>
