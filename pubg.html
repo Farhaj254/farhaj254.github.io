@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embed Game with Full Screen</title>
+    <title>Game Portal</title>
     <style>
         /* General Reset */
         * {
@@ -18,23 +18,40 @@
             line-height: 1.6;
             color: #333;
             background: #f4f4f4;
-            padding: 20px;
+            padding: 0;
+        }
+
+        /* Navigation Bar Styling */
+        nav {
+            background-color: #007BFF;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
         }
 
         /* Content Container */
         #content-container {
+            margin: 20px;
             text-align: center;
-            margin: 0 auto;
-            max-width: 800px;
         }
 
-        #content-container h2 {
-            margin-bottom: 20px;
+        h2 {
             font-size: 2rem;
             color: #007BFF;
+            margin-bottom: 20px;
         }
 
-        /* Game Iframe */
+        /* Game Iframe Styling */
         #game-iframe {
             width: 100%;
             height: 60vh;
@@ -43,50 +60,112 @@
             border-radius: 10px;
         }
 
-        /* Fullscreen Button */
-        #fullscreen-button-container {
+        /* Game Thumbnails and Categories */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
             margin-top: 20px;
         }
 
-        #fullscreen-button {
-            display: inline-block;
-            text-decoration: none;
-            text-align: center;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #007BFF;
-            color: #fff;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+        .game-card {
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        #fullscreen-button:hover {
-            background-color: #0056b3;
+        .game-card img {
+            width: 100%;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .game-card h3 {
+            padding: 10px;
+            font-size: 1.2rem;
+            color: #007BFF;
+        }
+
+        .game-card p {
+            padding: 0 10px 10px;
+            color: #777;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #007BFF;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Categories</a>
+        <a href="#">Top Games</a>
+        <a href="#">Login</a>
+    </nav>
+
     <div id="content-container">
         <h2>Ragdoll Archers The Game</h2>
 
-        <iframe id="game-iframe" width="100%" height="600px" frameborder="0" scrolling="no" src="https://bitlifeonline.github.io/ragdoll-archers/"></iframe>
+        <iframe id="game-iframe" src="https://bitlifeonline.github.io/ragdoll-archers/" frameborder="0" scrolling="no"></iframe>
 
+        <!-- Game Thumbnails and Categories -->
+        <div class="game-grid">
+            <div class="game-card">
+                <img src="https://via.placeholder.com/200x150" alt="Game Thumbnail">
+                <h3>Game 1</h3>
+                <p>Description of Game 1.</p>
+            </div>
+            <div class="game-card">
+                <img src="https://via.placeholder.com/200x150" alt="Game Thumbnail">
+                <h3>Game 2</h3>
+                <p>Description of Game 2.</p>
+            </div>
+            <div class="game-card">
+                <img src="https://via.placeholder.com/200x150" alt="Game Thumbnail">
+                <h3>Game 3</h3>
+                <p>Description of Game 3.</p>
+            </div>
+        </div>
+
+        <!-- Fullscreen Button -->
         <div id="fullscreen-button-container">
             <a id="fullscreen-button" href="#" onclick="toggleFullscreen(); return false;">Full Screen</a>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Game Portal. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
 
     <script>
         function toggleFullscreen() {
             const iframe = document.getElementById('game-iframe');
             if (iframe.requestFullscreen) {
                 iframe.requestFullscreen();
-            } else if (iframe.mozRequestFullScreen) { // Firefox
+            } else if (iframe.mozRequestFullScreen) {
                 iframe.mozRequestFullScreen();
-            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
+            } else if (iframe.webkitRequestFullscreen) {
                 iframe.webkitRequestFullscreen();
-            } else if (iframe.msRequestFullscreen) { // IE/Edge
+            } else if (iframe.msRequestFullscreen) {
                 iframe.msRequestFullscreen();
             }
         }
