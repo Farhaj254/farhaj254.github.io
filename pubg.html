@@ -14,50 +14,54 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
+            background-color: #f8f9fa;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
+            height: 100vh;
+            padding: 20px;
         }
 
         #content-container {
             text-align: center;
-            max-width: 800px;
-            width: 100%;
             background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            position: relative;
+            width: 100%;
+            max-width: 960px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        #game-info {
+            margin-bottom: 20px;
         }
 
         #game-info h3 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: #007BFF;
             margin-bottom: 10px;
         }
 
         #game-info p {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #555;
             margin-bottom: 20px;
         }
 
-        /* Iframe Styling */
+        /* Game Iframe */
         #game-iframe {
             width: 100%;
-            height: 60vh;
+            height: 500px;
             max-height: 600px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
         }
 
         /* Like/Dislike Buttons */
         .like-dislike {
             display: flex;
-            justify-content: flex-start;
+            justify-content: center;
+            gap: 15px;
             margin-top: 20px;
         }
 
@@ -66,10 +70,9 @@
             color: white;
             border: none;
             padding: 10px 20px;
-            margin-right: 10px;
-            cursor: pointer;
             font-size: 16px;
             border-radius: 5px;
+            cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
@@ -96,7 +99,11 @@
             background-color: #0056b3;
         }
 
-        /* Footer Styling */
+        /* Disqus Comment Section */
+        #disqus_thread {
+            margin-top: 30px;
+        }
+
         footer {
             text-align: center;
             margin-top: 40px;
@@ -115,15 +122,15 @@
 </head>
 <body>
     <div id="content-container">
-        <h2>Ragdoll Archers</h2>
         <div id="game-info">
             <h3>Game Title: Ragdoll Archers</h3>
-            <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers.</p>
+            <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
         </div>
-        
+
+        <!-- Game Iframe -->
         <iframe id="game-iframe" src="https://bitlifeonline.github.io/ragdoll-archers/" frameborder="0" scrolling="no"></iframe>
 
-        <!-- Like and Dislike Buttons -->
+        <!-- Like/Dislike Buttons -->
         <div class="like-dislike">
             <button onclick="likeDislike('like')">Like</button>
             <button onclick="likeDislike('dislike')">Dislike</button>
@@ -131,18 +138,18 @@
 
         <!-- Fullscreen Button -->
         <a id="fullscreen-button" href="#" onclick="toggleFullscreen(); return false;">Full Screen</a>
-    </div>
 
-    <div id="disqus_thread"></div>
-    <script>
-        // Disqus Embed Script
-        (function() {
-            var d = document, s = d.createElement('script');
-            s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js'; // Replace YOUR_DISQUS_SHORTNAME with your shortname
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    </script>
+        <!-- Disqus Comment Section -->
+        <div id="disqus_thread"></div>
+        <script>
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js'; // Replace YOUR_DISQUS_SHORTNAME with your Disqus shortname
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    </div>
 
     <footer>
         <p>&copy; 2024 Game Portal. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
