@@ -31,28 +31,11 @@
             padding: 20px;
         }
 
-        /* Header Section */
-        #game-info {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        #game-info h3 {
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        #game-info p {
-            font-size: 1.1rem;
-            color: #555;
-        }
-
         /* Game Container */
         .game-container {
             position: relative;
             width: 100%;
-            height: 400px;
+            height: 500px;
             background-color: #000;
             border-radius: 10px;
             overflow: hidden;
@@ -93,6 +76,48 @@
         #play-button:hover {
             background-color: #0056b3;
             transform: scale(1.05);
+        }
+
+        /* Game Title & Description */
+        #game-info {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #game-info h3 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        #game-info p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Article Section */
+        #article-section {
+            margin-top: 30px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+
+        #article-section h4 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        #article-textbox {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            resize: none;
+            margin-bottom: 15px;
         }
 
         /* Buttons Container */
@@ -147,19 +172,11 @@
 </head>
 <body>
     <div id="content-container">
-        <div id="game-info">
-            <h3>Game Title: Ragdoll Archers</h3>
-            <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
-        </div>
-
-        <!-- Game Container -->
+        <!-- Game Container with Play Button -->
         <div class="game-container">
-            <!-- Play Button Overlay -->
             <div id="overlay">
                 <button id="play-button" onclick="startGame()">Play Game</button>
             </div>
-
-            <!-- Game Iframe -->
             <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
 
             <!-- Buttons Container -->
@@ -173,6 +190,19 @@
                     <button onclick="likeDislike('dislike')">Dislike</button>
                 </div>
             </div>
+        </div>
+
+        <!-- Game Title & Description -->
+        <div id="game-info">
+            <h3>Game Title: Ragdoll Archers</h3>
+            <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
+        </div>
+
+        <!-- Article Section for Admin -->
+        <div id="article-section">
+            <h4>Game Article</h4>
+            <textarea id="article-textbox" placeholder="Admin can write an article related to the game here..."></textarea>
+            <button onclick="saveArticle()">Save Article</button>
         </div>
 
         <!-- Disqus Comment Section -->
@@ -211,6 +241,16 @@
                 iframe.webkitRequestFullscreen();
             } else if (iframe.msRequestFullscreen) {
                 iframe.msRequestFullscreen();
+            }
+        }
+
+        // Save the article (for admin use)
+        function saveArticle() {
+            const article = document.getElementById('article-textbox').value;
+            if (article) {
+                alert('Article saved successfully!');
+            } else {
+                alert('Please write an article before saving.');
             }
         }
 
