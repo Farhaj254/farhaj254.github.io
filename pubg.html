@@ -122,6 +122,11 @@
         .like-dislike button:hover, #fullscreen-button:hover {
             background-color: #0056b3;
         }
+
+        /* Disqus Comment Section */
+        #disqus_thread {
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
@@ -153,6 +158,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- Disqus Comment Section -->
+        <div id="disqus_thread"></div>
     </div>
 
     <script>
@@ -186,6 +194,14 @@
                 iframe.msRequestFullscreen();
             }
         }
+
+        // Disqus Comment Section
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js'; // Replace YOUR_DISQUS_SHORTNAME with your Disqus shortname
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
     </script>
 </body>
 </html>
