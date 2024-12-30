@@ -104,8 +104,18 @@
             margin-top: 20px;
         }
 
-        /* Like/Dislike Buttons */
-        .like-dislike button, #fullscreen-button {
+        /* Like/Dislike and Fullscreen Buttons */
+        .buttons-container {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .buttons-container button {
             background-color: #007BFF;
             color: white;
             border: none;
@@ -116,7 +126,7 @@
             transition: background-color 0.3s ease;
         }
 
-        .like-dislike button:hover, #fullscreen-button:hover {
+        .buttons-container button:hover {
             background-color: #0056b3;
         }
 
@@ -158,7 +168,7 @@
             <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
         </div>
 
-        <!-- Buttons below the Iframe -->
+        <!-- Buttons Container -->
         <div class="buttons-container">
             <!-- Fullscreen Button -->
             <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
