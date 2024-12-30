@@ -30,7 +30,6 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             padding: 30px;
-            position: relative;
         }
 
         #game-info {
@@ -49,14 +48,20 @@
             margin-bottom: 20px;
         }
 
-        /* Game Iframe */
-        #game-iframe {
+        /* Game Container */
+        .game-container {
+            position: relative;
             width: 100%;
             height: 500px;
             max-height: 600px;
+        }
+
+        /* Game Iframe */
+        #game-iframe {
+            width: 100%;
+            height: 100%;
             border: none;
             border-radius: 10px;
-            position: relative;
         }
 
         /* Play Button Overlay */
@@ -65,7 +70,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 500px;
+            height: 100%;
             background-color: rgba(0, 0, 0, 0.6);
             display: flex;
             justify-content: center;
@@ -89,68 +94,6 @@
             background-color: #0056b3;
             transform: scale(1.05);
         }
-
-        /* Like/Dislike Buttons */
-        .like-dislike {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .like-dislike button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .like-dislike button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Fullscreen Button */
-        #fullscreen-button {
-            position: absolute;
-            right: 20px;
-            bottom: 20px;
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        #fullscreen-button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Disqus Comment Section */
-        #disqus_thread {
-            margin-top: 30px;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 14px;
-        }
-
-        footer a {
-            color: #007BFF;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
@@ -160,38 +103,17 @@
             <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
         </div>
 
-        <!-- Play Button Overlay -->
-        <div id="overlay">
-            <button id="play-button" onclick="startGame()">Play</button>
+        <!-- Game Container -->
+        <div class="game-container">
+            <!-- Play Button Overlay -->
+            <div id="overlay">
+                <button id="play-button" onclick="startGame()">Play</button>
+            </div>
+
+            <!-- Game Iframe -->
+            <iframe id="game-iframe" src="https://bitlifeonline.github.io/ragdoll-archers/" frameborder="0" scrolling="no"></iframe>
         </div>
-
-        <!-- Game Iframe -->
-        <iframe id="game-iframe" src="https://bitlifeonline.github.io/ragdoll-archers/" frameborder="0" scrolling="no"></iframe>
-
-        <!-- Like/Dislike Buttons -->
-        <div class="like-dislike">
-            <button onclick="likeDislike('like')">Like</button>
-            <button onclick="likeDislike('dislike')">Dislike</button>
-        </div>
-
-        <!-- Fullscreen Button -->
-        <a id="fullscreen-button" href="#" onclick="toggleFullscreen(); return false;">Full Screen</a>
-
-        <!-- Disqus Comment Section -->
-        <div id="disqus_thread"></div>
-        <script>
-            (function() {
-                var d = document, s = d.createElement('script');
-                s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js'; // Replace YOUR_DISQUS_SHORTNAME with your Disqus shortname
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        </script>
     </div>
-
-    <footer>
-        <p>&copy; 2024 Game Portal. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-    </footer>
 
     <script>
         // Start the game by hiding the overlay
@@ -200,29 +122,6 @@
             // Reload the iframe to restart the game
             const iframe = document.getElementById('game-iframe');
             iframe.src = iframe.src;
-        }
-
-        // Like/Dislike Button Logic
-        function likeDislike(action) {
-            if (action === 'like') {
-                alert('You liked the game!');
-            } else if (action === 'dislike') {
-                alert('You disliked the game!');
-            }
-        }
-
-        // Toggle Fullscreen for the Game
-        function toggleFullscreen() {
-            const iframe = document.getElementById('game-iframe');
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            } else if (iframe.mozRequestFullScreen) {
-                iframe.mozRequestFullScreen();
-            } else if (iframe.webkitRequestFullscreen) {
-                iframe.webkitRequestFullscreen();
-            } else if (iframe.msRequestFullscreen) {
-                iframe.msRequestFullscreen();
-            }
         }
     </script>
 </body>
