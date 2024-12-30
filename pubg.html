@@ -96,39 +96,6 @@
             background-color: #0056b3;
         }
 
-        /* Comment Section */
-        #comments-section {
-            margin-top: 30px;
-        }
-
-        #comments-section h4 {
-            font-size: 1.5rem;
-            color: #007BFF;
-            margin-bottom: 15px;
-        }
-
-        #comment-box {
-            width: 80%;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            margin-bottom: 10px;
-        }
-
-        #submit-comment {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        #submit-comment:hover {
-            background-color: #0056b3;
-        }
-
         /* Footer Styling */
         footer {
             text-align: center;
@@ -164,18 +131,18 @@
 
         <!-- Fullscreen Button -->
         <a id="fullscreen-button" href="#" onclick="toggleFullscreen(); return false;">Full Screen</a>
-
-        <!-- Comment Section -->
-        <div id="comments-section">
-            <h4>Comments</h4>
-            <textarea id="comment-box" placeholder="Leave a comment..." rows="4"></textarea><br>
-            <button id="submit-comment" onclick="submitComment()">Submit Comment</button>
-
-            <div id="comment-list" style="margin-top: 20px;">
-                <!-- Comment list will appear here -->
-            </div>
-        </div>
     </div>
+
+    <div id="disqus_thread"></div>
+    <script>
+        // Disqus Embed Script
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js'; // Replace YOUR_DISQUS_SHORTNAME with your shortname
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
 
     <footer>
         <p>&copy; 2024 Game Portal. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
@@ -188,21 +155,6 @@
                 alert('You liked the game!');
             } else if (action === 'dislike') {
                 alert('You disliked the game!');
-            }
-        }
-
-        // Submit Comment Functionality
-        function submitComment() {
-            const commentBox = document.getElementById('comment-box');
-            const commentText = commentBox.value;
-            if (commentText.trim() !== '') {
-                const commentList = document.getElementById('comment-list');
-                const newComment = document.createElement('p');
-                newComment.textContent = commentText;
-                commentList.appendChild(newComment);
-                commentBox.value = ''; // Clear the comment box after submission
-            } else {
-                alert('Please enter a comment before submitting.');
             }
         }
 
