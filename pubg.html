@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Portal</title>
     <style>
+        /* General Reset */
         * {
             margin: 0;
             padding: 0;
@@ -14,16 +15,13 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             padding: 20px;
         }
 
         #content-container {
-            background-color: #fff;
-            width: 90%;
             max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -31,80 +29,148 @@
 
         /* Slideshow */
         #slideshow {
-            position: relative;
-            width: 100%;
-            height: 300px;
-            overflow: hidden;
             margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
             border-radius: 8px;
         }
 
         #slideshow img {
             width: 100%;
-            height: 100%;
+            height: 300px;
             object-fit: cover;
-            position: absolute;
-            transition: opacity 1s ease-in-out;
+            animation: slide 8s infinite;
         }
 
-        #slideshow img.hidden {
-            opacity: 0;
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-100%); }
+            50% { transform: translateX(-200%); }
+            75% { transform: translateX(-300%); }
+            100% { transform: translateX(0); }
         }
 
-        #game-container {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-            height: 500px;
+        #game-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #game-info h3 {
+            color: #007BFF;
+            font-size: 2rem;
+        }
+
+        #game-info p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Game Display */
+        #game-window {
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         #game-iframe {
-            width: 70%;
-            height: 100%;
-            border: 2px solid #007BFF;
+            width: 100%;
+            height: 500px;
+            border: none;
             border-radius: 10px;
+            position: relative;
         }
 
         #play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background-color: #007BFF;
             color: white;
             padding: 15px 30px;
+            font-size: 20px;
+            border: none;
             border-radius: 5px;
             cursor: pointer;
+            display: none;
+        }
+
+        #play-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Like/Dislike and Fullscreen Buttons */
+        .controls {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .controls button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .controls button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Game Selection */
+        #game-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
             margin-top: 20px;
         }
 
-        .game-boxes {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-top: 40px;
-        }
-
         .game-box {
-            width: 150px;
-            height: 200px;
-            background-color: #007BFF;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            border-radius: 8px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
             cursor: pointer;
-            margin: 10px;
             transition: transform 0.3s ease;
         }
 
         .game-box:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
+        }
+
+        .game-box img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .game-box p {
+            padding: 10px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Disqus */
+        #disqus_thread {
+            margin-top: 40px;
         }
 
         footer {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -112,45 +178,89 @@
     <div id="content-container">
         <!-- Slideshow -->
         <div id="slideshow">
-            <img src="https://via.placeholder.com/1200x300/007BFF/ffffff?text=Newest+Game+1" alt="Newest Game 1">
-            <img src="https://via.placeholder.com/1200x300/28A745/ffffff?text=Newest+Game+2" alt="Newest Game 2" class="hidden">
-            <img src="https://via.placeholder.com/1200x300/DC3545/ffffff?text=Newest+Game+3" alt="Newest Game 3" class="hidden">
+            <img src="game1.jpg" alt="Game 1">
+            <img src="game2.jpg" alt="Game 2">
+            <img src="game3.jpg" alt="Game 3">
+        </div>
+
+        <!-- Game Information -->
+        <div id="game-info">
+            <h3>Game Title: Ragdoll Archers</h3>
+            <p>A fun physics-based archery game. Defeat your enemies and become the best archer!</p>
         </div>
 
         <!-- Game Window -->
-        <div id="game-container">
+        <div id="game-window">
             <iframe id="game-iframe" src="about:blank"></iframe>
+            <button id="play-button" onclick="startGame()">Play</button>
         </div>
 
-        <!-- Play Button -->
-        <button id="play-button" onclick="startGame()">Play Game</button>
-
-        <!-- Game Boxes -->
-        <div class="game-boxes">
-            <div class="game-box" onclick="openGame('game1')">Game 1</div>
-            <div class="game-box" onclick="openGame('game2')">Game 2</div>
-            <div class="game-box" onclick="openGame('game3')">Game 3</div>
+        <!-- Controls -->
+        <div class="controls">
+            <button onclick="likeDislike('like')">Like</button>
+            <button onclick="likeDislike('dislike')">Dislike</button>
+            <button onclick="toggleFullscreen()">Full Screen</button>
         </div>
+
+        <!-- Game Selection -->
+        <div id="game-selection">
+            <div class="game-box" onclick="selectGame('https://game1.url')">
+                <img src="game1-thumbnail.jpg" alt="Game 1">
+                <p>Game 1</p>
+            </div>
+            <div class="game-box" onclick="selectGame('https://game2.url')">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <p>Game 2</p>
+            </div>
+            <div class="game-box" onclick="selectGame('https://game3.url')">
+                <img src="game3-thumbnail.jpg" alt="Game 3">
+                <p>Game 3</p>
+            </div>
+        </div>
+
+        <!-- Disqus Comments -->
+        <div id="disqus_thread"></div>
+        <script>
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
     </div>
 
-    <footer>&copy; 2024 Game Portal</footer>
+    <footer>
+        <p>&copy; 2024 Game Portal. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
 
     <script>
-        // Slideshow logic
-        const slides = document.querySelectorAll('#slideshow img');
-        let currentSlide = 0;
-
-        function showNextSlide() {
-            slides[currentSlide].classList.add('hidden');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.remove('hidden');
+        function startGame() {
+            document.getElementById('play-button').style.display = 'none';
+            document.getElementById('game-iframe').src = 'https://bitlifeonline.github.io/ragdoll-archers/';
         }
 
-        setInterval(showNextSlide, 3000); // Change slide every 3 seconds
+        function likeDislike(action) {
+            alert(`You ${action}d the game!`);
+        }
 
-        // Open game in iframe
-        function openGame(game) {
+        function toggleFullscreen() {
             const iframe = document.getElementById('game-iframe');
-            if (game === 'game1') {
-                iframe.src = "https://bitlifeonline.github.io/ragdoll-archers/";
-            } else if (game
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.mozRequestFullScreen) {
+                iframe.mozRequestFullScreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
+            }
+        }
+
+        function selectGame(url) {
+            document.getElementById('game-iframe').src = 'about:blank';
+            document.getElementById('play-button').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
