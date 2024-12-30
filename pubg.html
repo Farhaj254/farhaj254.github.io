@@ -96,20 +96,20 @@
             margin-bottom: 20px;
         }
 
-        /* Article Section */
-        #article-section {
+        /* Blog Section */
+        #blog-section {
             margin-top: 30px;
             padding: 15px;
             border-radius: 8px;
             background-color: #f8f9fa;
         }
 
-        #article-section h4 {
+        #blog-section h4 {
             font-size: 1.8rem;
             margin-bottom: 10px;
         }
 
-        #article-textbox {
+        #blog-textbox {
             width: 100%;
             height: 150px;
             padding: 10px;
@@ -194,11 +194,11 @@
             </div>
         </div>
 
-        <!-- Admin Article Section -->
-        <div id="article-section">
-            <h4>Game Article</h4>
-            <textarea id="article-textbox" placeholder="Admin can write an article related to the game here..."></textarea>
-            <button onclick="saveArticle()">Save Article</button>
+        <!-- Admin Blog Section -->
+        <div id="blog-section">
+            <h4>Game Blog</h4>
+            <textarea id="blog-textbox" placeholder="Admin can write a blog related to the game here..."></textarea>
+            <button onclick="saveBlog()">Save Blog</button>
         </div>
 
         <!-- Disqus Comment Section -->
@@ -240,13 +240,13 @@
             }
         }
 
-        // Save the article (for admin use)
-        function saveArticle() {
-            const article = document.getElementById('article-textbox').value;
-            if (article) {
-                alert('Article saved successfully!');
+        // Save the blog (for admin use)
+        function saveBlog() {
+            const blog = document.getElementById('blog-textbox').value;
+            if (blog) {
+                alert('Blog saved successfully!');
             } else {
-                alert('Please write an article before saving.');
+                alert('Please write a blog before saving.');
             }
         }
 
