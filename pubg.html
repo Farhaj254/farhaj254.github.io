@@ -176,18 +176,24 @@
             <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
         </div>
 
-        <!-- Game Title & Description -->
-        <div id="game-info">
-            <h3>Game Title: Ragdoll Archers</h3>
-            <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
-        </div>
+        <!-- Blog Post as Article -->
+        <article>
+            <header>
+                <h1>Game Title: Ragdoll Archers</h1>
+                <p>Posted on <time datetime="2024-12-30">December 30, 2024</time> by <a href="#">Admin</a></p>
+            </header>
 
-        <!-- Article Section for Admin -->
-        <div id="article-section">
-            <h4>Game Article</h4>
-            <textarea id="article-textbox" placeholder="Admin can write an article related to the game here..."></textarea>
-            <button onclick="saveArticle()">Save Article</button>
-        </div>
+            <section>
+                <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
+            </section>
+
+            <!-- Article Section for Admin -->
+            <div id="article-section">
+                <h4>Game Article</h4>
+                <textarea id="article-textbox" placeholder="Admin can write an article related to the game here..."></textarea>
+                <button onclick="saveArticle()">Save Article</button>
+            </div>
+        </article>
 
         <!-- Buttons Container below the iframe -->
         <div class="buttons-container">
