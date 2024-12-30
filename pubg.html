@@ -15,17 +15,22 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             padding: 20px;
         }
 
         #content-container {
-            max-width: 960px;
-            margin: 0 auto;
+            text-align: center;
             background-color: #fff;
+            width: 100%;
+            max-width: 960px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             padding: 30px;
-            text-align: center;
+            position: relative;
         }
 
         #game-info {
@@ -41,37 +46,42 @@
         #game-info p {
             font-size: 1.1rem;
             color: #555;
+            margin-bottom: 20px;
         }
 
-        #game-container {
-            position: relative;
-        }
-
+        /* Game Iframe */
         #game-iframe {
-            display: none;
             width: 100%;
             height: 500px;
+            max-height: 600px;
             border: none;
             border-radius: 10px;
+            display: none; /* Initially hidden */
         }
 
+        /* Play Button Overlay */
         #play-button {
-            display: block;
-            margin: 20px auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background-color: #007BFF;
-            color: #fff;
-            padding: 10px 20px;
-            font-size: 16px;
+            color: white;
+            font-size: 24px;
+            padding: 15px 30px;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            z-index: 1;
         }
 
         #play-button:hover {
             background-color: #0056b3;
+            transform: translate(-50%, -50%) scale(1.05);
         }
 
+        /* Like/Dislike Buttons */
         .like-dislike {
             display: flex;
             justify-content: center;
@@ -92,6 +102,30 @@
 
         .like-dislike button:hover {
             background-color: #0056b3;
+        }
+
+        /* Fullscreen Button */
+        #fullscreen-button {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        #fullscreen-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Disqus Comment Section */
+        #disqus_thread {
+            margin-top: 30px;
         }
 
         footer {
@@ -117,35 +151,64 @@
             <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
         </div>
 
-        <div id="game-container">
-            <button id="play-button">Play</button>
-            <iframe id="game-iframe" src="https://bitlifeonline.github.io/ragdoll-archers/"></iframe>
-        </div>
+        <!-- Play Button -->
+        <button id="play-button" onclick="startGame()">Play</button>
 
+        <!-- Game Iframe -->
+        <iframe id="game-iframe" src="https://bitlifeonline.github.io/ragdoll-archers/" frameborder="0" scrolling="no"></iframe>
+
+        <!-- Like/Dislike Buttons -->
         <div class="like-dislike">
             <button onclick="likeDislike('like')">Like</button>
             <button onclick="likeDislike('dislike')">Dislike</button>
         </div>
 
-        <footer>
-            <p>&copy; 2024 Game Portal. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-        </footer>
+        <!-- Fullscreen Button -->
+        <a id="fullscreen-button" href="#" onclick="toggleFullscreen(); return false;">Full Screen</a>
+
+        <!-- Disqus Comment Section -->
+        <div id="disqus_thread"></div>
+        <script>
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js'; // Replace YOUR_DISQUS_SHORTNAME with your Disqus shortname
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
     </div>
 
+    <footer>
+        <p>&copy; 2024 Game Portal. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
     <script>
-        const playButton = document.getElementById('play-button');
-        const gameIframe = document.getElementById('game-iframe');
+        // Start the game by displaying the iframe and hiding the play button
+        function startGame() {
+            document.getElementById('play-button').style.display = 'none';
+            document.getElementById('game-iframe').style.display = 'block';
+        }
 
-        playButton.addEventListener('click', () => {
-            playButton.style.display = 'none';
-            gameIframe.style.display = 'block';
-        });
-
+        // Like/Dislike Button Logic
         function likeDislike(action) {
             if (action === 'like') {
                 alert('You liked the game!');
             } else if (action === 'dislike') {
                 alert('You disliked the game!');
+            }
+        }
+
+        // Toggle Fullscreen for the Game
+        function toggleFullscreen() {
+            const iframe = document.getElementById('game-iframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) {
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
             }
         }
     </script>
