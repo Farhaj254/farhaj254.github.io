@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Portal</title>
     <style>
-        /* General Reset */
         * {
             margin: 0;
             padding: 0;
@@ -28,7 +27,28 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             padding: 20px;
+        }
+
+        /* Slideshow */
+        #slideshow {
             position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        #slideshow img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #slideshow img.hidden {
+            opacity: 0;
         }
 
         #game-container {
@@ -45,75 +65,6 @@
             height: 100%;
             border: 2px solid #007BFF;
             border-radius: 10px;
-            z-index: 1;
-        }
-
-        .ad-box {
-            position: absolute;
-            width: 150px;
-            height: 100%;
-            background-color: #f1f1f1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #333;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .ad-box.left {
-            left: 0;
-        }
-
-        .ad-box.right {
-            right: 0;
-        }
-
-        .close-ad {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: red;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 25px;
-            height: 25px;
-            text-align: center;
-            line-height: 25px;
-            cursor: pointer;
-        }
-
-        #ad-overlay {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-        }
-
-        #ad-overlay-content {
-            background-color: white;
-            width: 80%;
-            max-width: 500px;
-            height: 300px;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        #ad-overlay .close-ad {
-            top: 5px;
-            right: 5px;
         }
 
         #play-button {
@@ -159,21 +110,20 @@
 </head>
 <body>
     <div id="content-container">
-        <!-- Game Window with Ads -->
-        <div id="game-container">
-            <div class="ad-box left">Ad Space</div>
-            <iframe id="game-iframe" src="about:blank"></iframe>
-            <div class="ad-box right">Ad Space</div>
+        <!-- Slideshow -->
+        <div id="slideshow">
+            <img src="https://via.placeholder.com/1200x300/007BFF/ffffff?text=Newest+Game+1" alt="Newest Game 1">
+            <img src="https://via.placeholder.com/1200x300/28A745/ffffff?text=Newest+Game+2" alt="Newest Game 2" class="hidden">
+            <img src="https://via.placeholder.com/1200x300/DC3545/ffffff?text=Newest+Game+3" alt="Newest Game 3" class="hidden">
         </div>
 
-        <!-- Ad Overlay -->
-        <div id="ad-overlay">
-            <div id="ad-overlay-content">
-                <button class="close-ad" onclick="closeAdOverlay()">×</button>
-                <p>Ad Content Goes Here</p>
-                <button id="play-button" onclick="startGame()">Play Game</button>
-            </div>
+        <!-- Game Window -->
+        <div id="game-container">
+            <iframe id="game-iframe" src="about:blank"></iframe>
         </div>
+
+        <!-- Play Button -->
+        <button id="play-button" onclick="startGame()">Play Game</button>
 
         <!-- Game Boxes -->
         <div class="game-boxes">
@@ -186,30 +136,21 @@
     <footer>&copy; 2024 Game Portal</footer>
 
     <script>
+        // Slideshow logic
+        const slides = document.querySelectorAll('#slideshow img');
+        let currentSlide = 0;
+
+        function showNextSlide() {
+            slides[currentSlide].classList.add('hidden');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.remove('hidden');
+        }
+
+        setInterval(showNextSlide, 3000); // Change slide every 3 seconds
+
+        // Open game in iframe
         function openGame(game) {
             const iframe = document.getElementById('game-iframe');
-            const adOverlay = document.getElementById('ad-overlay');
-
             if (game === 'game1') {
                 iframe.src = "https://bitlifeonline.github.io/ragdoll-archers/";
-            } else if (game === 'game2') {
-                iframe.src = "about:blank"; // Add another game URL
-            } else if (game === 'game3') {
-                iframe.src = "about:blank"; // Add another game URL
-            }
-
-            adOverlay.style.display = 'flex'; // Show Ad overlay
-        }
-
-        function closeAdOverlay() {
-            const adOverlay = document.getElementById('ad-overlay');
-            adOverlay.style.display = 'none';
-        }
-
-        function startGame() {
-            const adOverlay = document.getElementById('ad-overlay');
-            adOverlay.style.display = 'none'; // Hide overlay
-        }
-    </script>
-</body>
-</html>
+            } else if (game
