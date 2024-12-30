@@ -2,13 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pubg</title>
-
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <title>Embed Game with Full Screen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        #content-container {
+            text-align: center;
+        }
+        #game-iframe {
+            width: 100%;
+            height: 60vh;
+            max-height: 600px;
+        }
+        #fullscreen-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+        #fullscreen-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
-  <body>
-<h1>The game will be added soon </h1>
+<body>
+    <div id="content-container">
+        <h2>Ragdoll Archers The Game</h2>
+
+        <iframe id="game-iframe" width="100%" height="600px" frameborder="0" scrolling="no" src="https://bitlifeonline.github.io/ragdoll-archers/"></iframe>
+
+        <div id="fullscreen-button-container">
+            <button id="fullscreen-button">Full Screen</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('fullscreen-button').addEventListener('click', function() {
+            const iframe = document.getElementById('game-iframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { // Firefox
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { // IE/Edge
+                iframe.msRequestFullscreen();
+            }
+        });
+    </script>
 </body>
+</html>
