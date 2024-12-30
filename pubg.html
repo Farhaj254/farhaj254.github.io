@@ -56,15 +56,25 @@
             max-height: 600px;
             border: none;
             border-radius: 10px;
-            display: none; /* Initially hidden */
+            position: relative;
         }
 
         /* Play Button Overlay */
-        #play-button {
+        #overlay {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 500px;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            z-index: 2;
+        }
+
+        #play-button {
             background-color: #007BFF;
             color: white;
             font-size: 24px;
@@ -73,12 +83,11 @@
             border-radius: 10px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            z-index: 1;
         }
 
         #play-button:hover {
             background-color: #0056b3;
-            transform: translate(-50%, -50%) scale(1.05);
+            transform: scale(1.05);
         }
 
         /* Like/Dislike Buttons */
@@ -151,8 +160,10 @@
             <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
         </div>
 
-        <!-- Play Button -->
-        <button id="play-button" onclick="startGame()">Play</button>
+        <!-- Play Button Overlay -->
+        <div id="overlay">
+            <button id="play-button" onclick="startGame()">Play</button>
+        </div>
 
         <!-- Game Iframe -->
         <iframe id="game-iframe" src="https://bitlifeonline.github.io/ragdoll-archers/" frameborder="0" scrolling="no"></iframe>
@@ -183,10 +194,12 @@
     </footer>
 
     <script>
-        // Start the game by displaying the iframe and hiding the play button
+        // Start the game by hiding the overlay
         function startGame() {
-            document.getElementById('play-button').style.display = 'none';
-            document.getElementById('game-iframe').style.display = 'block';
+            document.getElementById('overlay').style.display = 'none';
+            // Reload the iframe to restart the game
+            const iframe = document.getElementById('game-iframe');
+            iframe.src = iframe.src;
         }
 
         // Like/Dislike Button Logic
