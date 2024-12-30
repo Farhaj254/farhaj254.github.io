@@ -43,40 +43,6 @@
             margin-bottom: 10px;
         }
 
-        /* Buttons Container above the game description */
-        .buttons-container {
-            display: flex;
-            justify-content: flex-end;
-            gap: 15px;
-            margin-bottom: 20px; /* Add space below the buttons */
-        }
-
-        .buttons-container button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .buttons-container button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Game Description Section */
-        #game-description {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        #game-description p {
-            font-size: 1.1rem;
-            color: #555;
-        }
-
         /* Game Container */
         .game-container {
             position: relative;
@@ -85,7 +51,7 @@
             background-color: #000;
             border-radius: 10px;
             overflow: hidden;
-            margin-bottom: 20px; /* Add space below the game container */
+            margin-bottom: 20px;
         }
 
         /* Game Iframe */
@@ -125,6 +91,43 @@
             transform: scale(1.05);
         }
 
+        /* Buttons below the game iframe */
+        .buttons-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1;
+        }
+
+        .buttons-container button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons-container button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Game Description Section */
+        #game-description {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #game-description p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
         /* Disqus Comment Section */
         #disqus_thread {
             margin-top: 40px;
@@ -154,7 +157,15 @@
             <h3>Game Title: Ragdoll Archers</h3>
         </div>
 
-        <!-- Buttons Container above the game description -->
+        <!-- Game Container with Play Button -->
+        <div class="game-container">
+            <div id="overlay">
+                <button id="play-button" onclick="startGame()">Play Game</button>
+            </div>
+            <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
+        </div>
+
+        <!-- Buttons below the game iframe -->
         <div class="buttons-container">
             <!-- Fullscreen Button -->
             <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
@@ -169,14 +180,6 @@
         <!-- Game Description Section -->
         <div id="game-description">
             <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
-        </div>
-
-        <!-- Game Container with Play Button -->
-        <div class="game-container">
-            <div id="overlay">
-                <button id="play-button" onclick="startGame()">Play Game</button>
-            </div>
-            <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
         </div>
 
         <!-- Disqus Comment Section -->
