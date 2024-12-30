@@ -96,23 +96,12 @@
             transform: scale(1.05);
         }
 
-        /* Buttons Container */
+        /* Buttons Container below the iframe */
         .buttons-container {
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
             gap: 15px;
-            margin-top: 20px;
-        }
-
-        /* Like/Dislike and Fullscreen Buttons */
-        .buttons-container {
-            position: absolute;
-            right: 20px;
-            bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: flex-end;
+            margin-top: 10px;
         }
 
         .buttons-container button {
@@ -168,7 +157,7 @@
             <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
         </div>
 
-        <!-- Buttons Container -->
+        <!-- Buttons Container below the Iframe, aligned to the right -->
         <div class="buttons-container">
             <!-- Fullscreen Button -->
             <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
@@ -229,3 +218,4 @@
     </script>
 </body>
 </html>
+
