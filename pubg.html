@@ -43,17 +43,6 @@
             margin-bottom: 10px;
         }
 
-        /* Game Description Section */
-        #game-description {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        #game-description p {
-            font-size: 1.1rem;
-            color: #555;
-        }
-
         /* Game Container */
         .game-container {
             position: relative;
@@ -102,12 +91,12 @@
             transform: scale(1.05);
         }
 
-        /* Buttons Container below the iframe */
+        /* Buttons Container above the description */
         .buttons-container {
             display: flex;
             justify-content: flex-end;
             gap: 15px;
-            margin-top: 10px;
+            margin-bottom: 20px; /* Add space below the buttons */
         }
 
         .buttons-container button {
@@ -123,6 +112,17 @@
 
         .buttons-container button:hover {
             background-color: #0056b3;
+        }
+
+        /* Game Description Section */
+        #game-description {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        #game-description p {
+            font-size: 1.1rem;
+            color: #555;
         }
 
         /* Disqus Comment Section */
@@ -154,6 +154,18 @@
             <h3>Game Title: Ragdoll Archers</h3>
         </div>
 
+        <!-- Buttons Container above the game description -->
+        <div class="buttons-container">
+            <!-- Fullscreen Button -->
+            <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
+
+            <!-- Like/Dislike Buttons -->
+            <div class="like-dislike">
+                <button onclick="likeDislike('like')">Like</button>
+                <button onclick="likeDislike('dislike')">Dislike</button>
+            </div>
+        </div>
+
         <!-- Game Container with Play Button -->
         <div class="game-container">
             <div id="overlay">
@@ -165,18 +177,6 @@
         <!-- Game Description Section -->
         <div id="game-description">
             <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
-        </div>
-
-        <!-- Buttons Container below the iframe, aligned to the right -->
-        <div class="buttons-container">
-            <!-- Fullscreen Button -->
-            <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-
-            <!-- Like/Dislike Buttons -->
-            <div class="like-dislike">
-                <button onclick="likeDislike('like')">Like</button>
-                <button onclick="likeDislike('dislike')">Dislike</button>
-            </div>
         </div>
 
         <!-- Disqus Comment Section -->
