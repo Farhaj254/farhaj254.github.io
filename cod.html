@@ -132,6 +132,7 @@
             font-size: 14px;
             font-weight: bold;
             color: #666;
+            cursor: pointer;
         }
 
         /* Ad and Game Sections */
@@ -153,6 +154,7 @@
             font-size: 14px;
             color: #666;
             border-radius: 8px;
+            cursor: pointer;
         }
 
         .thumbnail-small {
@@ -287,19 +289,19 @@
 
     <!-- Top Thumbnail Section -->
     <div class="thumbnail-section">
-        <div class="thumbnail">Game 1</div>
-        <div class="thumbnail">Game 2</div>
-        <div class="thumbnail">Game 3</div>
-        <div class="thumbnail">Game 4</div>
-        <div class="thumbnail">Game 5</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game1')">Game 1</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game2')">Game 2</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game3')">Game 3</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game4')">Game 4</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game5')">Game 5</div>
     </div>
 
     <div id="content-container">
         <!-- Left Ad Section with Games -->
         <div class="ad-container">
-            <div class="thumbnail-small">Game A</div>
+            <div class="thumbnail-small" onclick="loadGame('https://example.com/gameA')">Game A</div>
             <div class="ad-box">Ad 1</div>
-            <div class="thumbnail-small">Game B</div>
+            <div class="thumbnail-small" onclick="loadGame('https://example.com/gameB')">Game B</div>
             <div class="ad-box">Ad 2</div>
         </div>
 
@@ -324,20 +326,20 @@
 
         <!-- Right Ad Section with Games -->
         <div class="ad-container">
-            <div class="thumbnail-small">Game C</div>
+            <div class="thumbnail-small" onclick="loadGame('https://example.com/gameC')">Game C</div>
             <div class="ad-box">Ad 3</div>
-            <div class="thumbnail-small">Game D</div>
+            <div class="thumbnail-small" onclick="loadGame('https://example.com/gameD')">Game D</div>
             <div class="ad-box">Ad 4</div>
         </div>
     </div>
 
     <!-- Bottom Thumbnail Section -->
     <div class="bottom-thumbnails">
-        <div class="thumbnail">Game 6</div>
-        <div class="thumbnail">Game 7</div>
-        <div class="thumbnail">Game 8</div>
-        <div class="thumbnail">Game 9</div>
-        <div class="thumbnail">Game 10</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game6')">Game 6</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game7')">Game 7</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game8')">Game 8</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game9')">Game 9</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game10')">Game 10</div>
     </div>
 
     <script>
@@ -409,6 +411,12 @@
             } else if (iframe.msRequestFullscreen) {
                 iframe.msRequestFullscreen();
             }
+        }
+
+        function loadGame(url) {
+            const iframe = document.getElementById('game-iframe');
+            iframe.src = url;
+            document.getElementById('overlay').style.display = 'none';
         }
     </script>
 </body>
