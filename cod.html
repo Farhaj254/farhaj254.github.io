@@ -105,13 +105,14 @@
             font-weight: bold;
             color: #333;
             text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .buttons-container {
-            margin-top: 10px;
             display: flex;
-            justify-content: flex-end;
-            gap: 2px;
+            gap: 10px;
         }
 
         .buttons-container button {
@@ -127,6 +128,12 @@
 
         .buttons-container button:hover {
             background-color: #0056b3;
+        }
+
+        .like-dislike-count {
+            margin-left: 5px;
+            font-weight: bold;
+            color: #333;
         }
     </style>
 </head>
@@ -147,12 +154,13 @@
                 <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
             </div>
 
-            <div id="game-title">Game Title: Ragdoll Archers</div>
-
-            <div class="buttons-container">
-                <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-                <button onclick="likeDislike('like')">Like</button>
-                <button onclick="likeDislike('dislike')">Dislike</button>
+            <div id="game-title">
+                <span>Game Title: Ragdoll Archers</span>
+                <div class="buttons-container">
+                    <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
+                    <button onclick="likeDislike('like')">Like <span id="like-count" class="like-dislike-count">0</span></button>
+                    <button onclick="likeDislike('dislike')">Dislike <span id="dislike-count" class="like-dislike-count">0</span></button>
+                </div>
             </div>
         </div>
 
@@ -164,6 +172,9 @@
     </div>
 
     <script>
+        let likeCount = 0;
+        let dislikeCount = 0;
+
         function startGame() {
             document.getElementById('overlay').style.display = 'none';
             const iframe = document.getElementById('game-iframe');
@@ -172,8 +183,12 @@
 
         function likeDislike(action) {
             if (action === 'like') {
+                likeCount++;
+                document.getElementById('like-count').innerText = likeCount;
                 alert('You liked the game!');
             } else if (action === 'dislike') {
+                dislikeCount++;
+                document.getElementById('dislike-count').innerText = dislikeCount;
                 alert('You disliked the game!');
             }
         }
