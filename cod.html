@@ -50,37 +50,6 @@
             margin-bottom: 20px;
         }
 
-        #game-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Play Button Overlay */
-        #overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2;
-        }
-
-        #play-button {
-            background-color: #007BFF;
-            color: white;
-            font-size: 24px;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
         /* Buttons Below Game */
         .buttons-container {
             display: flex;
@@ -115,19 +84,19 @@
         </div>
 
         <!-- Game Iframe Container -->
-        <div class="game-container">
-            <div id="overlay">
-                <button id="play-button" onclick="startGame()">Play Game</button>
-            </div>
-            <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
+        <div class="game-container" id="game-container">
+            <!-- Placeholder for Game -->
+            <p style="color: white; text-align: center; padding-top: 200px;">
+                Load your game here.
+            </p>
         </div>
 
         <!-- Buttons -->
         <div class="buttons-container">
-            <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
+            <button id="fullscreen-button">Fullscreen</button>
             <div class="like-dislike">
-                <button onclick="likeDislike('like')">Like</button>
-                <button onclick="likeDislike('dislike')">Dislike</button>
+                <button id="like-button">Like</button>
+                <button id="dislike-button">Dislike</button>
             </div>
         </div>
 
@@ -138,51 +107,19 @@
     </div>
 
     <script>
-        // Default Game Data
-        const gameData = {
-            title: "Ragdoll Archers",
-            description: "A fun physics-based archery game where you control a ragdoll archer...",
-            iframeSrc: "https://bitlifeonline.github.io/ragdoll-archers/"
-        };
+        // Placeholder Fullscreen Functionality
+        document.getElementById('fullscreen-button').addEventListener('click', () => {
+            alert('Fullscreen functionality will be implemented for your game iframe.');
+        });
 
-        // Function to Load Game Data
-        function loadGame(data) {
-            document.getElementById('title').innerText = data.title;
-            document.getElementById('description').innerText = data.description;
-            document.getElementById('game-iframe').src = ""; // Initially empty to ensure the play button works
-        }
+        // Like/Dislike Buttons Placeholder
+        document.getElementById('like-button').addEventListener('click', () => {
+            alert('You liked this game!');
+        });
 
-        // Start Game
-        function startGame() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('game-iframe').src = gameData.iframeSrc;
-        }
-
-        // Like/Dislike Buttons
-        function likeDislike(action) {
-            if (action === 'like') {
-                alert('You liked the game!');
-            } else if (action === 'dislike') {
-                alert('You disliked the game!');
-            }
-        }
-
-        // Fullscreen Functionality
-        function toggleFullscreen() {
-            const iframe = document.getElementById('game-iframe');
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            } else if (iframe.mozRequestFullScreen) {
-                iframe.mozRequestFullScreen();
-            } else if (iframe.webkitRequestFullscreen) {
-                iframe.webkitRequestFullscreen();
-            } else if (iframe.msRequestFullscreen) {
-                iframe.msRequestFullscreen();
-            }
-        }
-
-        // Initialize with Default Game
-        loadGame(gameData);
+        document.getElementById('dislike-button').addEventListener('click', () => {
+            alert('You disliked this game!');
+        });
     </script>
 </body>
 </html>
