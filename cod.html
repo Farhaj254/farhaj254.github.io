@@ -133,11 +133,6 @@
             font-weight: bold;
             color: #666;
             text-align: center;
-            cursor: pointer;
-        }
-
-        .thumbnail:hover {
-            background-color: #d1d1d1;
         }
 
         /* Ad Section */
@@ -287,20 +282,20 @@
 
     <!-- Top Thumbnail Section -->
     <div class="thumbnail-section">
-        <div class="thumbnail" data-src="https://bitlifeonline.github.io/ragdoll-archers/" onclick="loadGame(this)">Game 1</div>
-        <div class="thumbnail" data-src="https://example.com/game2" onclick="loadGame(this)">Game 2</div>
-        <div class="thumbnail" data-src="https://example.com/game3" onclick="loadGame(this)">Game 3</div>
-        <div class="thumbnail" data-src="https://example.com/game4" onclick="loadGame(this)">Game 4</div>
-        <div class="thumbnail" data-src="https://example.com/game5" onclick="loadGame(this)">Game 5</div>
+        <div class="thumbnail">Game 1</div>
+        <div class="thumbnail">Game 2</div>
+        <div class="thumbnail">Game 3</div>
+        <div class="thumbnail">Game 4</div>
+        <div class="thumbnail">Game 5</div>
     </div>
 
     <div id="content-container">
         <!-- Left Ad Section -->
         <div class="ad-container">
-            <div class="thumbnail" data-src="https://example.com/game11" onclick="loadGame(this)">Game 11</div>
-            <div class="thumbnail" data-src="https://example.com/game12" onclick="loadGame(this)">Game 12</div>
-            <div class="thumbnail" data-src="https://example.com/game13" onclick="loadGame(this)">Game 13</div>
-            <div class="thumbnail" data-src="https://example.com/game14" onclick="loadGame(this)">Game 14</div>
+            <div class="thumbnail">Game 11</div>
+            <div class="thumbnail">Game 12</div>
+            <div class="thumbnail">Game 13</div>
+            <div class="thumbnail">Game 14</div>
         </div>
 
         <!-- Game Section -->
@@ -324,20 +319,20 @@
 
         <!-- Right Ad Section -->
         <div class="ad-container">
-            <div class="thumbnail" data-src="https://example.com/game15" onclick="loadGame(this)">Game 15</div>
-            <div class="thumbnail" data-src="https://example.com/game16" onclick="loadGame(this)">Game 16</div>
-            <div class="thumbnail" data-src="https://example.com/game17" onclick="loadGame(this)">Game 17</div>
-            <div class="thumbnail" data-src="https://example.com/game18" onclick="loadGame(this)">Game 18</div>
+            <div class="thumbnail">Game 15</div>
+            <div class="thumbnail">Game 16</div>
+            <div class="thumbnail">Game 17</div>
+            <div class="thumbnail">Game 18</div>
         </div>
     </div>
 
     <!-- Bottom Thumbnail Section -->
     <div class="bottom-thumbnails">
-        <div class="thumbnail" data-src="https://example.com/game6" onclick="loadGame(this)">Game 6</div>
-        <div class="thumbnail" data-src="https://example.com/game7" onclick="loadGame(this)">Game 7</div>
-        <div class="thumbnail" data-src="https://example.com/game8" onclick="loadGame(this)">Game 8</div>
-        <div class="thumbnail" data-src="https://example.com/game9" onclick="loadGame(this)">Game 9</div>
-        <div class="thumbnail" data-src="https://example.com/game10" onclick="loadGame(this)">Game 10</div>
+        <div class="thumbnail">Game 6</div>
+        <div class="thumbnail">Game 7</div>
+        <div class="thumbnail">Game 8</div>
+        <div class="thumbnail">Game 9</div>
+        <div class="thumbnail">Game 10</div>
     </div>
 
     <script>
@@ -352,7 +347,64 @@
             iframe.src = "https://bitlifeonline.github.io/ragdoll-archers/";
         }
 
-        function loadGame(element) {
-            const gameSrc = element.getAttribute('data-src');
+        function toggleLike() {
+            const likeButton = document.getElementById('like-button');
+            const dislikeButton = document.getElementById('dislike-button');
+
+            if (userLiked) {
+                likeCount--;
+                userLiked = false;
+                likeButton.classList.remove('active');
+            } else {
+                likeCount++;
+                userLiked = true;
+                likeButton.classList.add('active');
+                if (userDisliked) {
+                    dislikeCount--;
+                    userDisliked = false;
+                    dislikeButton.classList.remove('active');
+                }
+            }
+
+            document.getElementById('like-count').innerText = likeCount;
+            document.getElementById('dislike-count').innerText = dislikeCount;
+        }
+
+        function toggleDislike() {
+            const likeButton = document.getElementById('like-button');
+            const dislikeButton = document.getElementById('dislike-button');
+
+            if (userDisliked) {
+                dislikeCount--;
+                userDisliked = false;
+                dislikeButton.classList.remove('active');
+            } else {
+                dislikeCount++;
+                userDisliked = true;
+                dislikeButton.classList.add('active');
+                if (userLiked) {
+                    likeCount--;
+                    userLiked = false;
+                    likeButton.classList.remove('active');
+                }
+            }
+
+            document.getElementById('like-count').innerText = likeCount;
+            document.getElementById('dislike-count').innerText = dislikeCount;
+        }
+
+        function toggleFullscreen() {
             const iframe = document.getElementById('game-iframe');
-           
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) {
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
