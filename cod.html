@@ -17,14 +17,58 @@
             background-color: #e6f0ff;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             height: 100vh;
             padding: 20px;
+        }
+
+        #main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        .ad-section {
+            width: 15%;
+            max-width: 200px;
+            min-width: 150px;
+            height: 550px;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 0 10px;
+            padding: 10px;
+            display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ad-section h4 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .ad {
+            width: 100%;
+            height: 150px;
+            background-color: #d9e4ff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            color: #555;
+            text-align: center;
         }
 
         #content-container {
-            width: 100%;
+            width: 70%;
             max-width: 1100px;
             background-color: #ffffff;
             border-radius: 8px;
@@ -59,7 +103,6 @@
         .game-container {
             position: relative;
             width: 100%;
-            max-width: 1100px;
             height: 550px;
             background-color: #000;
             border-radius: 10px;
@@ -121,85 +164,6 @@
             transform: scale(1.05);
         }
 
-        .title-buttons-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
-        }
-
-        .title-buttons-container h3 {
-            font-size: 1.5rem;
-            color: #333;
-        }
-
-        .title-buttons-container .buttons-container {
-            display: flex;
-            gap: 10px;
-        }
-
-        .title-buttons-container button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            font-size: 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .title-buttons-container button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Related Games Section */
-        #related-games {
-            margin-top: 20px;
-        }
-
-        #related-games h4 {
-            font-size: 1.5rem;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .related-games-list {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .related-game {
-            width: calc(33.33% - 10px);
-            background-color: #f8f8f8;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: center;
-            padding: 10px;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .related-game:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .related-game img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 8px 8px 0 0;
-        }
-
-        .related-game p {
-            margin-top: 8px;
-            font-size: 14px;
-            color: #555;
-        }
-
         footer {
             text-align: center;
             font-size: 14px;
@@ -217,48 +181,39 @@
     </style>
 </head>
 <body>
-    <div id="portal-header">
-        <div id="portal-logo">Game Portal</div>
-        <input type="text" id="search-bar" placeholder="Search games..." />
-    </div>
-
-    <div id="content-container">
-        <div class="game-container">
-            <div id="game-thumbnail">
-                <img src="ragdoll-archers_16x9-cover.avif" alt="Game Thumbnail" />
-            </div>
-            <div id="overlay">
-                <button id="play-button" onclick="startGame()">Play Game</button>
-            </div>
-            <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
+    <div id="main-container">
+        <!-- Left Ad Section -->
+        <div class="ad-section">
+            <h4>Sponsored</h4>
+            <div class="ad">Ad 1</div>
+            <div class="ad">Ad 2</div>
+            <div class="ad">Ad 3</div>
         </div>
 
-        <div class="title-buttons-container">
-            <h3>Game Title: Ragdoll Archers</h3>
-            <div class="buttons-container">
-                <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-                <button onclick="likeDislike('like')">Like</button>
-                <button onclick="likeDislike('dislike')">Dislike</button>
+        <!-- Main Content -->
+        <div id="content-container">
+            <div id="portal-header">
+                <div id="portal-logo">Game Portal</div>
+                <input type="text" id="search-bar" placeholder="Search games..." />
+            </div>
+
+            <div class="game-container">
+                <div id="game-thumbnail">
+                    <img src="ragdoll-archers_16x9-cover.avif" alt="Game Thumbnail" />
+                </div>
+                <div id="overlay">
+                    <button id="play-button" onclick="startGame()">Play Game</button>
+                </div>
+                <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
             </div>
         </div>
 
-        <!-- Related Games Section -->
-        <div id="related-games">
-            <h4>Related Games</h4>
-            <div class="related-games-list">
-                <div class="related-game" onclick="viewGame('Game 1')">
-                    <img src="related-game-1.jpg" alt="Game 1">
-                    <p>Game 1</p>
-                </div>
-                <div class="related-game" onclick="viewGame('Game 2')">
-                    <img src="related-game-2.jpg" alt="Game 2">
-                    <p>Game 2</p>
-                </div>
-                <div class="related-game" onclick="viewGame('Game 3')">
-                    <img src="related-game-3.jpg" alt="Game 3">
-                    <p>Game 3</p>
-                </div>
-            </div>
+        <!-- Right Ad Section -->
+        <div class="ad-section">
+            <h4>Advertisements</h4>
+            <div class="ad">Ad 4</div>
+            <div class="ad">Ad 5</div>
+            <div class="ad">Ad 6</div>
         </div>
     </div>
 
@@ -272,20 +227,6 @@
             const iframe = document.getElementById('game-iframe');
             iframe.src = "https://bitlifeonline.github.io/ragdoll-archers/";
             document.getElementById('game-thumbnail').style.opacity = 0;
-        }
-
-        function likeDislike(action) {
-            alert(action === 'like' ? 'You liked the game!' : 'You disliked the game!');
-        }
-
-        function toggleFullscreen() {
-            const iframe = document.getElementById('game-iframe');
-            if (iframe.requestFullscreen) iframe.requestFullscreen();
-        }
-
-        function viewGame(game) {
-            alert(`You selected ${game}!`);
-            // Implement navigation to the selected game's details page.
         }
     </script>
 </body>
