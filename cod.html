@@ -147,11 +147,27 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+
+            iframe {
+                height: 400px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <img src="logo.png" alt="Logo">
+        <img src="logo.png" alt="Game Portal Logo">
         <h1>Game Portal</h1>
         <input type="text" placeholder="Search for games...">
     </div>
@@ -166,9 +182,9 @@
     <div class="content">
         <div class="iframe-container">
             <div class="iframe-title-bar">Eggy Car</div>
-            <iframe src="#"></iframe>
+            <iframe src="https://example.com/game-url"></iframe> <!-- Replace with actual game URL -->
             <div class="game-thumbnail">
-                <img src="game-thumbnail.png" alt="Game Thumbnail">
+                <img src="game-thumbnail.png" alt="Eggy Car Game Thumbnail">
                 <button class="play-button">Play</button>
             </div>
         </div>
