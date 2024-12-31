@@ -18,7 +18,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%;
+            padding: 0;
         }
 
         header {
@@ -28,6 +28,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 10px 20px;
+            border-radius: 0;
         }
 
         .logo {
@@ -70,13 +71,13 @@
 
         .nav-links {
             display: flex;
-            gap: 15px;
+            gap: 20px;
         }
 
         .nav-links a {
             color: #fff;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
             transition: color 0.3s ease;
         }
@@ -101,21 +102,41 @@
             background-color: #007BFF;
         }
 
-        /* Bottom Thumbnails Section */
-        .bottom-thumbnails {
+        #content-container {
             width: 100%;
             max-width: 1400px;
-            background-color: #15182b;
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 20px 0;
+            gap: 20px;
+            padding: 20px;
         }
 
-        .bottom-thumbnails .thumbnail {
-            width: 100px;
-            height: 100px;
+        /* Scrolling Thumbnails */
+        .scrolling-thumbnails {
+            width: 100%;
+            overflow: hidden;
+            background-color: #15182b;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .scrolling-thumbnails .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            animation: scroll-thumbnails 20s linear infinite;
+        }
+
+        @keyframes scroll-thumbnails {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .scrolling-thumbnails .thumbnail {
+            width: 80px;
+            height: 80px;
             background-color: #e0e0e0;
             border-radius: 10px;
             display: flex;
@@ -125,47 +146,278 @@
             font-weight: bold;
             color: #666;
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .bottom-thumbnails .thumbnail:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        /* Ad and Game Sections */
+        .ad-container {
+            width: 15%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
+
+        .ad-box, .thumbnail-small {
+            width: 100%;
+            height: 80px;
+            background-color: #e0e0e0;
+            border: 2px dashed #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: #666;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .thumbnail-small {
+            border: 1px solid #999;
+            height: 80px;
+            background-color: #dcdcdc;
+        }
+
+        /* Game Section */
+        .game-container {
+            flex-grow: 1;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding: 20px;
+        }
+
+        #game-iframe {
+            width: 100%;
+            max-width: 1400px;
+            height: 550px;
+            border: none;
+            margin: 0 auto;
+        }
+
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        #play-button {
+            background-color: #007BFF;
+            color: white;
+            font-size: 24px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #play-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        #game-title {
+            margin-top: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            text-align: left;
+        }
+
+        .buttons-section {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+
+        .buttons-container button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .like-dislike-count {
+            margin-left: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .active {
+            background-color: #0056b3 !important;
+        }
+
+        /* Bottom Section */
+        .bottom-thumbnails {
+            width: 100%;
+            background-color: #15182b;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 10px 0;
+        }
+
     </style>
 </head>
 <body>
     <header>
         <div class="logo">
             <img src="logo.png" alt="Logo">
-            <span>Game Portal</span>
+            <span>Eggy Car</span>
         </div>
         <div class="search-bar">
-            <input type="text" placeholder="Search games...">
+            <input type="text" placeholder="Search">
         </div>
         <nav class="nav-links">
             <a href="#">Home</a>
             <a href="#">Car</a>
             <a href="#">Skill</a>
             <a href="#">Action</a>
+            <a href="#">Shooting</a>
+            <a href="#">Sport</a>
+            <a href="#">Idle</a>
         </nav>
         <div class="theme-toggle">🌙</div>
     </header>
 
-    <!-- Bottom Thumbnails Section -->
+    <!-- Scrolling Thumbnails Section -->
+    <div class="scrolling-thumbnails">
+        <div class="thumbnail-container">
+            <div class="thumbnail" onclick="loadGame('https://example.com/game1')">Game 1</div>
+            <div class="thumbnail" onclick="loadGame('https://example.com/game2')">Game 2</div>
+            <div class="thumbnail" onclick="loadGame('https://example.com/game3')">Game 3</div>
+            <div class="thumbnail" onclick="loadGame('https://example.com/game4')">Game 4</div>
+            <div class="thumbnail" onclick="loadGame('https://example.com/game5')">Game 5</div>
+        </div>
+    </div>
+
+    <div id="content-container">
+        <!-- Left Ad Section with Games -->
+        <div class="ad-container">
+            <div class="thumbnail-small" onclick="loadGame('https://example.com/gameA1')">Game A1</div>
+            <div class="ad-box">Ad 1</div>
+            <div class="thumbnail-small" onclick="loadGame('https://example.com/gameA2')">Game A2</div>
+            <div class="ad-box">Ad 2</div>
+            <div class="thumbnail-small" onclick="loadGame('https://example.com/gameA3')">Game A3</div>
+        </div>
+
+        <!-- Game Section -->
+        <div class="game-container">
+            <div style="position: relative;">
+                <div id="overlay">
+                    <button id="play-button" onclick="startGame()">Play Game</button>
+                </div>
+                <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
+            </div>
+
+            <div id="game-title">
+                <span>Game Title: Ragdoll Archers</span>
+            </div>
+
+            <div class="buttons-section">
+                <div class="buttons-container">
+                    <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
+                    <button id="like-button" onclick="toggleLike()">Like <span id="like-count" class="like-dislike-count">0</span></button>
+                    <button id="dislike-button" onclick="toggleDislike()">Dislike <span id="dislike-count" class="like-dislike-count">0</span></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Ad Section with Games -->
+        <div class="ad-container">
+            <div class="thumbnail-small" onclick="loadGame('https://example.com/gameB1')">Game B1</div>
+            <div class="ad-box">Ad 3</div>
+            <div class="thumbnail-small" onclick="loadGame('https://example.com/gameB2')">Game B2</div>
+            <div class="ad-box">Ad 4</div>
+            <div class="thumbnail-small" onclick="loadGame('https://example.com/gameB3')">Game B3</div>
+        </div>
+    </div>
+
+    <!-- Bottom Thumbnail Section -->
     <div class="bottom-thumbnails">
-        <div class="thumbnail" onclick="loadGame('https://example.com/game1')">Game 1</div>
-        <div class="thumbnail" onclick="loadGame('https://example.com/game2')">Game 2</div>
-        <div class="thumbnail" onclick="loadGame('https://example.com/game3')">Game 3</div>
-        <div class="thumbnail" onclick="loadGame('https://example.com/game4')">Game 4</div>
-        <div class="thumbnail" onclick="loadGame('https://example.com/game5')">Game 5</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game6')">Game 6</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game7')">Game 7</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game8')">Game 8</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game9')">Game 9</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game10')">Game 10</div>
     </div>
 
     <script>
-        function loadGame(url) {
-            console.log(`Game loaded: ${url}`);
-            // You can add logic to load the game in an iframe or another section.
+        let likeCount = 0;
+        let dislikeCount = 0;
+        let userLiked = false;
+        let userDisliked = false;
+
+        function startGame() {
+            document.getElementById('overlay').style.display = 'none';
+            const iframe = document.getElementById('game-iframe');
+            iframe.src = "https://bitlifeonline.github.io/ragdoll-archers/";
         }
-    </script>
-</body>
-</html>
+
+        function toggleLike() {
+            const likeButton = document.getElementById('like-button');
+            const dislikeButton = document.getElementById('dislike-button');
+
+            if (userLiked) {
+                likeCount--;
+                userLiked = false;
+                likeButton.classList.remove('active');
+            } else {
+                likeCount++;
+                userLiked = true;
+                likeButton.classList.add('active');
+                if (userDisliked) {
+                    dislikeCount--;
+                    userDisliked = false;
+                    dislikeButton.classList.remove('active');
+                }
+            }
+
+            document.getElementById('like-count').innerText = likeCount;
+            document.getElementById('dislike-count').innerText = dislikeCount;
+        }
+
+        function toggleDislike() {
+            const likeButton = document.getElementById('like-button');
+            const dislikeButton = document.getElementById('dislike-button');
+
+            if (userDisliked) {
+                dislikeCount--;
+                userDisliked = false;
+                dislikeButton.classList.remove('active');
+            } else {
+                dislikeCount++;
+                userDisliked = true;
+                dislikeButton.classList.add('active');
+                if (userLiked) {
+                    likeCount--;
+                    userLiked = false;
+                    likeButton.classList.remove('active');
+                }
+            }
+
+            document.getElementById('like-count').innerText = likeCount;
+            document.getElementById('dislike-count').innerText = dislikeCount;
+        }
+
+        function toggleFullscreen()
