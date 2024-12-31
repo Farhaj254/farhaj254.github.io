@@ -18,19 +18,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            padding: 0;
         }
 
         header {
             width: 100%;
-            max-width: 1400px;
             background-color: #15182b;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 10px 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            border-radius: 0;
         }
 
         .logo {
@@ -109,11 +107,36 @@
             max-width: 1400px;
             display: flex;
             gap: 20px;
+            padding: 20px;
+        }
+
+        /* Thumbnail Sections */
+        .thumbnail-section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 10px 0;
+            background-color: #15182b;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #666;
         }
 
         /* Ad Section */
         .ad-container {
-            width: 20%;
+            width: 15%;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -222,6 +245,17 @@
         .active {
             background-color: #0056b3 !important;
         }
+
+        /* Bottom Section */
+        .bottom-thumbnails {
+            width: 100%;
+            background-color: #15182b;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -244,6 +278,15 @@
         </nav>
         <div class="theme-toggle">🌙</div>
     </header>
+
+    <!-- Top Thumbnail Section -->
+    <div class="thumbnail-section">
+        <div class="thumbnail">Game 1</div>
+        <div class="thumbnail">Game 2</div>
+        <div class="thumbnail">Game 3</div>
+        <div class="thumbnail">Game 4</div>
+        <div class="thumbnail">Game 5</div>
+    </div>
 
     <div id="content-container">
         <!-- Left Ad Section -->
@@ -276,6 +319,15 @@
             <div class="ad-box">Ad 3</div>
             <div class="ad-box">Ad 4</div>
         </div>
+    </div>
+
+    <!-- Bottom Thumbnail Section -->
+    <div class="bottom-thumbnails">
+        <div class="thumbnail">Game 6</div>
+        <div class="thumbnail">Game 7</div>
+        <div class="thumbnail">Game 8</div>
+        <div class="thumbnail">Game 9</div>
+        <div class="thumbnail">Game 10</div>
     </div>
 
     <script>
