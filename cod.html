@@ -14,7 +14,7 @@
 
         /* Body styling */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: #0b1121;
             color: #ffffff;
             display: flex;
@@ -38,29 +38,38 @@
             justify-content: space-between;
             align-items: center;
             background-color: #151b2e;
-            padding: 10px 20px;
+            padding: 15px 30px;
             border-radius: 8px;
             margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         #portal-logo {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: bold;
             color: #f0c420;
         }
 
         #search-bar {
             width: 50%;
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 10px 20px;
+            border-radius: 25px;
             border: none;
             font-size: 1rem;
+            outline: none;
+            background-color: #1e2a47;
+            color: #fff;
+        }
+
+        #search-bar::placeholder {
+            color: #ccc;
         }
 
         /* Main layout with sidebars and game area */
         .main-layout {
             display: flex;
             justify-content: space-between;
+            gap: 20px;
         }
 
         .left-sidebar, .right-sidebar {
@@ -74,7 +83,7 @@
         .ads-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
 
         .ad-box {
@@ -88,72 +97,103 @@
             font-size: 18px;
             font-weight: bold;
             color: #ffffff;
-            border: 2px solid #f0c420; /* Highlighting ads with a border */
+            border: 2px dashed #f0c420;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .ad-box:hover {
+            transform: scale(1.05);
+            background-color: #f0c420;
+            color: #151b2e;
         }
 
         /* Game container styling */
         .game-container {
             flex-grow: 1;
             background-color: #1e2a47;
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: 15px;
+            padding: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         #game-thumbnail img {
-            width: 250px;
-            height: 250px;
+            width: 300px;
+            height: 300px;
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
 
         #play-button {
             background-color: #007bff;
             color: white;
-            font-size: 20px;
-            padding: 10px 20px;
+            font-size: 22px;
+            padding: 12px 25px;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 15px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 20px;
         }
 
         #play-button:hover {
             background-color: #0056b3;
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         /* Related games section */
+        #related-games {
+            margin-top: 30px;
+        }
+
+        #related-games h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #f0c420;
+            text-align: center;
+        }
+
         .related-games-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 20px;
+            justify-content: center;
         }
 
         .related-game {
-            width: calc(25% - 10px);
+            width: 200px;
             background-color: #2d3748;
             border-radius: 8px;
             overflow: hidden;
             text-align: center;
             padding: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .related-game:hover {
+            transform: scale(1.05);
+            background-color: #f0c420;
+            color: #151b2e;
         }
 
         .related-game img {
             width: 100%;
-            height: 120px;
+            height: 150px;
             object-fit: cover;
+            border-radius: 8px 8px 0 0;
         }
 
         footer {
             text-align: center;
             font-size: 14px;
-            margin-top: 20px;
+            margin-top: 30px;
             color: #888;
+        }
+
+        footer p {
+            margin: 0;
         }
     </style>
 </head>
