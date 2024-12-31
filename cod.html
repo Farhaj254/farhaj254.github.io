@@ -14,7 +14,7 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f7fb;
+            background-color: #e6f0ff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -26,7 +26,7 @@
         #content-container {
             width: 100%;
             max-width: 1100px;
-            background-color: #fff;
+            background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -39,21 +39,21 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 0;
-            border-bottom: 2px solid #007BFF;
+            border-bottom: 2px solid #0056b3;
             margin-bottom: 20px;
         }
 
         #portal-logo {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #007BFF;
+            color: #0056b3;
         }
 
         #search-bar {
             width: 50%;
             padding: 8px;
             border-radius: 20px;
-            border: 1px solid #ddd;
+            border: 1px solid #ccc;
             font-size: 1rem;
         }
 
@@ -72,18 +72,19 @@
         /* Game Container */
         .game-container {
             position: relative;
-            width: 100%;
+            width: 95%; /* Adjusted iframe width */
+            max-width: 700px;
             height: 500px;
             background-color: #000;
             border-radius: 10px;
             overflow: hidden;
-            margin-bottom: 20px;
+            margin: 0 auto 20px;
         }
 
-        /* Game Thumbnail Above Play Button */
+        /* Game Thumbnail */
         #game-thumbnail {
             position: absolute;
-            top: 50px;
+            top: 150px; /* Reduced gap */
             left: 50%;
             transform: translateX(-50%);
             z-index: 3;
@@ -110,7 +111,7 @@
         /* Play Button Overlay */
         #overlay {
             position: absolute;
-            top: 180px;
+            top: 180px; /* Reduced gap */
             left: 0;
             width: 100%;
             height: 100%;
@@ -122,7 +123,7 @@
         }
 
         #play-button {
-            background-color: #007BFF;
+            background-color: #007bff;
             color: white;
             font-size: 24px;
             padding: 15px 30px;
@@ -137,7 +138,7 @@
             transform: scale(1.05);
         }
 
-        /* Buttons below the game iframe */
+        /* Buttons Below the Game */
         .buttons-container {
             display: flex;
             justify-content: flex-end;
@@ -146,7 +147,7 @@
         }
 
         .buttons-container button {
-            background-color: #007BFF;
+            background-color: #007bff;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -171,11 +172,6 @@
             color: #555;
         }
 
-        /* Disqus Comment Section */
-        #disqus_thread {
-            margin-top: 40px;
-        }
-
         /* Footer Section */
         footer {
             text-align: center;
@@ -184,7 +180,7 @@
         }
 
         footer a {
-            color: #007BFF;
+            color: #007bff;
             text-decoration: none;
         }
 
@@ -194,21 +190,17 @@
     </style>
 </head>
 <body>
-    <!-- Portal Header Section -->
     <div id="portal-header">
         <div id="portal-logo">Game Portal</div>
         <input type="text" id="search-bar" placeholder="Search games..." />
     </div>
 
     <div id="content-container">
-        <!-- Game Title Section -->
         <div id="game-title">
             <h3>Game Title: Ragdoll Archers</h3>
         </div>
 
-        <!-- Game Container with Play Button -->
         <div class="game-container">
-            <!-- Game Thumbnail Above Play Button -->
             <div id="game-thumbnail">
                 <img src="ragdoll-archers_16x9-cover.avif" alt="Game Thumbnail" />
             </div>
@@ -219,25 +211,15 @@
             <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
         </div>
 
-        <!-- Buttons below the game iframe -->
         <div class="buttons-container">
-            <!-- Fullscreen Button -->
             <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-
-            <!-- Like/Dislike Buttons -->
-            <div class="like-dislike">
-                <button onclick="likeDislike('like')">Like</button>
-                <button onclick="likeDislike('dislike')">Dislike</button>
-            </div>
+            <button onclick="likeDislike('like')">Like</button>
+            <button onclick="likeDislike('dislike')">Dislike</button>
         </div>
 
-        <!-- Game Description Section -->
         <div id="game-description">
             <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
         </div>
-
-        <!-- Disqus Comment Section -->
-        <div id="disqus_thread"></div>
     </div>
 
     <footer>
@@ -245,44 +227,21 @@
     </footer>
 
     <script>
-        // Start the game by hiding the overlay, loading the iframe, and hiding the thumbnail
         function startGame() {
             document.getElementById('overlay').style.display = 'none';
             const iframe = document.getElementById('game-iframe');
-            iframe.src = "https://bitlifeonline.github.io/ragdoll-archers/"; // Replace with your game URL
-            document.getElementById('game-thumbnail').style.opacity = 0; // Hide the thumbnail
+            iframe.src = "https://bitlifeonline.github.io/ragdoll-archers/";
+            document.getElementById('game-thumbnail').style.opacity = 0;
         }
 
-        // Like/Dislike Button Logic
         function likeDislike(action) {
-            if (action === 'like') {
-                alert('You liked the game!');
-            } else if (action === 'dislike') {
-                alert('You disliked the game!');
-            }
+            alert(action === 'like' ? 'You liked the game!' : 'You disliked the game!');
         }
 
-        // Toggle Fullscreen for the Game
         function toggleFullscreen() {
             const iframe = document.getElementById('game-iframe');
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            } else if (iframe.mozRequestFullScreen) {
-                iframe.mozRequestFullScreen();
-            } else if (iframe.webkitRequestFullscreen) {
-                iframe.webkitRequestFullscreen();
-            } else if (iframe.msRequestFullscreen) {
-                iframe.msRequestFullscreen();
-            }
+            if (iframe.requestFullscreen) iframe.requestFullscreen();
         }
-
-        // Disqus Comment Section
-        (function() {
-            var d = document, s = d.createElement('script');
-            s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js'; // Replace YOUR_DISQUS_SHORTNAME with your Disqus shortname
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
     </script>
 </body>
 </html>
