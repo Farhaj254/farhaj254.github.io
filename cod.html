@@ -54,17 +54,10 @@
             margin-bottom: 20px;
         }
 
-        /* Game Iframe */
-        #game-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
         /* Game Thumbnail Above Play Button */
         #game-thumbnail {
             position: absolute;
-            top: 20px; /* Adjust the positioning as needed */
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 3;
@@ -80,10 +73,17 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
+        /* Game Iframe */
+        #game-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         /* Play Button Overlay */
         #overlay {
             position: absolute;
-            top: 180px; /* Adjust this to fit the play button below the thumbnail */
+            top: 180px;
             left: 0;
             width: 100%;
             height: 100%;
@@ -177,7 +177,7 @@
         <div class="game-container">
             <!-- Game Thumbnail Above Play Button -->
             <div id="game-thumbnail">
-                <img src="ragdoll-archers_16x9-cover.avif" alt="Game Thumbnail" />
+                <img src="game-thumbnail.png" alt="Game Thumbnail" />
             </div>
 
             <div id="overlay">
