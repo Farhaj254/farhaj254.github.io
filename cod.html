@@ -264,6 +264,25 @@
             flex-wrap: wrap;
             padding: 10px 0;
         }
+
+        .game-section {
+            margin: 20px 0;
+            background-color: #15182b;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .game-section h2 {
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .game-thumbnails {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
     </style>
 </head>
 <body>
@@ -330,6 +349,43 @@
             <div class="ad-box">Ad 3</div>
             <div class="thumbnail-small" onclick="loadGame('https://example.com/gameD')">Game D</div>
             <div class="ad-box">Ad 4</div>
+        </div>
+    </div>
+
+    <!-- Game Sections -->
+    <div class="game-section">
+        <h2>Game A Section</h2>
+        <div class="game-thumbnails">
+            <div class="thumbnail" onclick="loadGame('https://example.com/gameA1')">Game A1</div>
+            <div class="thumbnail" onclick="loadGame('https://example.com/gameA2')">Game A2</div>
+            <div class="thumbnail" onclick="loadGame('https://example.com/gameA3')">Game A3</div>
+        </div>
+    </div>
+
+    <div class="game-section">
+        <h2>Game B Section</h2>
+        <div class="game-thumbnails">
+            <div class="thumbnail" onclick="loadGame('https://example.com/gameB1')">Game B1</div>
+            <div class="thumbnail" onclick="loadGame('https://example.com/gameB2')">Game B2</div>
+            <div class="thumbnail" onclick="loadGame('https://example.com/gameB3')">Game B3</div>
+        </div>
+    </div>
+
+    <div class="game-section">
+        <h2>Game C Section</h2>
+        <div class="game-thumbnails">
+            <div class="thumbnail" onclick="loadGame('https://example.com/gameC1')">Game C1</div>
+            <div class="thumbnail" onclick="loadGame('https://example.com/gameC2')">Game C2</div>
+            <div class="thumbnail" onclick="loadGame('https://example.com/gameC3')">Game C3</div>
+        </div>
+    </div>
+
+    <div class="game-section">
+        <h2>Game D Section</h2>
+        <div class="game-thumbnails">
+            <div class="thumbnail" onclick="loadGame('https://example.com/gameD1')">Game D1</div>
+            <div class="thumbnail" onclick="loadGame('https://example.com/gameD2')">Game D2</div>
+            <div class="thumbnail" onclick="loadGame('https://example.com/gameD3')">Game D3</div>
         </div>
     </div>
 
