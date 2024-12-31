@@ -23,7 +23,7 @@
 
         #content-container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1300px;
             display: flex;
             gap: 20px;
         }
@@ -62,8 +62,9 @@
         }
 
         #game-iframe {
-            width: 95%;
-            height: 550px;
+            width: 100%;
+            max-width: 1100px;
+            height: 600px;
             border: none;
             margin: 0 auto;
         }
@@ -98,20 +99,17 @@
         }
 
         #game-title {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: rgba(0, 123, 255, 0.9);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-size: 1.2rem;
+            margin-top: 10px;
+            margin-left: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
         }
 
         .buttons-container {
             position: absolute;
-            bottom: 10px;
-            left: 10px;
+            top: 10px;
+            right: 10px;
             display: flex;
             gap: 10px;
         }
@@ -142,13 +140,14 @@
 
         <!-- Game Section -->
         <div class="game-container">
-            <div id="game-title">Game Title: Ragdoll Archers</div>
             <div style="position: relative;">
                 <div id="overlay">
                     <button id="play-button" onclick="startGame()">Play Game</button>
                 </div>
                 <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
             </div>
+
+            <div id="game-title">Game Title: Ragdoll Archers</div>
 
             <div class="buttons-container">
                 <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
