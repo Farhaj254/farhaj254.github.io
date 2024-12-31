@@ -2,13 +2,305 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>minecraft</title>
+    <title>Game Portal</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e2f;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        #portal-header {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #portal-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+
+        #search-bar {
+            width: 30%;
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .game-container {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            background-color: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+            height: 550px;
+        }
+
+        #game-thumbnail {
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #game-thumbnail img {
+            width: 200px;
+            height: 200px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        #play-button {
+            background-color: #ffcc00;
+            color: black;
+            font-size: 24px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #play-button:hover {
+            background-color: #ff9900;
+            transform: scale(1.05);
+        }
+
+        #game-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .title-buttons-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1100px;
+            margin-top: 15px;
+        }
+
+        .title-buttons-container h3 {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .buttons-container button {
+            background-color: #ffcc00;
+            color: black;
+            border: none;
+            padding: 8px 15px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons-container button:hover {
+            background-color: #ff9900;
+        }
+
+        #related-games {
+            width: 100%;
+            max-width: 1100px;
+            margin-top: 20px;
+        }
+
+        #related-games h4 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .related-games-list {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .related-game {
+            width: calc(33.33% - 10px);
+            background-color: #28293e;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .related-game:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .related-game img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .related-game p {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        .ads-section {
+            width: 100%;
+            max-width: 1100px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .ad-container {
+            width: calc(50% - 10px);
+            height: 150px;
+            background-color: #444;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ddd;
+            font-size: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
-  <body>
-<h1>The game will be added soon </h1>
+<body>
+    <div id="portal-header">
+        <div id="portal-logo">Game Portal</div>
+        <input type="text" id="search-bar" placeholder="Search games..." />
+    </div>
+
+    <div class="game-container">
+        <div id="game-thumbnail">
+            <img src="ragdoll-archers_16x9-cover.avif" alt="Game Thumbnail" />
+        </div>
+        <div id="overlay">
+            <button id="play-button" onclick="startGame()">Play Game</button>
+        </div>
+        <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
+    </div>
+
+    <div class="title-buttons-container">
+        <h3>Game Title: Ragdoll Archers</h3>
+        <div class="buttons-container">
+            <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
+            <button onclick="likeDislike('like')">Like</button>
+            <button onclick="likeDislike('dislike')">Dislike</button>
+        </div>
+    </div>
+
+    <div id="related-games">
+        <h4>Related Games</h4>
+        <div class="related-games-list">
+            <div class="related-game" onclick="viewGame('Game 1')">
+                <img src="related-game-1.jpg" alt="Game 1">
+                <p>Game 1</p>
+            </div>
+            <div class="related-game" onclick="viewGame('Game 2')">
+                <img src="related-game-2.jpg" alt="Game 2">
+                <p>Game 2</p>
+            </div>
+            <div class="related-game" onclick="viewGame('Game 3')">
+                <img src="related-game-3.jpg" alt="Game 3">
+                <p>Game 3</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ads-section">
+        <div class="ad-container">Advertisement 1</div>
+        <div class="ad-container">Advertisement 2</div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Game Portal. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        function startGame() {
+            document.getElementById('overlay').style.display = 'none';
+            const iframe = document.getElementById('game-iframe');
+            iframe.src = "https://bitlifeonline.github.io/ragdoll-archers/";
+            document.getElementById('game-thumbnail').style.opacity = 0;
+        }
+
+        function likeDislike(action) {
+            alert(action === 'like' ? 'You liked the game!' : 'You disliked the game!');
+        }
+
+        function toggleFullscreen() {
+            const iframe = document.getElementById('game-iframe');
+            if (iframe.requestFullscreen) iframe.requestFullscreen();
+        }
+
+        function viewGame(game) {
+            alert(`You selected ${game}!`);
+            // Implement navigation to the selected game's details page.
+        }
+    </script>
 </body>
+</html>
