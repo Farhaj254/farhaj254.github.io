@@ -54,6 +54,15 @@
             margin-bottom: 20px;
         }
 
+        /* Game Image */
+        #game-image {
+            display: block;
+            margin: 0 auto 20px auto;
+            max-width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
         /* Game Iframe */
         #game-iframe {
             width: 100%;
@@ -125,11 +134,6 @@
             color: #555;
         }
 
-        /* Disqus Comment Section */
-        #disqus_thread {
-            margin-top: 40px;
-        }
-
         /* Footer Section */
         footer {
             text-align: center;
@@ -154,6 +158,9 @@
             <h3>Game Title: Ragdoll Archers</h3>
         </div>
 
+        <!-- Game Image -->
+        <img id="game-image" src="https://via.placeholder.com/300" alt="Game Thumbnail">
+
         <!-- Game Container with Play Button -->
         <div class="game-container">
             <div id="overlay">
@@ -164,23 +171,15 @@
 
         <!-- Buttons below the game iframe -->
         <div class="buttons-container">
-            <!-- Fullscreen Button -->
             <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-
-            <!-- Like/Dislike Buttons -->
-            <div class="like-dislike">
-                <button onclick="likeDislike('like')">Like</button>
-                <button onclick="likeDislike('dislike')">Dislike</button>
-            </div>
+            <button onclick="likeDislike('like')">Like</button>
+            <button onclick="likeDislike('dislike')">Dislike</button>
         </div>
 
         <!-- Game Description Section -->
         <div id="game-description">
             <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
         </div>
-
-        <!-- Disqus Comment Section -->
-        <div id="disqus_thread"></div>
     </div>
 
     <footer>
@@ -188,14 +187,12 @@
     </footer>
 
     <script>
-        // Start the game by hiding the overlay and loading the iframe
         function startGame() {
             document.getElementById('overlay').style.display = 'none';
             const iframe = document.getElementById('game-iframe');
             iframe.src = "https://bitlifeonline.github.io/ragdoll-archers/";
         }
 
-        // Like/Dislike Button Logic
         function likeDislike(action) {
             if (action === 'like') {
                 alert('You liked the game!');
@@ -204,7 +201,6 @@
             }
         }
 
-        // Toggle Fullscreen for the Game
         function toggleFullscreen() {
             const iframe = document.getElementById('game-iframe');
             if (iframe.requestFullscreen) {
@@ -217,14 +213,6 @@
                 iframe.msRequestFullscreen();
             }
         }
-
-        // Disqus Comment Section
-        (function() {
-            var d = document, s = d.createElement('script');
-            s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js'; // Replace YOUR_DISQUS_SHORTNAME with your Disqus shortname
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
     </script>
 </body>
 </html>
