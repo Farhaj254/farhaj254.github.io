@@ -110,31 +110,18 @@
             padding: 20px;
         }
 
-        /* Scrolling Thumbnails */
-        .scrolling-thumbnails {
+        /* Thumbnail Sections */
+        .thumbnail-section {
             width: 100%;
-            overflow: hidden;
-            background-color: #15182b;
-            position: relative;
-            padding: 10px 0;
-        }
-
-        .scrolling-thumbnails .thumbnail-container {
             display: flex;
+            justify-content: center;
             gap: 10px;
-            animation: scroll-thumbnails 20s linear infinite;
+            flex-wrap: wrap;
+            padding: 10px 0;
+            background-color: #15182b;
         }
 
-        @keyframes scroll-thumbnails {
-            0% {
-                transform: translateX(100%);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-
-        .scrolling-thumbnails .thumbnail {
+        .thumbnail {
             width: 80px;
             height: 80px;
             background-color: #e0e0e0;
@@ -145,10 +132,9 @@
             font-size: 14px;
             font-weight: bold;
             color: #666;
-            cursor: pointer;
         }
 
-        /* Ad and Game Sections */
+        /* Ad Section */
         .ad-container {
             width: 15%;
             display: flex;
@@ -156,24 +142,17 @@
             gap: 20px;
         }
 
-        .ad-box, .thumbnail-small {
+        .ad-box {
             width: 100%;
-            height: 80px;
+            height: 200px;
             background-color: #e0e0e0;
             border: 2px dashed #ccc;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 14px;
+            font-size: 18px;
             color: #666;
             border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .thumbnail-small {
-            border: 1px solid #999;
-            height: 80px;
-            background-color: #dcdcdc;
         }
 
         /* Game Section */
@@ -232,12 +211,13 @@
             font-weight: bold;
             color: #333;
             text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .buttons-section {
-            margin-top: 20px;
+        .buttons-container {
             display: flex;
-            justify-content: flex-start;
             gap: 10px;
         }
 
@@ -276,7 +256,6 @@
             flex-wrap: wrap;
             padding: 10px 0;
         }
-
     </style>
 </head>
 <body>
@@ -300,25 +279,20 @@
         <div class="theme-toggle">🌙</div>
     </header>
 
-    <!-- Scrolling Thumbnails Section -->
-    <div class="scrolling-thumbnails">
-        <div class="thumbnail-container">
-            <div class="thumbnail" onclick="loadGame('https://example.com/game1')">Game 1</div>
-            <div class="thumbnail" onclick="loadGame('https://example.com/game2')">Game 2</div>
-            <div class="thumbnail" onclick="loadGame('https://example.com/game3')">Game 3</div>
-            <div class="thumbnail" onclick="loadGame('https://example.com/game4')">Game 4</div>
-            <div class="thumbnail" onclick="loadGame('https://example.com/game5')">Game 5</div>
-        </div>
+    <!-- Top Thumbnail Section -->
+    <div class="thumbnail-section">
+        <div class="thumbnail">Game 1</div>
+        <div class="thumbnail">Game 2</div>
+        <div class="thumbnail">Game 3</div>
+        <div class="thumbnail">Game 4</div>
+        <div class="thumbnail">Game 5</div>
     </div>
 
     <div id="content-container">
-        <!-- Left Ad Section with Games -->
+        <!-- Left Ad Section -->
         <div class="ad-container">
-            <div class="thumbnail-small" onclick="loadGame('https://example.com/gameA1')">Game A1</div>
             <div class="ad-box">Ad 1</div>
-            <div class="thumbnail-small" onclick="loadGame('https://example.com/gameA2')">Game A2</div>
             <div class="ad-box">Ad 2</div>
-            <div class="thumbnail-small" onclick="loadGame('https://example.com/gameA3')">Game A3</div>
         </div>
 
         <!-- Game Section -->
@@ -332,9 +306,6 @@
 
             <div id="game-title">
                 <span>Game Title: Ragdoll Archers</span>
-            </div>
-
-            <div class="buttons-section">
                 <div class="buttons-container">
                     <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
                     <button id="like-button" onclick="toggleLike()">Like <span id="like-count" class="like-dislike-count">0</span></button>
@@ -343,23 +314,20 @@
             </div>
         </div>
 
-        <!-- Right Ad Section with Games -->
+        <!-- Right Ad Section -->
         <div class="ad-container">
-            <div class="thumbnail-small" onclick="loadGame('https://example.com/gameB1')">Game B1</div>
             <div class="ad-box">Ad 3</div>
-            <div class="thumbnail-small" onclick="loadGame('https://example.com/gameB2')">Game B2</div>
             <div class="ad-box">Ad 4</div>
-            <div class="thumbnail-small" onclick="loadGame('https://example.com/gameB3')">Game B3</div>
         </div>
     </div>
 
     <!-- Bottom Thumbnail Section -->
     <div class="bottom-thumbnails">
-        <div class="thumbnail" onclick="loadGame('https://example.com/game6')">Game 6</div>
-        <div class="thumbnail" onclick="loadGame('https://example.com/game7')">Game 7</div>
-        <div class="thumbnail" onclick="loadGame('https://example.com/game8')">Game 8</div>
-        <div class="thumbnail" onclick="loadGame('https://example.com/game9')">Game 9</div>
-        <div class="thumbnail" onclick="loadGame('https://example.com/game10')">Game 10</div>
+        <div class="thumbnail">Game 6</div>
+        <div class="thumbnail">Game 7</div>
+        <div class="thumbnail">Game 8</div>
+        <div class="thumbnail">Game 9</div>
+        <div class="thumbnail">Game 10</div>
     </div>
 
     <script>
@@ -420,4 +388,18 @@
             document.getElementById('dislike-count').innerText = dislikeCount;
         }
 
-        function toggleFullscreen()
+        function toggleFullscreen() {
+            const iframe = document.getElementById('game-iframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) {
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
