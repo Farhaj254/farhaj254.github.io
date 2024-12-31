@@ -16,9 +16,92 @@
             font-family: Arial, sans-serif;
             background-color: #f4f7fb;
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
+            flex-direction: column;
+            align-items: center;
             padding: 20px;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1400px;
+            background-color: #15182b;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo span {
+            font-size: 1.5rem;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            margin: 0 20px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background-color: #23263a;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .search-bar input::placeholder {
+            color: #aaa;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #007BFF;
+        }
+
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            background-color: #23263a;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: #007BFF;
         }
 
         #content-container {
@@ -142,6 +225,26 @@
     </style>
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+            <span>Eggy Car</span>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search">
+        </div>
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Car</a>
+            <a href="#">Skill</a>
+            <a href="#">Action</a>
+            <a href="#">Shooting</a>
+            <a href="#">Sport</a>
+            <a href="#">Idle</a>
+        </nav>
+        <div class="theme-toggle">🌙</div>
+    </header>
+
     <div id="content-container">
         <!-- Left Ad Section -->
         <div class="ad-container">
