@@ -14,57 +14,55 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #e6f0ff;
+            background-color: #121223;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        #main-container {
+            width: 100%;
+            max-width: 1400px;
+            display: flex;
+        }
+
+        /* Sidebar Styling */
+        #sidebar {
+            width: 20%;
+            padding: 10px;
+            background-color: #1c1c2e;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        .ad-section {
+            width: 100%;
+            height: 150px;
+            background-color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            padding: 20px;
-            flex-direction: column;
-        }
-
-        #content-container {
-            width: 100%;
-            max-width: 1100px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        #portal-header {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 2px solid #0056b3;
             margin-bottom: 20px;
+            border-radius: 8px;
+            color: #fff;
         }
 
-        #portal-logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #0056b3;
+        /* Main Content Styling */
+        #content {
+            width: 60%;
+            padding: 10px;
+            background-color: #1c1c2e;
+            border-radius: 8px;
         }
 
-        #search-bar {
-            width: 30%;
-            padding: 8px;
-            border-radius: 20px;
-            border: 1px solid #ccc;
-            font-size: 1rem;
-        }
-
-        .game-container {
+        #game-container {
             position: relative;
-            width: 100%;
-            max-width: 1100px;
-            height: 550px;
             background-color: #000;
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
-            margin: 0 auto 20px;
+            margin-bottom: 20px;
         }
 
         #game-thumbnail {
@@ -72,29 +70,18 @@
             top: 150px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 3;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease-in-out;
+            z-index: 2;
         }
 
         #game-thumbnail img {
             width: 200px;
             height: 200px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        #game-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+            border-radius: 12px;
         }
 
         #overlay {
             position: absolute;
-            top: 160px;
+            top: 0;
             left: 0;
             width: 100%;
             height: 100%;
@@ -102,190 +89,128 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 2;
+            z-index: 1;
         }
 
         #play-button {
             background-color: #007bff;
             color: white;
-            font-size: 24px;
-            padding: 15px 30px;
+            font-size: 20px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         #play-button:hover {
             background-color: #0056b3;
-            transform: scale(1.05);
         }
 
-        .title-buttons-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
-        }
-
-        .title-buttons-container h3 {
-            font-size: 1.5rem;
-            color: #333;
-        }
-
-        .title-buttons-container .buttons-container {
-            display: flex;
-            gap: 10px;
-        }
-
-        .title-buttons-container button {
-            background-color: #007bff;
-            color: white;
+        #game-iframe {
+            width: 100%;
+            height: 450px;
             border: none;
-            padding: 8px 15px;
-            font-size: 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            z-index: 0;
         }
 
-        .title-buttons-container button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Related Games Section */
+        /* Related Games */
         #related-games {
             margin-top: 20px;
         }
 
-        #related-games h4 {
-            font-size: 1.5rem;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .related-games-list {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
         .related-game {
-            width: calc(33.33% - 10px);
-            background-color: #f8f8f8;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            display: inline-block;
+            width: 24%;
+            margin: 1%;
             text-align: center;
+            background-color: #2a2a3f;
+            border-radius: 8px;
             padding: 10px;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .related-game:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .related-game img {
             width: 100%;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 8px 8px 0 0;
+            height: 100px;
+            border-radius: 8px;
         }
 
         .related-game p {
-            margin-top: 8px;
+            margin-top: 5px;
             font-size: 14px;
-            color: #555;
+        }
+
+        /* Right Sidebar */
+        #right-sidebar {
+            width: 20%;
+            padding: 10px;
+            background-color: #1c1c2e;
+            border-radius: 8px;
+        }
+
+        .ad-section.large {
+            height: 300px;
         }
 
         footer {
             text-align: center;
+            margin-top: 20px;
             font-size: 14px;
-            margin-top: 40px;
-        }
-
-        footer a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div id="portal-header">
-        <div id="portal-logo">Game Portal</div>
-        <input type="text" id="search-bar" placeholder="Search games..." />
-    </div>
-
-    <div id="content-container">
-        <div class="game-container">
-            <div id="game-thumbnail">
-                <img src="ragdoll-archers_16x9-cover.avif" alt="Game Thumbnail" />
-            </div>
-            <div id="overlay">
-                <button id="play-button" onclick="startGame()">Play Game</button>
-            </div>
-            <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
+    <div id="main-container">
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="ad-section">Ad Placement 1</div>
+            <div class="ad-section">Ad Placement 2</div>
         </div>
 
-        <div class="title-buttons-container">
-            <h3>Game Title: Ragdoll Archers</h3>
-            <div class="buttons-container">
-                <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-                <button onclick="likeDislike('like')">Like</button>
-                <button onclick="likeDislike('dislike')">Dislike</button>
+        <!-- Main Content -->
+        <div id="content">
+            <div id="game-container">
+                <div id="game-thumbnail">
+                    <img src="ragdoll-archers_16x9-cover.avif" alt="Game Thumbnail">
+                </div>
+                <div id="overlay">
+                    <button id="play-button" onclick="startGame()">Play</button>
+                </div>
+                <iframe id="game-iframe" src=""></iframe>
             </div>
-        </div>
 
-        <!-- Related Games Section -->
-        <div id="related-games">
-            <h4>Related Games</h4>
-            <div class="related-games-list">
-                <div class="related-game" onclick="viewGame('Game 1')">
+            <div id="related-games">
+                <h3>Related Games</h3>
+                <div class="related-game">
                     <img src="related-game-1.jpg" alt="Game 1">
                     <p>Game 1</p>
                 </div>
-                <div class="related-game" onclick="viewGame('Game 2')">
+                <div class="related-game">
                     <img src="related-game-2.jpg" alt="Game 2">
                     <p>Game 2</p>
                 </div>
-                <div class="related-game" onclick="viewGame('Game 3')">
+                <div class="related-game">
                     <img src="related-game-3.jpg" alt="Game 3">
                     <p>Game 3</p>
                 </div>
             </div>
         </div>
+
+        <!-- Right Sidebar -->
+        <div id="right-sidebar">
+            <div class="ad-section large">Ad Placement 3</div>
+            <div class="ad-section">Ad Placement 4</div>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2024 Game Portal. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        <p>&copy; 2024 Game Portal. All rights reserved.</p>
     </footer>
 
     <script>
         function startGame() {
             document.getElementById('overlay').style.display = 'none';
-            const iframe = document.getElementById('game-iframe');
-            iframe.src = "https://bitlifeonline.github.io/ragdoll-archers/";
-            document.getElementById('game-thumbnail').style.opacity = 0;
-        }
-
-        function likeDislike(action) {
-            alert(action === 'like' ? 'You liked the game!' : 'You disliked the game!');
-        }
-
-        function toggleFullscreen() {
-            const iframe = document.getElementById('game-iframe');
-            if (iframe.requestFullscreen) iframe.requestFullscreen();
-        }
-
-        function viewGame(game) {
-            alert(`You selected ${game}!`);
-            // Implement navigation to the selected game's details page.
+            document.getElementById('game-thumbnail').style.display = 'none';
+            document.getElementById('game-iframe').src = "https://bitlifeonline.github.io/ragdoll-archers/";
         }
     </script>
 </body>
