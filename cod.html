@@ -18,7 +18,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 0;
         }
 
         header {
@@ -28,7 +27,6 @@
             align-items: center;
             justify-content: space-between;
             padding: 10px 20px;
-            border-radius: 0;
         }
 
         .logo {
@@ -79,11 +77,6 @@
             text-decoration: none;
             font-size: 16px;
             font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #007BFF;
         }
 
         .theme-toggle {
@@ -95,11 +88,6 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            background-color: #007BFF;
         }
 
         #content-container {
@@ -110,32 +98,6 @@
             padding: 20px;
         }
 
-        /* Thumbnail Sections */
-        .thumbnail-section {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 10px 0;
-            background-color: #15182b;
-        }
-
-        .thumbnail {
-            width: 80px;
-            height: 80px;
-            background-color: #e0e0e0;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 14px;
-            font-weight: bold;
-            color: #666;
-            text-align: center;
-        }
-
-        /* Ad Section */
         .ad-container {
             width: 15%;
             display: flex;
@@ -145,117 +107,59 @@
 
         .ad-box {
             width: 100%;
-            height: 200px;
+            height: 100px;
             background-color: #e0e0e0;
-            border: 2px dashed #ccc;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 18px;
             color: #666;
             border-radius: 8px;
+            cursor: pointer;
         }
 
-        /* Game Section */
         .game-container {
             flex-grow: 1;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            position: relative;
-            padding: 20px;
+            align-items: center;
         }
 
         #game-iframe {
             width: 100%;
-            max-width: 1400px;
+            max-width: 100%;
             height: 550px;
             border: none;
-            margin: 0 auto;
         }
 
-        #overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+        .thumbnail-section {
+            display: flex;
+            gap: 10px;
+            padding: 10px 0;
+            justify-content: center;
+            background-color: #15182b;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            background-color: #e0e0e0;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 2;
-        }
-
-        #play-button {
-            background-color: #007BFF;
-            color: white;
-            font-size: 24px;
-            padding: 15px 30px;
-            border: none;
+            font-size: 14px;
+            color: #666;
             border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        #play-button:hover {
-            background-color: #0056b3;
-            transform: scale(1.05);
-        }
-
-        #game-title {
-            margin-top: 10px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #333;
-            text-align: left;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .buttons-container {
-            display: flex;
-            gap: 10px;
-        }
-
-        .buttons-container button {
+        .thumbnail:hover {
             background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            font-size: 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .buttons-container button:hover {
-            background-color: #0056b3;
-        }
-
-        .like-dislike-count {
-            margin-left: 5px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .active {
-            background-color: #0056b3 !important;
-        }
-
-        /* Bottom Section */
-        .bottom-thumbnails {
-            width: 100%;
-            background-color: #15182b;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 10px 0;
+            color: #fff;
         }
     </style>
 </head>
@@ -273,137 +177,44 @@
             <a href="#">Car</a>
             <a href="#">Skill</a>
             <a href="#">Action</a>
-            <a href="#">Shooting</a>
-            <a href="#">Sport</a>
-            <a href="#">Idle</a>
         </nav>
         <div class="theme-toggle">🌙</div>
     </header>
 
-    <!-- Top Thumbnail Section -->
     <div class="thumbnail-section">
-        <div class="thumbnail">Game 1</div>
-        <div class="thumbnail">Game 2</div>
-        <div class="thumbnail">Game 3</div>
-        <div class="thumbnail">Game 4</div>
-        <div class="thumbnail">Game 5</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game1')">Game 1</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game2')">Game 2</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game3')">Game 3</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game4')">Game 4</div>
     </div>
 
     <div id="content-container">
-        <!-- Left Ad Section -->
         <div class="ad-container">
-            <div class="thumbnail">Game 11</div>
-            <div class="thumbnail">Game 12</div>
-            <div class="thumbnail">Game 13</div>
-            <div class="thumbnail">Game 14</div>
+            <div class="ad-box">Ad 1</div>
+            <div class="ad-box">Ad 2</div>
         </div>
 
-        <!-- Game Section -->
         <div class="game-container">
-            <div style="position: relative;">
-                <div id="overlay">
-                    <button id="play-button" onclick="startGame()">Play Game</button>
-                </div>
-                <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
-            </div>
-
-            <div id="game-title">
-                <span>Game Title: Ragdoll Archers</span>
-                <div class="buttons-container">
-                    <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-                    <button id="like-button" onclick="toggleLike()">Like <span id="like-count" class="like-dislike-count">0</span></button>
-                    <button id="dislike-button" onclick="toggleDislike()">Dislike <span id="dislike-count" class="like-dislike-count">0</span></button>
-                </div>
-            </div>
+            <iframe id="game-iframe" src=""></iframe>
         </div>
 
-        <!-- Right Ad Section -->
         <div class="ad-container">
-            <div class="thumbnail">Game 15</div>
-            <div class="thumbnail">Game 16</div>
-            <div class="thumbnail">Game 17</div>
-            <div class="thumbnail">Game 18</div>
+            <div class="ad-box">Ad 3</div>
+            <div class="ad-box">Ad 4</div>
         </div>
     </div>
 
-    <!-- Bottom Thumbnail Section -->
-    <div class="bottom-thumbnails">
-        <div class="thumbnail">Game 6</div>
-        <div class="thumbnail">Game 7</div>
-        <div class="thumbnail">Game 8</div>
-        <div class="thumbnail">Game 9</div>
-        <div class="thumbnail">Game 10</div>
+    <div class="thumbnail-section">
+        <div class="thumbnail" onclick="loadGame('https://example.com/game5')">Game 5</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game6')">Game 6</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game7')">Game 7</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game8')">Game 8</div>
     </div>
 
     <script>
-        let likeCount = 0;
-        let dislikeCount = 0;
-        let userLiked = false;
-        let userDisliked = false;
-
-        function startGame() {
-            document.getElementById('overlay').style.display = 'none';
+        function loadGame(url) {
             const iframe = document.getElementById('game-iframe');
-            iframe.src = "https://bitlifeonline.github.io/ragdoll-archers/";
-        }
-
-        function toggleLike() {
-            const likeButton = document.getElementById('like-button');
-            const dislikeButton = document.getElementById('dislike-button');
-
-            if (userLiked) {
-                likeCount--;
-                userLiked = false;
-                likeButton.classList.remove('active');
-            } else {
-                likeCount++;
-                userLiked = true;
-                likeButton.classList.add('active');
-                if (userDisliked) {
-                    dislikeCount--;
-                    userDisliked = false;
-                    dislikeButton.classList.remove('active');
-                }
-            }
-
-            document.getElementById('like-count').innerText = likeCount;
-            document.getElementById('dislike-count').innerText = dislikeCount;
-        }
-
-        function toggleDislike() {
-            const likeButton = document.getElementById('like-button');
-            const dislikeButton = document.getElementById('dislike-button');
-
-            if (userDisliked) {
-                dislikeCount--;
-                userDisliked = false;
-                dislikeButton.classList.remove('active');
-            } else {
-                dislikeCount++;
-                userDisliked = true;
-                dislikeButton.classList.add('active');
-                if (userLiked) {
-                    likeCount--;
-                    userLiked = false;
-                    likeButton.classList.remove('active');
-                }
-            }
-
-            document.getElementById('like-count').innerText = likeCount;
-            document.getElementById('dislike-count').innerText = dislikeCount;
-        }
-
-        function toggleFullscreen() {
-            const iframe = document.getElementById('game-iframe');
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            } else if (iframe.mozRequestFullScreen) {
-                iframe.mozRequestFullScreen();
-            } else if (iframe.webkitRequestFullscreen) {
-                iframe.webkitRequestFullscreen();
-            } else if (iframe.msRequestFullscreen) {
-                iframe.msRequestFullscreen();
-            }
+            iframe.src = url;
         }
     </script>
 </body>
