@@ -32,7 +32,6 @@
             padding: 20px;
         }
 
-        /* Portal Header Section */
         #portal-header {
             width: 100%;
             display: flex;
@@ -57,7 +56,6 @@
             font-size: 1rem;
         }
 
-        /* Game Container */
         .game-container {
             position: relative;
             width: 100%;
@@ -123,7 +121,6 @@
             transform: scale(1.05);
         }
 
-        /* Game Title and Buttons Layout */
         .title-buttons-container {
             display: flex;
             justify-content: space-between;
@@ -154,6 +151,53 @@
 
         .title-buttons-container button:hover {
             background-color: #0056b3;
+        }
+
+        /* Related Games Section */
+        #related-games {
+            margin-top: 20px;
+        }
+
+        #related-games h4 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .related-games-list {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .related-game {
+            width: calc(33.33% - 10px);
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .related-game:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .related-game img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .related-game p {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #555;
         }
 
         footer {
@@ -197,6 +241,25 @@
                 <button onclick="likeDislike('dislike')">Dislike</button>
             </div>
         </div>
+
+        <!-- Related Games Section -->
+        <div id="related-games">
+            <h4>Related Games</h4>
+            <div class="related-games-list">
+                <div class="related-game" onclick="viewGame('Game 1')">
+                    <img src="related-game-1.jpg" alt="Game 1">
+                    <p>Game 1</p>
+                </div>
+                <div class="related-game" onclick="viewGame('Game 2')">
+                    <img src="related-game-2.jpg" alt="Game 2">
+                    <p>Game 2</p>
+                </div>
+                <div class="related-game" onclick="viewGame('Game 3')">
+                    <img src="related-game-3.jpg" alt="Game 3">
+                    <p>Game 3</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer>
@@ -218,6 +281,11 @@
         function toggleFullscreen() {
             const iframe = document.getElementById('game-iframe');
             if (iframe.requestFullscreen) iframe.requestFullscreen();
+        }
+
+        function viewGame(game) {
+            alert(`You selected ${game}!`);
+            // Implement navigation to the selected game's details page.
         }
     </script>
 </body>
