@@ -110,18 +110,31 @@
             padding: 20px;
         }
 
-        /* Thumbnail Sections */
-        .thumbnail-section {
+        /* Scrolling Thumbnails */
+        .scrolling-thumbnails {
             width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 10px 0;
+            overflow: hidden;
             background-color: #15182b;
+            position: relative;
+            padding: 10px 0;
         }
 
-        .thumbnail {
+        .scrolling-thumbnails .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            animation: scroll-thumbnails 20s linear infinite;
+        }
+
+        @keyframes scroll-thumbnails {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .scrolling-thumbnails .thumbnail {
             width: 80px;
             height: 80px;
             background-color: #e0e0e0;
@@ -306,13 +319,15 @@
         <div class="theme-toggle">🌙</div>
     </header>
 
-    <!-- Top Thumbnail Section -->
-    <div class="thumbnail-section">
-        <div class="thumbnail" onclick="loadGame('https://example.com/game1')">Game 1</div>
-        <div class="thumbnail" onclick="loadGame('https://example.com/game2')">Game 2</div>
-        <div class="thumbnail" onclick="loadGame('https://example.com/game3')">Game 3</div>
-        <div class="thumbnail" onclick="loadGame('https://example.com/game4')">Game 4</div>
-        <div class="thumbnail" onclick="loadGame('https://example.com/game5')">Game 5</div>
+    <!-- Scrolling Thumbnails Section -->
+    <div class="scrolling-thumbnails">
+        <div class="thumbnail-container">
+            <div class="thumbnail" onclick="loadGame('https://example.com/game1')">Game 1</div>
+            <div class="thumbnail" onclick="loadGame('https://example.com/game2')">Game 2</div>
+            <div class="thumbnail" onclick="loadGame('https://example.com/game3')">Game 3</div>
+            <div class="thumbnail" onclick="loadGame('https://example.com/game4')">Game 4</div>
+            <div class="thumbnail" onclick="loadGame('https://example.com/game5')">Game 5</div>
+        </div>
     </div>
 
     <div id="content-container">
@@ -471,9 +486,3 @@
 
         function loadGame(url) {
             const iframe = document.getElementById('game-iframe');
-            iframe.src = url;
-            document.getElementById('overlay').style.display = 'none';
-        }
-    </script>
-</body>
-</html>
