@@ -135,6 +135,10 @@
             font-weight: bold;
             color: #333;
         }
+
+        .active {
+            background-color: #0056b3 !important;
+        }
     </style>
 </head>
 <body>
@@ -158,8 +162,8 @@
                 <span>Game Title: Ragdoll Archers</span>
                 <div class="buttons-container">
                     <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-                    <button id="like-button" onclick="likeDislike('like')">Like <span id="like-count" class="like-dislike-count">0</span></button>
-                    <button id="dislike-button" onclick="likeDislike('dislike')">Dislike <span id="dislike-count" class="like-dislike-count">0</span></button>
+                    <button id="like-button" onclick="toggleLike()">Like <span id="like-count" class="like-dislike-count">0</span></button>
+                    <button id="dislike-button" onclick="toggleDislike()">Dislike <span id="dislike-count" class="like-dislike-count">0</span></button>
                 </div>
             </div>
         </div>
@@ -183,20 +187,50 @@
             iframe.src = "https://bitlifeonline.github.io/ragdoll-archers/";
         }
 
-        function likeDislike(action) {
-            if (action === 'like' && !userLiked && !userDisliked) {
+        function toggleLike() {
+            const likeButton = document.getElementById('like-button');
+            const dislikeButton = document.getElementById('dislike-button');
+
+            if (userLiked) {
+                likeCount--;
+                userLiked = false;
+                likeButton.classList.remove('active');
+            } else {
                 likeCount++;
                 userLiked = true;
-                document.getElementById('like-count').innerText = likeCount;
-                alert('You liked the game!');
-            } else if (action === 'dislike' && !userDisliked && !userLiked) {
+                likeButton.classList.add('active');
+                if (userDisliked) {
+                    dislikeCount--;
+                    userDisliked = false;
+                    dislikeButton.classList.remove('active');
+                }
+            }
+
+            document.getElementById('like-count').innerText = likeCount;
+            document.getElementById('dislike-count').innerText = dislikeCount;
+        }
+
+        function toggleDislike() {
+            const likeButton = document.getElementById('like-button');
+            const dislikeButton = document.getElementById('dislike-button');
+
+            if (userDisliked) {
+                dislikeCount--;
+                userDisliked = false;
+                dislikeButton.classList.remove('active');
+            } else {
                 dislikeCount++;
                 userDisliked = true;
-                document.getElementById('dislike-count').innerText = dislikeCount;
-                alert('You disliked the game!');
-            } else {
-                alert('You can only like or dislike once!');
+                dislikeButton.classList.add('active');
+                if (userLiked) {
+                    likeCount--;
+                    userLiked = false;
+                    likeButton.classList.remove('active');
+                }
             }
+
+            document.getElementById('like-count').innerText = likeCount;
+            document.getElementById('dislike-count').innerText = dislikeCount;
         }
 
         function toggleFullscreen() {
