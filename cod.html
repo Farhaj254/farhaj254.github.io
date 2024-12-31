@@ -14,135 +14,158 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f7fb;
+            background-color: #0d1b2a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1b263b;
+            padding: 10px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #f0a500;
+        }
+
+        .search-bar {
+            background-color: #243b55;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 15px;
+            color: #fff;
+            font-size: 14px;
+            width: 250px;
+        }
+
+        /* Main Content Layout */
+        #main-content {
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
             padding: 20px;
         }
 
-        #content-container {
+        /* Left and Right Panels */
+        .side-panel {
+            width: 15%;
+            background-color: #1b263b;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .side-panel img {
             width: 100%;
-            max-width: 1100px;
-            background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
         }
 
-        /* Game Title Section */
-        #game-title {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        #game-title h3 {
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 10px;
+        .side-panel img:hover {
+            transform: scale(1.05);
         }
 
         /* Game Container */
         .game-container {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            background-color: #000;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 20px;
+            width: 70%;
+            text-align: center;
         }
 
-        /* Game Image */
-        #game-image {
-            display: block;
-            margin: 0 auto 20px auto;
-            max-width: 300px;
+        .game-thumbnail {
+            margin: 0 auto;
+            border-radius: 15px;
+            background-color: #243b55;
+            padding: 20px;
+        }
+
+        .game-thumbnail img {
+            width: 200px;
+            height: 200px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+
+        .play-button {
+            background-color: #f0a500;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Game Iframe */
-        #game-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Play Button Overlay */
-        #overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2;
-        }
-
-        #play-button {
-            background-color: #007BFF;
-            color: white;
-            font-size: 24px;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
-        #play-button:hover {
-            background-color: #0056b3;
+        .play-button:hover {
+            background-color: #d18f00;
             transform: scale(1.05);
         }
 
-        /* Buttons below the game iframe */
-        .buttons-container {
-            display: flex;
-            justify-content: flex-end;
-            gap: 15px;
+        .game-title {
+            margin-top: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #f0f0f0;
+        }
+
+        .fullscreen-icon {
             margin-top: 10px;
-        }
-
-        .buttons-container button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
+            font-size: 18px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            color: #f0a500;
         }
 
-        .buttons-container button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Game Description Section */
-        #game-description {
+        /* Right Panel Advertisements */
+        .side-panel.advertisements {
             text-align: center;
-            margin-top: 20px;
         }
 
-        #game-description p {
-            font-size: 1.1rem;
-            color: #555;
+        .advertisement {
+            background-color: #243b55;
+            height: 200px;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
 
-        /* Footer Section */
+        /* Footer */
         footer {
             text-align: center;
+            background-color: #1b263b;
+            padding: 10px;
             font-size: 14px;
-            margin-top: 40px;
+            color: #fff;
         }
 
         footer a {
-            color: #007BFF;
+            color: #f0a500;
             text-decoration: none;
         }
 
@@ -152,66 +175,55 @@
     </style>
 </head>
 <body>
-    <div id="content-container">
-        <!-- Game Title Section -->
-        <div id="game-title">
-            <h3>Game Title: Ragdoll Archers</h3>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+            <h1>Game Portal</h1>
+        </div>
+        <input type="text" class="search-bar" placeholder="Search for games...">
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Car</a>
+            <a href="#">Skill</a>
+            <a href="#">Action</a>
+            <a href="#">Shooting</a>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <div id="main-content">
+        <!-- Left Panel -->
+        <div class="side-panel">
+            <img src="game-thumbnail1.png" alt="Game 1">
+            <img src="game-thumbnail2.png" alt="Game 2">
         </div>
 
-        <!-- Game Image -->
-        <img id="game-image" src="https://via.placeholder.com/300" alt="Game Thumbnail">
-
-        <!-- Game Container with Play Button -->
+        <!-- Game Container -->
         <div class="game-container">
-            <div id="overlay">
-                <button id="play-button" onclick="startGame()">Play Game</button>
+            <div class="game-thumbnail">
+                <img src="selected-game-thumbnail.png" alt="Game Thumbnail">
+                <button class="play-button" onclick="startGame()">Play</button>
             </div>
-            <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
+            <div class="game-title">Eggy Car</div>
         </div>
 
-        <!-- Buttons below the game iframe -->
-        <div class="buttons-container">
-            <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-            <button onclick="likeDislike('like')">Like</button>
-            <button onclick="likeDislike('dislike')">Dislike</button>
-        </div>
-
-        <!-- Game Description Section -->
-        <div id="game-description">
-            <p>A fun physics-based archery game where you control a ragdoll archer and fight against other archers in challenging battles. Can you defeat all your enemies and become the best archer?</p>
+        <!-- Right Panel -->
+        <div class="side-panel advertisements">
+            <div class="advertisement"></div>
+            <div class="advertisement"></div>
         </div>
     </div>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Game Portal. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        &copy; 2024 Game Portal. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
     </footer>
 
     <script>
         function startGame() {
-            document.getElementById('overlay').style.display = 'none';
-            const iframe = document.getElementById('game-iframe');
-            iframe.src = "https://bitlifeonline.github.io/ragdoll-archers/";
-        }
-
-        function likeDislike(action) {
-            if (action === 'like') {
-                alert('You liked the game!');
-            } else if (action === 'dislike') {
-                alert('You disliked the game!');
-            }
-        }
-
-        function toggleFullscreen() {
-            const iframe = document.getElementById('game-iframe');
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            } else if (iframe.mozRequestFullScreen) {
-                iframe.mozRequestFullScreen();
-            } else if (iframe.webkitRequestFullscreen) {
-                iframe.webkitRequestFullscreen();
-            } else if (iframe.msRequestFullscreen) {
-                iframe.msRequestFullscreen();
-            }
+            alert('Game Starting!');
+            // Add logic to load the game.
         }
     </script>
 </body>
