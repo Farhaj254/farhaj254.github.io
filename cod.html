@@ -115,7 +115,8 @@
             padding: 20px;
         }
 
-        .thumbnail-section, .bottom-thumbnails {
+        /* Thumbnail Sections */
+        .thumbnail-section {
             width: 100%;
             display: flex;
             justify-content: center;
@@ -145,6 +146,7 @@
             color: #fff;
         }
 
+        /* Ad Section */
         .ad-container {
             width: 15%;
             display: flex;
@@ -152,6 +154,7 @@
             gap: 20px;
         }
 
+        /* Game Section */
         .game-container {
             flex-grow: 1;
             background-color: #fff;
@@ -168,6 +171,7 @@
             width: 100%;
             height: 550px;
             border: none;
+            margin: 0 auto;
         }
 
         #overlay {
@@ -191,18 +195,29 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #play-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
         }
 
         #game-title {
-            margin-top: 10px;
+            margin: 10px 0;
             font-size: 1.5rem;
             font-weight: bold;
             color: #333;
+            text-align: left;
         }
 
         .buttons-container {
             display: flex;
+            justify-content: center;
             gap: 10px;
+            padding: 10px 0;
+            background-color: #f4f7fb; /* Matches container background */
+            border-top: 1px solid #ccc; /* Optional border for separation */
         }
 
         .buttons-container button {
@@ -213,6 +228,7 @@
             font-size: 14px;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         .buttons-container button:hover {
@@ -221,10 +237,23 @@
 
         .like-dislike-count {
             margin-left: 5px;
+            font-weight: bold;
+            color: #333;
         }
 
         .active {
             background-color: #0056b3 !important;
+        }
+
+        /* Bottom Section */
+        .bottom-thumbnails {
+            width: 100%;
+            background-color: #15182b;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 10px 0;
         }
     </style>
 </head>
@@ -249,22 +278,17 @@
         <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
     </header>
 
-    <div class="thumbnail-section">
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/ragdoll-archers/', 'Ragdoll Archers')" class="thumbnail">Game 1</a>
-        <a href="#" onclick="loadGame('https://html5.gamemonetize.co/yyrof22q5fmv3l1pmj9fgego7yzt9yv4/', 'Game 2')" class="thumbnail">Game 2</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/some-other-game/', 'Some Other Game')" class="thumbnail">Game 3</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/yet-another-game/', 'Yet Another Game')" class="thumbnail">Game 4</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/last-game/', 'Last Game')" class="thumbnail">Game 5</a>
-    </div>
-
+    <!-- Game Content -->
     <div id="content-container">
+        <!-- Left Ad Section -->
         <div class="ad-container">
-            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game11/', 'Game 11')" class="thumbnail">Game 11</a>
-            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game12/', 'Game 12')" class="thumbnail">Game 12</a>
-            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game13/', 'Game 13')" class="thumbnail">Game 13</a>
-            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game14/', 'Game 14')" class="thumbnail">Game 14</a>
+            <div class="thumbnail">Game 11</div>
+            <div class="thumbnail">Game 12</div>
+            <div class="thumbnail">Game 13</div>
+            <div class="thumbnail">Game 14</div>
         </div>
 
+        <!-- Game Section -->
         <div class="game-container">
             <div id="overlay">
                 <button id="play-button" onclick="startGame()">Play Game</button>
@@ -278,64 +302,13 @@
             </div>
         </div>
 
+        <!-- Right Ad Section -->
         <div class="ad-container">
-            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game15/', 'Game 15')" class="thumbnail">Game 15</a>
-            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game16/', 'Game 16')" class="thumbnail">Game 16</a>
-            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game17/', 'Game 17')" class="thumbnail">Game 17</a>
-            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game18/', 'Game 18')" class="thumbnail">Game 18</a>
+            <div class="thumbnail">Game 15</div>
+            <div class="thumbnail">Game 16</div>
+            <div class="thumbnail">Game 17</div>
+            <div class="thumbnail">Game 18</div>
         </div>
     </div>
-
-    <div class="bottom-thumbnails">
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game1/', 'Bottom Game 1')" class="thumbnail">Game 6</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game2/', 'Bottom Game 2')" class="thumbnail">Game 7</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game3/', 'Bottom Game 3')" class="thumbnail">Game 8</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game4/', 'Bottom Game 4')" class="thumbnail">Game 9</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game5/', 'Bottom Game 5')" class="thumbnail">Game 10</a>
-    </div>
-
-    <script>
-        function loadGame(url, gameTitle) {
-            const iframe = document.getElementById('game-iframe');
-            iframe.src = url;
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('game-title').innerText = `Game Title: ${gameTitle}`;
-        }
-
-        function toggleLike() {
-            const likeButton = document.getElementById('like-button');
-            const likeCount = document.getElementById('like-count');
-            let count = parseInt(likeCount.textContent, 10);
-            if (likeButton.classList.contains('active')) {
-                likeButton.classList.remove('active');
-                likeCount.textContent = count - 1;
-            } else {
-                likeButton.classList.add('active');
-                likeCount.textContent = count + 1;
-            }
-        }
-
-        function toggleDislike() {
-            const dislikeButton = document.getElementById('dislike-button');
-            const dislikeCount = document.getElementById('dislike-count');
-            let count = parseInt(dislikeCount.textContent, 10);
-            if (dislikeButton.classList.contains('active')) {
-                dislikeButton.classList.remove('active');
-                dislikeCount.textContent = count - 1;
-            } else {
-                dislikeButton.classList.add('active');
-                dislikeCount.textContent = count + 1;
-            }
-        }
-
-        function toggleFullscreen() {
-            const iframe = document.getElementById('game-iframe');
-            if (iframe.requestFullscreen) iframe.requestFullscreen();
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('dark');
-        }
-    </script>
 </body>
 </html>
