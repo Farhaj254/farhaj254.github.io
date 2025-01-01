@@ -19,21 +19,16 @@
             flex-direction: column;
             align-items: center;
             padding: 0;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        body.dark {
-            background-color: #121212;
-            color: #e0e0e0;
         }
 
         header {
             width: 100%;
             background-color: #15182b;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
 
         .thumbnail-section, .bottom-thumbnails {
@@ -45,8 +40,8 @@
         }
 
         .thumbnail {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             background-color: #e0e0e0;
             border-radius: 10px;
             display: flex;
@@ -62,6 +57,7 @@
 
         .thumbnail:hover {
             transform: scale(1.1);
+            background-color: #d4d4d4;
         }
 
         #content-container {
@@ -70,13 +66,6 @@
             padding: 20px;
             max-width: 1200px;
             width: 100%;
-        }
-
-        .ad-container {
-            width: 15%;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
         }
 
         .game-container {
@@ -93,46 +82,14 @@
 
         #game-iframe {
             width: 100%;
-            height: 550px;
+            height: 500px;
             border: none;
-            margin: 0 auto;
-        }
-
-        #overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2;
-        }
-
-        #play-button {
-            background-color: #007BFF;
-            color: white;
-            font-size: 24px;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        #play-button:hover {
-            background-color: #0056b3;
-            transform: scale(1.05);
         }
 
         #game-title {
             margin-top: 10px;
             font-size: 1.5rem;
             font-weight: bold;
-            color: #333;
-            text-align: left;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -170,42 +127,117 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1 style="color: white;">Game Portal</h1>
-    </header>
+    <header>Game Portal</header>
 
-    <!-- Top Thumbnail Section -->
+    <!-- Thumbnail Section -->
     <div class="thumbnail-section">
-        <div class="thumbnail" onclick="loadGame('https://bitlifeonline.github.io/ragdoll-archers/')">Game 1</div>
-        <div class="thumbnail" onclick="loadGame('https://example.com/game2')">Game 2</div>
+        <div class="thumbnail" onclick="loadGame('https://bitlifeonline.github.io/ragdoll-archers/', 'Ragdoll Archers')">Game 1</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game2', 'Game 2')">Game 2</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game3', 'Game 3')">Game 3</div>
+        <div class="thumbnail" onclick="loadGame('https://example.com/game4', 'Game 4')">Game 4</div>
     </div>
 
+    <!-- Content Section -->
     <div id="content-container">
+        <!-- Game Section -->
         <div class="game-container">
-            <div id="overlay">
-                <button id="play-button" onclick="startGame()">Play Game</button>
-            </div>
-            <iframe id="game-iframe" src=""></iframe>
+            <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
             <div id="game-title">
-                Game Title
+                <span id="game-title-text">Game Title</span>
                 <div class="buttons-container">
                     <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-                    <button id="like-button" onclick="toggleLike()">Like <span id="like-count">0</span></button>
-                    <button id="dislike-button" onclick="toggleDislike()">Dislike <span id="dislike-count">0</span></button>
+                    <button id="like-button" onclick="toggleLike()">Like <span id="like-count" class="like-dislike-count">0</span></button>
+                    <button id="dislike-button" onclick="toggleDislike()">Dislike <span id="dislike-count" class="like-dislike-count">0</span></button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        let likeCount = 0, dislikeCount = 0, userLiked = false;
+        let likeCount = 0;
+        let dislikeCount = 0;
+        let userLiked = false;
+        let userDisliked = false;
 
-        function startGame() {
-            document.querySelector("#overlay").style.display = "none";
+        function loadGame(url, title) {
+            document.getElementById('game-iframe').src = url;
+            document.getElementById('game-title-text').innerText = title;
+
+            // Reset like/dislike when loading a new game
+            resetFeedback();
+        }
+
+        function resetFeedback() {
+            likeCount = 0;
+            dislikeCount = 0;
+            userLiked = false;
+            userDisliked = false;
+
+            document.getElementById('like-count').innerText = likeCount;
+            document.getElementById('dislike-count').innerText = dislikeCount;
+            document.getElementById('like-button').classList.remove('active');
+            document.getElementById('dislike-button').classList.remove('active');
         }
 
         function toggleLike() {
-            // Like logic here
+            const likeButton = document.getElementById('like-button');
+            const dislikeButton = document.getElementById('dislike-button');
+
+            if (userLiked) {
+                likeCount--;
+                userLiked = false;
+                likeButton.classList.remove('active');
+            } else {
+                likeCount++;
+                userLiked = true;
+                likeButton.classList.add('active');
+
+                if (userDisliked) {
+                    dislikeCount--;
+                    userDisliked = false;
+                    dislikeButton.classList.remove('active');
+                }
+            }
+
+            document.getElementById('like-count').innerText = likeCount;
+            document.getElementById('dislike-count').innerText = dislikeCount;
+        }
+
+        function toggleDislike() {
+            const likeButton = document.getElementById('like-button');
+            const dislikeButton = document.getElementById('dislike-button');
+
+            if (userDisliked) {
+                dislikeCount--;
+                userDisliked = false;
+                dislikeButton.classList.remove('active');
+            } else {
+                dislikeCount++;
+                userDisliked = true;
+                dislikeButton.classList.add('active');
+
+                if (userLiked) {
+                    likeCount--;
+                    userLiked = false;
+                    likeButton.classList.remove('active');
+                }
+            }
+
+            document.getElementById('like-count').innerText = likeCount;
+            document.getElementById('dislike-count').innerText = dislikeCount;
+        }
+
+        function toggleFullscreen() {
+            const iframe = document.getElementById('game-iframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) {
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
+            }
         }
     </script>
 </body>
