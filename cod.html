@@ -19,29 +19,116 @@
             flex-direction: column;
             align-items: center;
             padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark {
+            background-color: #121212;
+            color: #e0e0e0;
         }
 
         header {
             width: 100%;
             background-color: #15182b;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo span {
             font-size: 1.5rem;
+            color: #fff;
             font-weight: bold;
         }
 
-        .thumbnail-section, .bottom-thumbnails {
+        .search-bar {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            margin: 0 20px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background-color: #23263a;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .search-bar input::placeholder {
+            color: #aaa;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #007BFF;
+        }
+
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            background-color: #23263a;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: #007BFF;
+        }
+
+        #content-container {
+            width: 100%;
+            max-width: 1400px;
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Thumbnail Sections */
+        .thumbnail-section {
+            width: 100%;
             display: flex;
             justify-content: center;
             gap: 10px;
             flex-wrap: wrap;
-            padding: 20px 0;
+            padding: 10px 0;
+            background-color: #15182b;
         }
 
         .thumbnail {
-            width: 120px;
-            height: 120px;
+            width: 80px;
+            height: 80px;
             background-color: #e0e0e0;
             border-radius: 10px;
             display: flex;
@@ -50,9 +137,9 @@
             font-size: 14px;
             font-weight: bold;
             color: #666;
-            cursor: pointer;
             text-align: center;
-            transition: transform 0.3s ease;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
         .thumbnail:hover {
@@ -60,14 +147,7 @@
             background-color: #d4d4d4;
         }
 
-        #content-container {
-            display: flex;
-            gap: 20px;
-            padding: 20px;
-            max-width: 1200px;
-            width: 100%;
-        }
-
+        /* Game Section */
         .game-container {
             flex-grow: 1;
             background-color: #fff;
@@ -82,14 +162,17 @@
 
         #game-iframe {
             width: 100%;
-            height: 500px;
+            height: 550px;
             border: none;
+            margin: 0 auto;
         }
 
         #game-title {
             margin-top: 10px;
             font-size: 1.5rem;
             font-weight: bold;
+            color: #333;
+            text-align: left;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -127,9 +210,27 @@
     </style>
 </head>
 <body>
-    <header>Game Portal</header>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+            <span>Eggy Car</span>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search">
+        </div>
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Car</a>
+            <a href="#">Skill</a>
+            <a href="#">Action</a>
+            <a href="#">Shooting</a>
+            <a href="#">Sport</a>
+            <a href="#">Idle</a>
+        </nav>
+        <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+    </header>
 
-    <!-- Thumbnail Section -->
+    <!-- Top Thumbnail Section -->
     <div class="thumbnail-section">
         <div class="thumbnail" onclick="loadGame('https://bitlifeonline.github.io/ragdoll-archers/', 'Ragdoll Archers')">Game 1</div>
         <div class="thumbnail" onclick="loadGame('https://example.com/game2', 'Game 2')">Game 2</div>
@@ -137,7 +238,6 @@
         <div class="thumbnail" onclick="loadGame('https://example.com/game4', 'Game 4')">Game 4</div>
     </div>
 
-    <!-- Content Section -->
     <div id="content-container">
         <!-- Game Section -->
         <div class="game-container">
@@ -163,7 +263,7 @@
             document.getElementById('game-iframe').src = url;
             document.getElementById('game-title-text').innerText = title;
 
-            // Reset like/dislike when loading a new game
+            // Reset like/dislike counts
             resetFeedback();
         }
 
@@ -238,6 +338,10 @@
             } else if (iframe.msRequestFullscreen) {
                 iframe.msRequestFullscreen();
             }
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
         }
     </script>
 </body>
