@@ -305,13 +305,14 @@
                 <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
             </div>
 
-            <div id="game-title">
-                <span>Game Title: Ragdoll Archers</span>
-                <div class="buttons-container">
-                    <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-                    <button id="like-button" onclick="toggleLike()">Like <span id="like-count" class="like-dislike-count">0</span></button>
-                    <button id="dislike-button" onclick="toggleDislike()">Dislike <span id="dislike-count" class="like-dislike-count">0</span></button>
-                </div>
+           <div id="game-title">
+    <span id="game-title-text">Game Title: Default Game</span>
+    <div class="buttons-container">
+        <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
+        <button id="like-button" onclick="toggleLike()">Like <span id="like-count" class="like-dislike-count">0</span></button>
+        <button id="dislike-button" onclick="toggleDislike()">Dislike <span id="dislike-count" class="like-dislike-count">0</span></button>
+    </div>
+</div>
             </div>
         </div>
 
@@ -339,12 +340,12 @@
         let userLiked = false;
         let userDisliked = false;
 
-    function loadGame(url) {
+    function loadGame(url, gameTitle) {
         const iframe = document.getElementById('game-iframe');
-        iframe.src = url;
+        iframe.src = url; // Set the iframe source to the selected game's URL
         document.getElementById('overlay').style.display = 'none'; // Hide the overlay if it's visible
+        document.getElementById('game-title-text').innerText = gameTitle; // Update the game title
     }
-
 
         function toggleLike() {
             const likeButton = document.getElementById('like-button');
