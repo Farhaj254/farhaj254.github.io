@@ -19,7 +19,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 0;
         }
 
         body.dark-theme {
@@ -143,6 +142,14 @@
             color: #f4f7fb;
         }
 
+        #content-container {
+            width: 100%;
+            max-width: 1400px;
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+
         /* Game Section */
         .game-container {
             flex-grow: 1;
@@ -185,10 +192,41 @@
             cursor: pointer;
         }
 
+        .ad-container {
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .ad-box {
+            width: 100%;
+            height: 150px;
+            background-color: #e0e0e0;
+            border: 2px dashed #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: #666;
+            border-radius: 8px;
+        }
+
         #game-title {
             margin-top: 10px;
             font-size: 1.5rem;
             font-weight: bold;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            #content-container {
+                flex-direction: column;
+            }
+
+            .ad-container {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -216,48 +254,27 @@
         <div class="thumbnail" onclick="loadGame('https://example.com/game3', 'Game 3')">Game 3</div>
     </div>
 
-    <div class="game-container">
-        <div id="overlay">
-            <button id="play-button" onclick="startGame()">Play Game</button>
+    <div id="content-container">
+        <div class="ad-container">
+            <div class="ad-box">Ad 1</div>
+            <div class="ad-box">Ad 2</div>
         </div>
-        <iframe id="game-iframe"></iframe>
-        <div id="game-title">Select a Game</div>
+
+        <div class="game-container">
+            <div id="overlay">
+                <button id="play-button" onclick="startGame()">Play Game</button>
+            </div>
+            <iframe id="game-iframe"></iframe>
+            <div id="game-title">Select a Game</div>
+        </div>
+
+        <div class="ad-container">
+            <div class="ad-box">Ad 3</div>
+            <div class="ad-box">Ad 4</div>
+        </div>
     </div>
 
     <div class="bottom-thumbnails">
         <div class="thumbnail" onclick="loadGame('https://example.com/game4', 'Game 4')">Game 4</div>
         <div class="thumbnail" onclick="loadGame('https://example.com/game5', 'Game 5')">Game 5</div>
-    </div>
-
-    <script>
-        let currentGameTitle = '';
-
-        function startGame() {
-            document.getElementById('overlay').style.display = 'none';
-            const iframe = document.getElementById('game-iframe');
-            if (!iframe.src) {
-                alert('Please select a game first.');
-            }
-        }
-
-        function loadGame(url, title) {
-            const iframe = document.getElementById('game-iframe');
-            iframe.src = url;
-            currentGameTitle = title;
-            document.getElementById('game-title').textContent = `Game Title: ${title}`;
-            document.getElementById('overlay').style.display = 'flex';
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('dark-theme');
-        }
-
-        function filterGames(query) {
-            const thumbnails = document.querySelectorAll('.thumbnail');
-            thumbnails.forEach(thumbnail => {
-                thumbnail.style.display = thumbnail.textContent.toLowerCase().includes(query.toLowerCase()) ? 'flex' : 'none';
-            });
-        }
-    </script>
-</body>
-</html>
+    </
