@@ -193,11 +193,19 @@
             cursor: pointer;
         }
 
-        #game-title {
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-top: 10px;
+            padding: 10px 0;
+        }
+
+        #game-title {
             font-size: 1.5rem;
             font-weight: bold;
             color: #333;
+            margin: 0;
         }
 
         .buttons-container {
@@ -270,11 +278,13 @@
                 <button id="play-button" onclick="startGame()">Play Game</button>
             </div>
             <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
-            <div id="game-title">Game Title: Default Game</div>
-            <div class="buttons-container">
-                <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-                <button id="like-button" onclick="toggleLike()">Like <span id="like-count">0</span></button>
-                <button id="dislike-button" onclick="toggleDislike()">Dislike <span id="dislike-count">0</span></button>
+            <div class="game-header">
+                <div id="game-title">Game Title: Default Game</div>
+                <div class="buttons-container">
+                    <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
+                    <button id="like-button" onclick="toggleLike()">Like <span id="like-count">0</span></button>
+                    <button id="dislike-button" onclick="toggleDislike()">Dislike <span id="dislike-count">0</span></button>
+                </div>
             </div>
         </div>
 
@@ -302,40 +312,3 @@
             document.getElementById('game-title').innerText = `Game Title: ${gameTitle}`;
         }
 
-        function toggleLike() {
-            const likeButton = document.getElementById('like-button');
-            const likeCount = document.getElementById('like-count');
-            let count = parseInt(likeCount.textContent, 10);
-            if (likeButton.classList.contains('active')) {
-                likeButton.classList.remove('active');
-                likeCount.textContent = count - 1;
-            } else {
-                likeButton.classList.add('active');
-                likeCount.textContent = count + 1;
-            }
-        }
-
-        function toggleDislike() {
-            const dislikeButton = document.getElementById('dislike-button');
-            const dislikeCount = document.getElementById('dislike-count');
-            let count = parseInt(dislikeCount.textContent, 10);
-            if (dislikeButton.classList.contains('active')) {
-                dislikeButton.classList.remove('active');
-                dislikeCount.textContent = count - 1;
-            } else {
-                dislikeButton.classList.add('active');
-                dislikeCount.textContent = count + 1;
-            }
-        }
-
-        function toggleFullscreen() {
-            const iframe = document.getElementById('game-iframe');
-            if (iframe.requestFullscreen) iframe.requestFullscreen();
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('dark');
-        }
-    </script>
-</body>
-</html>
