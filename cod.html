@@ -13,9 +13,8 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             background-color: #f4f7fb;
-            color: #333;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -34,8 +33,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 15px 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
         }
 
         .logo {
@@ -45,11 +43,11 @@
         }
 
         .logo img {
-            height: 50px;
+            height: 40px;
         }
 
         .logo span {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: #fff;
             font-weight: bold;
         }
@@ -63,10 +61,10 @@
 
         .search-bar input {
             width: 100%;
-            max-width: 450px;
-            padding: 12px;
+            max-width: 400px;
+            padding: 10px;
             border: none;
-            border-radius: 25px;
+            border-radius: 20px;
             background-color: #23263a;
             color: #fff;
             font-size: 16px;
@@ -115,7 +113,6 @@
             display: flex;
             gap: 20px;
             padding: 20px;
-            margin-top: 20px;
         }
 
         .thumbnail-section, .bottom-thumbnails {
@@ -124,16 +121,15 @@
             justify-content: center;
             gap: 10px;
             flex-wrap: wrap;
-            padding: 15px 0;
+            padding: 10px 0;
             background-color: #15182b;
-            border-radius: 10px;
         }
 
         .thumbnail {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             background-color: #e0e0e0;
-            border-radius: 15px;
+            border-radius: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -142,13 +138,11 @@
             color: #666;
             text-align: center;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .thumbnail:hover {
             background-color: #007BFF;
             color: #fff;
-            transform: scale(1.1);
         }
 
         .ad-container {
@@ -174,11 +168,30 @@
             width: 100%;
             height: 550px;
             border: none;
-            border-radius: 10px;
+        }
+
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .game-title-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding: 0 10px;
         }
 
         #game-title {
-            margin-top: 15px;
             font-size: 1.5rem;
             font-weight: bold;
             color: #333;
@@ -187,7 +200,6 @@
         .buttons-container {
             display: flex;
             gap: 10px;
-            margin-top: 10px;
         }
 
         .buttons-container button {
@@ -253,11 +265,13 @@
 
         <div class="game-container">
             <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
-            <div id="game-title">Game Title: Default Game</div>
-            <div class="buttons-container">
-                <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-                <button id="like-button" onclick="toggleLike()">Like <span id="like-count">0</span></button>
-                <button id="dislike-button" onclick="toggleDislike()">Dislike <span id="dislike-count">0</span></button>
+            <div class="game-title-container">
+                <div id="game-title">Game Title: Default Game</div>
+                <div class="buttons-container">
+                    <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
+                    <button id="like-button" onclick="toggleLike()">Like <span id="like-count">0</span></button>
+                    <button id="dislike-button" onclick="toggleDislike()">Dislike <span id="dislike-count">0</span></button>
+                </div>
             </div>
         </div>
 
@@ -281,6 +295,7 @@
         function loadGame(url, gameTitle) {
             const iframe = document.getElementById('game-iframe');
             iframe.src = url;
+            document.getElementById('overlay').style.display = 'none';
             document.getElementById('game-title').innerText = `Game Title: ${gameTitle}`;
         }
 
