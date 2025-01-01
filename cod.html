@@ -1,144 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Portal</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-    }
-    header {
-      background-color: #1a1a2e;
-      color: white;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header .logo {
-      display: flex;
-      align-items: center;
-    }
-    header .logo img {
-      height: 40px;
-      margin-right: 10px;
-    }
-    header nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-    }
-    .game-selection {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-    }
-    .game-selection button {
-      background-color: #ddd;
-      border: none;
-      padding: 10px 20px;
-      margin: 0 5px;
-      cursor: pointer;
-      font-size: 16px;
-      border-radius: 5px;
-    }
-    .game-selection button.active {
-      background-color: #1a1a2e;
-      color: white;
-    }
-    .game-container {
-      text-align: center;
-      margin: 20px;
-    }
-    .game-container iframe {
-      width: 80%;
-      height: 400px;
-      border: none;
-      margin: 20px 0;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .actions {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
-    .actions button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    .actions button:hover {
-      background-color: #0056b3;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Portal</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        header {
+            width: 100%;
+            background-color: #15182b;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo span {
+            font-size: 1.5rem;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            margin: 0 20px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background-color: #23263a;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .search-bar input::placeholder {
+            color: #aaa;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #007BFF;
+        }
+
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            background-color: #23263a;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: #007BFF;
+        }
+
+        #content-container {
+            width: 100%;
+            max-width: 1400px;
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .thumbnail-section, .bottom-thumbnails {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 10px 0;
+            background-color: #15182b;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #666;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .thumbnail:hover {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .ad-container {
+            width: 15%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .game-container {
+            flex-grow: 1;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding: 20px;
+        }
+
+        #game-iframe {
+            width: 100%;
+            height: 550px;
+            border: none;
+        }
+
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        #play-button {
+            background-color: #007BFF;
+            color: white;
+            font-size: 24px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #game-title {
+            margin-top: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .buttons-container button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .buttons-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .like-dislike-count {
+            margin-left: 5px;
+        }
+
+        .active {
+            background-color: #0056b3 !important;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="logo.png" alt="Logo">
-      <h1>Game Portal</h1>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+            <span>Eggy Car</span>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search">
+        </div>
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Car</a>
+            <a href="#">Skill</a>
+            <a href="#">Action</a>
+            <a href="#">Shooting</a>
+            <a href="#">Sport</a>
+            <a href="#">Idle</a>
+        </nav>
+        <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+    </header>
+
+    <div class="thumbnail-section">
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/ragdoll-archers/', 'Ragdoll Archers')" class="thumbnail">Game 1</a>
+        <a href="#" onclick="loadGame('https://html5.gamemonetize.co/yyrof22q5fmv3l1pmj9fgego7yzt9yv4/', 'Game 2')" class="thumbnail">Game 2</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/some-other-game/', 'Some Other Game')" class="thumbnail">Game 3</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/yet-another-game/', 'Yet Another Game')" class="thumbnail">Game 4</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/last-game/', 'Last Game')" class="thumbnail">Game 5</a>
     </div>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Categories</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>
 
-  <div class="game-selection">
-    <button class="active" onclick="selectGame(1)">Game 1</button>
-    <button onclick="selectGame(2)">Game 2</button>
-    <button onclick="selectGame(3)">Game 3</button>
-    <button onclick="selectGame(4)">Game 4</button>
-    <button onclick="selectGame(5)">Game 5</button>
-  </div>
+    <div id="content-container">
+        <div class="ad-container">
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game11/', 'Game 11')" class="thumbnail">Game 11</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game12/', 'Game 12')" class="thumbnail">Game 12</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game13/', 'Game 13')" class="thumbnail">Game 13</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game14/', 'Game 14')" class="thumbnail">Game 14</a>
+        </div>
 
-  <div class="game-container">
-    <h2 id="game-title">Game Title: Ragdoll Archers</h2>
-    <iframe id="game-iframe" src="https://ragdollarchers.com"></iframe>
-    <div class="actions">
-      <button onclick="toggleFullscreen()">Fullscreen</button>
-      <button>Like</button>
-      <button>Dislike</button>
+        <div class="game-container">
+            <div id="overlay">
+                <button id="play-button" onclick="startGame()">Play Game</button>
+            </div>
+            <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
+            <div id="game-title">Game Title: Default Game</div>
+            <div class="buttons-container">
+                <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
+                <button id="like-button" onclick="toggleLike()">Like <span id="like-count">0</span></button>
+                <button id="dislike-button" onclick="toggleDislike()">Dislike <span id="dislike-count">0</span></button>
+            </div>
+        </div>
+
+        <div class="ad-container">
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game15/', 'Game 15')" class="thumbnail">Game 15</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game16/', 'Game 16')" class="thumbnail">Game 16</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game17/', 'Game 17')" class="thumbnail">Game 17</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game18/', 'Game 18')" class="thumbnail">Game 18</a>
+        </div>
     </div>
-  </div>
 
-  <script>
-    const gameData = [
-      { title: "Ragdoll Archers", url: "https://ragdollarchers.com" },
-      { title: "Tank Trouble", url: "https://tanktrouble.com" },
-      { title: "Happy Wheels", url: "https://totaljerkface.com/happy_wheels.tjf" },
-      { title: "Slither.io", url: "https://slither.io" },
-      { title: "Agar.io", url: "https://agar.io" }
-    ];
+    <div class="bottom-thumbnails">
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game1/', 'Bottom Game 1')" class="thumbnail">Game 6</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game2/', 'Bottom Game 2')" class="thumbnail">Game 7</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game3/', 'Bottom Game 3')" class="thumbnail">Game 8</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game4/', 'Bottom Game 4')" class="thumbnail">Game 9</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game5/', 'Bottom Game 5')" class="thumbnail">Game 10</a>
+    </div>
 
-    function selectGame(index) {
-      document.querySelectorAll(".game-selection button").forEach((btn, idx) => {
-        btn.classList.toggle("active", idx === index - 1);
-      });
-      const game = gameData[index - 1];
-      document.getElementById("game-title").textContent = `Game Title: ${game.title}`;
-      document.getElementById("game-iframe").src = game.url;
-    }
+    <script>
+        function loadGame(url, gameTitle) {
+            const iframe = document.getElementById('game-iframe');
+            iframe.src = url;
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('game-title').innerText = Game Title: ${gameTitle};
+        }
 
-    function toggleFullscreen() {
-      const iframe = document.getElementById("game-iframe");
-      if (iframe.requestFullscreen) {
-        iframe.requestFullscreen();
-      } else if (iframe.webkitRequestFullscreen) {
-        iframe.webkitRequestFullscreen();
-      } else if (iframe.msRequestFullscreen) {
-        iframe.msRequestFullscreen();
-      }
-    }
-  </script>
+        function toggleLike() {
+            const likeButton = document.getElementById('like-button');
+            const likeCount = document.getElementById('like-count');
+            let count = parseInt(likeCount.textContent, 10);
+            if (likeButton.classList.contains('active')) {
+                likeButton.classList.remove('active');
+                likeCount.textContent = count - 1;
+            } else {
+                likeButton.classList.add('active');
+                likeCount.textContent = count + 1;
+            }
+        }
+
+        function toggleDislike() {
+            const dislikeButton = document.getElementById('dislike-button');
+            const dislikeCount = document.getElementById('dislike-count');
+            let count = parseInt(dislikeCount.textContent, 10);
+            if (dislikeButton.classList.contains('active')) {
+                dislikeButton.classList.remove('active');
+                dislikeCount.textContent = count - 1;
+            } else {
+                dislikeButton.classList.add('active');
+                dislikeCount.textContent = count + 1;
+            }
+        }
+
+        function toggleFullscreen() {
+            const iframe = document.getElementById('game-iframe');
+            if (iframe.requestFullscreen) iframe.requestFullscreen();
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+        }
+    </script>
 </body>
 </html>
