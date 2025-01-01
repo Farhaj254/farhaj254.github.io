@@ -19,6 +19,12 @@
             flex-direction: column;
             align-items: center;
             padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark {
+            background-color: #121212;
+            color: #e0e0e0;
         }
 
         header {
@@ -28,7 +34,6 @@
             align-items: center;
             justify-content: space-between;
             padding: 10px 20px;
-            border-radius: 0;
         }
 
         .logo {
@@ -171,7 +176,6 @@
 
         #game-iframe {
             width: 100%;
-            max-width: 1400px;
             height: 550px;
             border: none;
             margin: 0 auto;
@@ -247,26 +251,6 @@
             background-color: #0056b3 !important;
         }
 
-        .focus-mode {
-            display: none;
-        }
-
-        body.focus-mode #content-container,
-        body.focus-mode header,
-        body.focus-mode .thumbnail-section,
-        body.focus-mode .bottom-thumbnails {
-            display: none;
-        }
-
-        body.focus-mode #game-iframe {
-            width: 100vw;
-            height: 100vh;
-        }
-
-        body.focus-mode {
-            background-color: black;
-        }
-
         /* Bottom Section */
         .bottom-thumbnails {
             width: 100%;
@@ -277,56 +261,6 @@
             flex-wrap: wrap;
             padding: 10px 0;
         }
-
-        body.dark-theme {
-            background-color: #121212;
-            color: #ffffff;
-        }
-
-        body.dark-theme header {
-            background-color: #232323;
-        }
-
-        body.dark-theme .search-bar input {
-            background-color: #444444;
-        }
-
-        body.dark-theme .thumbnail-section,
-        body.dark-theme .bottom-thumbnails {
-            background-color: #232323;
-        }
-
-        body.dark-theme .ad-container .thumbnail,
-        body.dark-theme .thumbnail {
-            background-color: #333333;
-            color: #aaaaaa;
-        }
-
-        body.dark-theme .game-container {
-            background-color: #1e1e1e;
-        }
-
-        body.dark-theme .nav-links a {
-            color: #cccccc;
-        }
-
-        body.dark-theme .theme-toggle {
-            background-color: #444444;
-        }
-
-        body.dark-theme .theme-toggle:hover {
-            background-color: #555555;
-        }
-
-        body.dark-theme .buttons-container button {
-            background-color: #333333;
-            color: #cccccc;
-        }
-
-        body.dark-theme .buttons-container button:hover {
-            background-color: #555555;
-        }
-
     </style>
 </head>
 <body>
@@ -381,7 +315,6 @@
                 <span>Game Title: Ragdoll Archers</span>
                 <div class="buttons-container">
                     <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-                    <button id="focus-button" onclick="toggleFocusMode()">Focus Mode</button>
                     <button id="like-button" onclick="toggleLike()">Like <span id="like-count" class="like-dislike-count">0</span></button>
                     <button id="dislike-button" onclick="toggleDislike()">Dislike <span id="dislike-count" class="like-dislike-count">0</span></button>
                 </div>
@@ -464,28 +397,22 @@
             document.getElementById('dislike-count').innerText = dislikeCount;
         }
 
-                function toggleFullscreen() {
+        function toggleFullscreen() {
             const iframe = document.getElementById('game-iframe');
-            if (!document.fullscreenElement) {
-                if (iframe.requestFullscreen) {
-                    iframe.requestFullscreen();
-                } else if (iframe.mozRequestFullScreen) { // For Firefox
-                    iframe.mozRequestFullScreen();
-                } else if (iframe.webkitRequestFullscreen) { // For Safari
-                    iframe.webkitRequestFullscreen();
-                } else if (iframe.msRequestFullscreen) { // For IE/Edge
-                    iframe.msRequestFullscreen();
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.mozCancelFullScreen) { // For Firefox
-                    document.mozCancelFullScreen();
-                } else if (document.webkitExitFullscreen) { // For Safari
-                    document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) { // For IE/Edge
-                    document.msExitFullscreen();
-                }
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) {
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
             }
         }
 
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+        }
+    </script>
+</body>
+</html>
