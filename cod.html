@@ -301,27 +301,43 @@
 
         function toggleLike() {
             const likeButton = document.getElementById('like-button');
+            const dislikeButton = document.getElementById('dislike-button');
             const likeCount = document.getElementById('like-count');
-            let count = parseInt(likeCount.textContent, 10);
+            const dislikeCount = document.getElementById('dislike-count');
+            let likeVal = parseInt(likeCount.textContent, 10);
+            let dislikeVal = parseInt(dislikeCount.textContent, 10);
+
             if (likeButton.classList.contains('active')) {
                 likeButton.classList.remove('active');
-                likeCount.textContent = count - 1;
+                likeCount.textContent = likeVal - 1;
             } else {
+                if (dislikeButton.classList.contains('active')) {
+                    dislikeButton.classList.remove('active');
+                    dislikeCount.textContent = dislikeVal - 1;
+                }
                 likeButton.classList.add('active');
-                likeCount.textContent = count + 1;
+                likeCount.textContent = likeVal + 1;
             }
         }
 
         function toggleDislike() {
             const dislikeButton = document.getElementById('dislike-button');
+            const likeButton = document.getElementById('like-button');
             const dislikeCount = document.getElementById('dislike-count');
-            let count = parseInt(dislikeCount.textContent, 10);
+            const likeCount = document.getElementById('like-count');
+            let dislikeVal = parseInt(dislikeCount.textContent, 10);
+            let likeVal = parseInt(likeCount.textContent, 10);
+
             if (dislikeButton.classList.contains('active')) {
                 dislikeButton.classList.remove('active');
-                dislikeCount.textContent = count - 1;
+                dislikeCount.textContent = dislikeVal - 1;
             } else {
+                if (likeButton.classList.contains('active')) {
+                    likeButton.classList.remove('active');
+                    likeCount.textContent = likeVal - 1;
+                }
                 dislikeButton.classList.add('active');
-                dislikeCount.textContent = count + 1;
+                dislikeCount.textContent = dislikeVal + 1;
             }
         }
 
