@@ -277,14 +277,15 @@
         <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
     </header>
 
-    <!-- Top Thumbnail Section -->
-    <div class="thumbnail-section">
-        <div class="thumbnail">Game 1</div>
-        <div class="thumbnail">Game 2</div>
-        <div class="thumbnail">Game 3</div>
-        <div class="thumbnail">Game 4</div>
-        <div class="thumbnail">Game 5</div>
-    </div>
+   <!-- Thumbnail Section -->
+<div class="thumbnail-section">
+    <a href="#" onclick="loadGame('https://bitlifeonline.github.io/ragdoll-archers/')" class="thumbnail">Game 1</a>
+    <a href="#" onclick="loadGame('https://bitlifeonline.github.io/another-game/')" class="thumbnail">Game 2</a>
+    <a href="#" onclick="loadGame('https://bitlifeonline.github.io/some-other-game/')" class="thumbnail">Game 3</a>
+    <a href="#" onclick="loadGame('https://bitlifeonline.github.io/yet-another-game/')" class="thumbnail">Game 4</a>
+    <a href="#" onclick="loadGame('https://bitlifeonline.github.io/last-game/')" class="thumbnail">Game 5</a>
+</div>
+
 
     <div id="content-container">
         <!-- Left Ad Section -->
@@ -323,14 +324,14 @@
         </div>
     </div>
 
-    <!-- Bottom Thumbnail Section -->
-    <div class="bottom-thumbnails">
-        <div class="thumbnail">Game 6</div>
-        <div class="thumbnail">Game 7</div>
-        <div class="thumbnail">Game 8</div>
-        <div class="thumbnail">Game 9</div>
-        <div class="thumbnail">Game 10</div>
-    </div>
+   <div class="bottom-thumbnails">
+    <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game1/')" class="thumbnail">Game 6</a>
+    <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game2/')" class="thumbnail">Game 7</a>
+    <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game3/')" class="thumbnail">Game 8</a>
+    <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game4/')" class="thumbnail">Game 9</a>
+    <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game5/')" class="thumbnail">Game 10</a>
+</div>
+
 
     <script>
         let likeCount = 0;
@@ -338,11 +339,12 @@
         let userLiked = false;
         let userDisliked = false;
 
-        function startGame() {
-            document.getElementById('overlay').style.display = 'none';
-            const iframe = document.getElementById('game-iframe');
-            iframe.src = "https://bitlifeonline.github.io/ragdoll-archers/";
-        }
+    function loadGame(url) {
+        const iframe = document.getElementById('game-iframe');
+        iframe.src = url;
+        document.getElementById('overlay').style.display = 'none'; // Hide the overlay if it's visible
+    }
+
 
         function toggleLike() {
             const likeButton = document.getElementById('like-button');
