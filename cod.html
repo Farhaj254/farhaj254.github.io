@@ -299,31 +299,47 @@
             document.getElementById('game-title').innerText = `Game Title: ${gameTitle}`;
         }
 
-        function toggleLike() {
+       function toggleLike() {
             const likeButton = document.getElementById('like-button');
-            const likeCount = document.getElementById('like-count');
-            let count = parseInt(likeCount.textContent, 10);
-            if (likeButton.classList.contains('active')) {
+            const dislikeButton = document.getElementById('dislike-button');
+
+            if (userLiked) {
+                likeCount--;
+                userLiked = false;
                 likeButton.classList.remove('active');
-                likeCount.textContent = count - 1;
             } else {
+                likeCount++;
+                userLiked = true;
                 likeButton.classList.add('active');
-                likeCount.textContent = count + 1;
+                if (userDisliked) {
+                    dislikeCount--;
+                    userDisliked = false;
+                    dislikeButton.classList.remove('active');
+                }
             }
+
+            document.getElementById('like-count').innerText = likeCount;
+            document.getElementById('dislike-count').innerText = dislikeCount;
         }
 
         function toggleDislike() {
+            const likeButton = document.getElementById('like-button');
             const dislikeButton = document.getElementById('dislike-button');
-            const dislikeCount = document.getElementById('dislike-count');
-            let count = parseInt(dislikeCount.textContent, 10);
-            if (dislikeButton.classList.contains('active')) {
+
+            if (userDisliked) {
+                dislikeCount--;
+                userDisliked = false;
                 dislikeButton.classList.remove('active');
-                dislikeCount.textContent = count - 1;
             } else {
+                dislikeCount++;
+                userDisliked = true;
                 dislikeButton.classList.add('active');
-                dislikeCount.textContent = count + 1;
+                if (userLiked) {
+                    likeCount--;
+                    userLiked = false;
+                    likeButton.classList.remove('active');
+                }
             }
-        }
 
         function toggleFullscreen() {
             const iframe = document.getElementById('game-iframe');
