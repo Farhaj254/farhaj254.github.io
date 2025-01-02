@@ -29,13 +29,14 @@
         }
 
         header {
-            grid-column: span 3;
+            grid-column: 1 / -1;
             width: 100%;
             background-color: #15182b;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 10px 20px;
+            color: #fff;
         }
 
         .logo {
@@ -45,13 +46,19 @@
         }
 
         .logo img {
-            height: 50px;
+            height: 60px;
         }
 
         .logo span {
             font-size: 1.5rem;
-            color: #fff;
             font-weight: bold;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            margin: 0 20px;
         }
 
         .search-bar input {
@@ -65,13 +72,9 @@
             font-size: 16px;
         }
 
-        .search-bar input::placeholder {
-            color: #aaa;
-        }
-
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 15px;
         }
 
         .nav-links a {
@@ -79,11 +82,6 @@
             text-decoration: none;
             font-size: 16px;
             font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #007BFF;
         }
 
         .theme-toggle {
@@ -95,23 +93,6 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            background-color: #007BFF;
-        }
-
-        #iframe-container {
-            grid-column: 2 / 3;
-            padding: 20px;
-            background-color: #fff;
-        }
-
-        iframe {
-            width: 100%;
-            height: 700px;
-            border: none;
         }
 
         .game-section {
@@ -138,11 +119,9 @@
             padding: 10px;
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             text-align: center;
             cursor: pointer;
             transition: transform 0.2s;
-            aspect-ratio: 1;
         }
 
         .game-card img {
@@ -156,10 +135,15 @@
             transform: scale(1.05);
         }
 
-        .game-title {
-            margin-top: 8px;
-            font-size: 12px;
-            color: #333;
+        #iframe-container {
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        iframe {
+            width: 100%;
+            height: 700px;
+            border: none;
         }
 
         .ad-container {
@@ -170,33 +154,23 @@
             align-items: center;
             font-size: 16px;
             color: #555;
-            border-radius: 8px;
         }
 
+        /* Responsive Design */
         @media (max-width: 1024px) {
             body {
                 grid-template-columns: 1fr;
                 grid-template-rows: auto auto auto;
             }
-
-            #iframe-container {
-                order: 2;
-            }
-
             .game-section {
-                order: 1;
                 height: auto;
             }
         }
 
-        @media (max-width: 768px) {
-            .grid-section {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-
-            iframe {
-                height: 400px;
+        @media (max-width: 480px) {
+            body {
+                display: flex;
+                flex-direction: column;
             }
         }
     </style>
@@ -204,7 +178,7 @@
 <body>
     <header>
         <div class="logo">
-            <img src="Eggy Car logo.png" alt="Logo">
+            <img src="logo.png" alt="Logo">
             <span>Game Portal</span>
         </div>
         <div class="search-bar">
@@ -212,48 +186,50 @@
         </div>
         <nav class="nav-links">
             <a href="#">Home</a>
-            <a href="#">Car</a>
-            <a href="#">Skill</a>
-            <a href="#">Action</a>
-            <a href="#">Shooting</a>
-            <a href="#">Sport</a>
+            <a href="#">Categories</a>
+            <a href="#">Top Games</a>
         </nav>
         <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
     </header>
 
-    <div class="game-section" id="left-game-section">
+    <div class="game-section">
         <div class="grid-section">
-            <div class="game-card">
+            <div class="game-card" onclick="loadGame('game1.html', 'Game 1')">
                 <img src="game1-thumbnail.jpg" alt="Game 1">
-                <div class="game-title">Game 1</div>
+                <div>Game 1</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" onclick="loadGame('game2.html', 'Game 2')">
                 <img src="game2-thumbnail.jpg" alt="Game 2">
-                <div class="game-title">Game 2</div>
+                <div>Game 2</div>
             </div>
         </div>
         <div class="ad-container">Advertisement</div>
     </div>
 
     <div id="iframe-container">
-        <iframe src="game.html"></iframe>
+        <iframe id="game-iframe" src=""></iframe>
     </div>
 
-    <div class="game-section" id="right-game-section">
+    <div class="game-section">
         <div class="grid-section">
-            <div class="game-card">
+            <div class="game-card" onclick="loadGame('game3.html', 'Game 3')">
                 <img src="game3-thumbnail.jpg" alt="Game 3">
-                <div class="game-title">Game 3</div>
+                <div>Game 3</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" onclick="loadGame('game4.html', 'Game 4')">
                 <img src="game4-thumbnail.jpg" alt="Game 4">
-                <div class="game-title">Game 4</div>
+                <div>Game 4</div>
             </div>
         </div>
         <div class="ad-container">Advertisement</div>
     </div>
 
     <script>
+        function loadGame(url, gameTitle) {
+            document.getElementById('game-iframe').src = url;
+            console.log(`Loading: ${gameTitle}`);
+        }
+
         function toggleTheme() {
             document.body.classList.toggle('dark');
         }
