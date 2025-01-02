@@ -116,42 +116,33 @@
             padding: 20px;
         }
 
-        .game-grid {
+        .thumbnail-section {
+            width: 100%;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 10px;
-            width: 100%;
-            max-width: 1200px;
-            padding: 20px;
+            gap: 15px;
+            padding: 10px 0;
+            background-color: #15182b;
         }
 
-        .game-grid .game-card {
-            background-color: #15182b;
-            color: #fff;
+        .thumbnail {
+            width: 100%;
+            aspect-ratio: 1;
+            background-color: #e0e0e0;
             border-radius: 10px;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 10px;
-            cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        .game-grid .game-card:hover {
-            transform: scale(1.05);
-            background-color: #007BFF;
-        }
-
-        .game-grid .game-card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
-        .game-grid .game-card span {
             font-size: 14px;
+            font-weight: bold;
+            color: #666;
             text-align: center;
+            cursor: pointer;
+        }
+
+        .thumbnail:hover {
+            background-color: #007BFF;
+            color: #fff;
         }
 
         .game-container {
@@ -238,30 +229,23 @@
         <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
     </header>
 
-    <div id="content-container">
-        <div class="game-grid">
-            <div class="game-card" onclick="loadGame('https://bitlifeonline.github.io/game1', 'Game 1')">
-                <img src="game1-thumbnail.jpg" alt="Game 1">
-                <span>Game 1</span>
-            </div>
-            <div class="game-card" onclick="loadGame('https://bitlifeonline.github.io/game2', 'Game 2')">
-                <img src="game2-thumbnail.jpg" alt="Game 2">
-                <span>Game 2</span>
-            </div>
-            <div class="game-card" onclick="loadGame('https://bitlifeonline.github.io/game3', 'Game 3')">
-                <img src="game3-thumbnail.jpg" alt="Game 3">
-                <span>Game 3</span>
-            </div>
-            <div class="game-card" onclick="loadGame('https://bitlifeonline.github.io/game4', 'Game 4')">
-                <img src="game4-thumbnail.jpg" alt="Game 4">
-                <span>Game 4</span>
-            </div>
-            <div class="game-card" onclick="loadGame('https://bitlifeonline.github.io/game5', 'Game 5')">
-                <img src="game5-thumbnail.jpg" alt="Game 5">
-                <span>Game 5</span>
-            </div>
-        </div>
+    <div class="thumbnail-section">
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/ragdoll-archers/', 'Ragdoll Archers')" class="thumbnail">Game 1</a>
+        <a href="#" onclick="loadGame('https://html5.gamemonetize.co/yyrof22q5fmv3l1pmj9fgego7yzt9yv4/', 'Game 2')" class="thumbnail">Game 2</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/some-other-game/', 'Some Other Game')" class="thumbnail">Game 3</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/yet-another-game/', 'Yet Another Game')" class="thumbnail">Game 4</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/last-game/', 'Last Game')" class="thumbnail">Game 5</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game11/', 'Game 11')" class="thumbnail">Game 11</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game12/', 'Game 12')" class="thumbnail">Game 12</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game13/', 'Game 13')" class="thumbnail">Game 13</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game14/', 'Game 14')" class="thumbnail">Game 14</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game15/', 'Game 15')" class="thumbnail">Game 15</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game16/', 'Game 16')" class="thumbnail">Game 16</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game17/', 'Game 17')" class="thumbnail">Game 17</a>
+        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game18/', 'Game 18')" class="thumbnail">Game 18</a>
+    </div>
 
+    <div id="content-container">
         <div class="game-container">
             <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
             <div class="game-title-container">
