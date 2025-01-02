@@ -1,255 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Portal</title>
-    <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7fb;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        body.dark {
-            background-color: #121212;
-            color: #e0e0e0;
-        }
-
-        header {
-            width: 100%;
-            background-color: #15182b;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo img {
-            height: 60px;
-        }
-
-        .logo span {
-            font-size: 1.5rem;
-            color: #fff;
-            font-weight: bold;
-        }
-
-        .search-bar {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            margin: 0 20px;
-        }
-
-        .search-bar input {
-            width: 100%;
-            max-width: 400px;
-            padding: 10px;
-            border: none;
-            border-radius: 20px;
-            background-color: #23263a;
-            color: #fff;
-            font-size: 16px;
-        }
-
-        .search-bar input::placeholder {
-            color: #aaa;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #007BFF;
-        }
-
-        .theme-toggle {
-            width: 40px;
-            height: 40px;
-            background-color: #23263a;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            background-color: #007BFF;
-        }
-
-        #content-container {
-            width: 100%;
-            max-width: 1400px;
-            display: flex;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .thumbnail-section, .bottom-thumbnails {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 10px 0;
-            background-color: #15182b;
-        }
-
-        .thumbnail {
-            width: 80px;
-            height: 80px;
-            background-color: #e0e0e0;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 14px;
-            font-weight: bold;
-            color: #666;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .thumbnail:hover {
-            background-color: #007BFF;
-            color: #fff;
-        }
-
-        .ad-container {
-            width: 15%;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .game-container {
-            flex-grow: 1;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            padding: 20px;
-        }
-
-        #game-iframe {
-            width: 100%;
-            height: 550px;
-            border: none;
-        }
-
-        #overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2;
-        }
-
-        .game-title-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 10px;
-            padding: 0 10px;
-        }
-
-        #game-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .buttons-container {
-            display: flex;
-            gap: 10px;
-        }
-
-        .buttons-container button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            font-size: 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .buttons-container button:hover {
-            background-color: #0056b3;
-        }
-
-        .like-dislike-count {
-            margin-left: 5px;
-        }
-
-        .active {
-            background-color: #0056b3 !important;
-        }
-    </style>
-</head>
-<body>
-    <header>
-    <div class="logo">
-        <a href="index.html" onclick="loadGame('https://bitlifeonline.github.io/', 'Home')">
-            <img src="Eggy Car logo.png" alt="Logo">
-        
-        </a>
-    </div>
-    <div class="search-bar">
-        <input type="text" placeholder="Search">
-    </div>
-    <nav class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Car</a>
-        <a href="#">Skill</a>
-        <a href="#">Action</a>
-        <a href="#">Shooting</a>
-        <a href="#">Sport</a>
-        <a href="#">Idle</a>
-    </nav>
-    <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
-</header>
-
-
+    <!-- Top thumbnail section displaying clickable game links -->
     <div class="thumbnail-section">
         <a href="#" onclick="loadGame('https://bitlifeonline.github.io/ragdoll-archers/', 'Ragdoll Archers')" class="thumbnail">Game 1</a>
         <a href="#" onclick="loadGame('https://html5.gamemonetize.co/yyrof22q5fmv3l1pmj9fgego7yzt9yv4/', 'Game 2')" class="thumbnail">Game 2</a>
@@ -258,7 +7,9 @@
         <a href="#" onclick="loadGame('https://bitlifeonline.github.io/last-game/', 'Last Game')" class="thumbnail">Game 5</a>
     </div>
 
+    <!-- Main content container with ads and game area -->
     <div id="content-container">
+        <!-- Left ad section with more game links -->
         <div class="ad-container">
             <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game11/', 'Game 11')" class="thumbnail">Game 11</a>
             <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game12/', 'Game 12')" class="thumbnail">Game 12</a>
@@ -266,8 +17,11 @@
             <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game14/', 'Game 14')" class="thumbnail">Game 14</a>
         </div>
 
+        <!-- Game container showing selected game and controls -->
         <div class="game-container">
+            <!-- Iframe for displaying selected game -->
             <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
+            <!-- Title and interactive buttons for the game -->
             <div class="game-title-container">
                 <div id="game-title">Game Title: Default Game</div>
                 <div class="buttons-container">
@@ -278,6 +32,7 @@
             </div>
         </div>
 
+        <!-- Right ad section with more game links -->
         <div class="ad-container">
             <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game15/', 'Game 15')" class="thumbnail">Game 15</a>
             <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game16/', 'Game 16')" class="thumbnail">Game 16</a>
@@ -286,6 +41,7 @@
         </div>
     </div>
 
+    <!-- Bottom thumbnail section with additional games -->
     <div class="bottom-thumbnails">
         <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game1/', 'Bottom Game 1')" class="thumbnail">Game 6</a>
         <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game2/', 'Bottom Game 2')" class="thumbnail">Game 7</a>
@@ -295,13 +51,14 @@
     </div>
 
     <script>
+        // Function to load a selected game into the iframe
         function loadGame(url, gameTitle) {
             const iframe = document.getElementById('game-iframe');
-            iframe.src = url;
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('game-title').innerText = `Game Title: ${gameTitle}`;
+            iframe.src = url; // Set the iframe source to the selected game's URL
+            document.getElementById('game-title').innerText = `Game Title: ${gameTitle}`; // Update the game title
         }
 
+        // Function to toggle the like button and update the count
         function toggleLike() {
             const likeButton = document.getElementById('like-button');
             const dislikeButton = document.getElementById('dislike-button');
@@ -323,6 +80,7 @@
             }
         }
 
+        // Function to toggle the dislike button and update the count
         function toggleDislike() {
             const dislikeButton = document.getElementById('dislike-button');
             const likeButton = document.getElementById('like-button');
@@ -344,11 +102,13 @@
             }
         }
 
+        // Function to enable fullscreen mode for the game iframe
         function toggleFullscreen() {
             const iframe = document.getElementById('game-iframe');
             if (iframe.requestFullscreen) iframe.requestFullscreen();
         }
 
+        // Function to toggle between light and dark themes
         function toggleTheme() {
             document.body.classList.toggle('dark');
         }
