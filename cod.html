@@ -3,53 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Website</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Game Portal</title>
     <style>
         body {
             display: grid;
-            grid-template-rows: auto 1fr auto;
             grid-template-columns: 1fr 3fr 1fr;
             gap: 0;
             margin: 0;
             font-family: Arial, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        header, footer {
-            grid-column: span 3;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .search-bar {
-            display: flex;
-            align-items: center;
-        }
-
-        .search-bar input {
-            padding: 5px;
-            font-size: 14px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-
-        .search-bar button {
-            padding: 5px 10px;
-            margin-left: 5px;
-            border: none;
-            background-color: #555;
-            color: #fff;
-            border-radius: 4px;
-            cursor: pointer;
+        body.dark {
+            background-color: #121212;
+            color: #e0e0e0;
         }
 
         #iframe-container {
@@ -77,6 +44,17 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
+        }
+
+        .ad-container {
+            height: 250px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            color: #555;
+            border-radius: 8px;
         }
 
         .game-card {
@@ -111,27 +89,46 @@
             color: #333;
         }
 
-        .game-section::-webkit-scrollbar {
-            width: 8px;
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            background-color: #23263a;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        .game-section::-webkit-scrollbar-thumb {
-            background-color: #888;
-            border-radius: 4px;
+        .theme-toggle:hover {
+            background-color: #007BFF;
         }
 
-        .game-section::-webkit-scrollbar-thumb:hover {
-            background-color: #555;
+        .buttons-container button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
+        .buttons-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .active {
+            background-color: #0056b3 !important;
+        }
+
+        /* Responsive Design */
         @media (max-width: 1024px) {
             body {
                 grid-template-columns: 1fr;
-                grid-template-rows: auto auto auto auto;
-            }
-
-            header, footer {
-                grid-column: 1;
+                grid-template-rows: auto auto auto;
             }
 
             #iframe-container {
@@ -172,11 +169,6 @@
                 padding: 10px;
             }
 
-            .grid-section {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
-            }
-
             iframe {
                 height: 300px;
             }
@@ -184,103 +176,127 @@
     </style>
 </head>
 <body>
-
-    <header>
-        <div>Game Portal</div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search games...">
-            <button>Search</button>
-        </div>
-    </header>
-
+    <!-- Left Game Section -->
     <div class="game-section" id="left-game-section">
         <div class="grid-section">
-            <div class="game-card">
+            <div class="game-card" onclick="loadGame('game1.html', 'Game 1')">
                 <img src="game1-thumbnail.jpg" alt="Game 1">
                 <div class="game-title">Game 1</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" onclick="loadGame('game2.html', 'Game 2')">
                 <img src="game2-thumbnail.jpg" alt="Game 2">
                 <div class="game-title">Game 2</div>
             </div>
-            <div class="game-card">
-                <img src="game3-thumbnail.jpg" alt="Game 3">
-                <div class="game-title">Game 3</div>
-            </div>
-            <div class="game-card">
-                <img src="game4-thumbnail.jpg" alt="Game 4">
-                <div class="game-title">Game 4</div>
-            </div>
         </div>
+        <div class="ad-container">Advertisement</div>
         <div class="grid-section">
-            <div class="game-card">
+            <div class="game-card" onclick="loadGame('game5.html', 'Game 5')">
                 <img src="game5-thumbnail.jpg" alt="Game 5">
                 <div class="game-title">Game 5</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" onclick="loadGame('game6.html', 'Game 6')">
                 <img src="game6-thumbnail.jpg" alt="Game 6">
                 <div class="game-title">Game 6</div>
-            </div>
-            <div class="game-card">
-                <img src="game7-thumbnail.jpg" alt="Game 7">
-                <div class="game-title">Game 7</div>
-            </div>
-            <div class="game-card">
-                <img src="game8-thumbnail.jpg" alt="Game 8">
-                <div class="game-title">Game 8</div>
             </div>
         </div>
     </div>
 
+    <!-- Iframe Section -->
     <div id="iframe-container">
-        <iframe src="game.html"></iframe>
+        <iframe id="game-iframe" src=""></iframe>
+        <div class="buttons-container">
+            <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
+            <button id="like-button" onclick="toggleLike()">Like <span id="like-count">0</span></button>
+            <button id="dislike-button" onclick="toggleDislike()">Dislike <span id="dislike-count">0</span></button>
+        </div>
     </div>
 
+    <!-- Right Game Section -->
     <div class="game-section" id="right-game-section">
         <div class="grid-section">
-            <div class="game-card">
-                <img src="game1-thumbnail.jpg" alt="Game 1">
-                <div class="game-title">Game 1</div>
-            </div>
-            <div class="game-card">
-                <img src="game2-thumbnail.jpg" alt="Game 2">
-                <div class="game-title">Game 2</div>
-            </div>
-            <div class="game-card">
+            <div class="game-card" onclick="loadGame('game3.html', 'Game 3')">
                 <img src="game3-thumbnail.jpg" alt="Game 3">
                 <div class="game-title">Game 3</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" onclick="loadGame('game4.html', 'Game 4')">
                 <img src="game4-thumbnail.jpg" alt="Game 4">
                 <div class="game-title">Game 4</div>
             </div>
         </div>
+        <div class="ad-container">Advertisement</div>
         <div class="grid-section">
-            <div class="game-card">
-                <img src="game5-thumbnail.jpg" alt="Game 5">
-                <div class="game-title">Game 5</div>
-            </div>
-            <div class="game-card">
-                <img src="game6-thumbnail.jpg" alt="Game 6">
-                <div class="game-title">Game 6</div>
-            </div>
-            <div class="game-card">
+            <div class="game-card" onclick="loadGame('game7.html', 'Game 7')">
                 <img src="game7-thumbnail.jpg" alt="Game 7">
                 <div class="game-title">Game 7</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" onclick="loadGame('game8.html', 'Game 8')">
                 <img src="game8-thumbnail.jpg" alt="Game 8">
                 <div class="game-title">Game 8</div>
             </div>
         </div>
     </div>
 
-    <footer>
-        <div>
-            <p>&copy; 2025 Game Portal. All Rights Reserved.</p>
-            <p>Terms of Service | Privacy Policy</p>
-        </div>
-    </footer>
+    <script>
+        function loadGame(url, gameTitle) {
+            const iframe = document.getElementById('game-iframe');
+            iframe.src = url;
+            alert(`Loading ${gameTitle}`);
+        }
 
+        function toggleLike() {
+            const likeButton = document.getElementById('like-button');
+            const dislikeButton = document.getElementById('dislike-button');
+            const likeCount = document.getElementById('like-count');
+            const dislikeCount = document.getElementById('dislike-count');
+
+            let likeVal = parseInt(likeCount.textContent, 10);
+            let dislikeVal = parseInt(dislikeCount.textContent, 10);
+
+            if (likeButton.classList.contains('active')) {
+                likeButton.classList.remove('active');
+                likeCount.textContent = likeVal - 1;
+            } else {
+                if (dislikeButton.classList.contains('active')) {
+                    dislikeButton.classList.remove('active');
+                    dislikeCount.textContent = dislikeVal - 1;
+                }
+                likeButton.classList.add('active');
+                likeCount.textContent = likeVal + 1;
+            }
+        }
+
+        function toggleDislike() {
+            const dislikeButton = document.getElementById('dislike-button');
+            const likeButton = document.getElementById('like-button');
+            const dislikeCount = document.getElementById('dislike-count');
+            const likeCount = document.getElementById('like-count');
+
+            let dislikeVal = parseInt(dislikeCount.textContent, 10);
+            let likeVal = parseInt(likeCount.textContent, 10);
+
+            if (dislikeButton.classList.contains('active')) {
+                dislikeButton.classList.remove('active');
+                dislikeCount.textContent = dislikeVal - 1;
+            } else {
+                if (likeButton.classList.contains('active')) {
+                    likeButton.classList.remove('active');
+                    likeCount.textContent = likeVal - 1;
+                }
+                dislikeButton.classList.add('active');
+                dislikeCount.textContent = dislikeVal + 1;
+            }
+        }
+
+        function toggleFullscreen() {
+            const iframeContainer = document.getElementById('iframe-container');
+            if (!document.fullscreenElement) {
+                iframeContainer.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+    </script>
 </body>
 </html>
