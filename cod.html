@@ -3,319 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Portal</title>
+    <title>Game Website</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
+            display: flex;
+            flex-direction: row;
+            margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f4f7fb;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        body.dark {
-            background-color: #121212;
-            color: #e0e0e0;
-        }
-
-        header {
-            width: 100%;
-            background-color: #15182b;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo img {
-            height: 60px;
-        }
-
-        .logo span {
-            font-size: 1.5rem;
-            color: #fff;
-            font-weight: bold;
-        }
-
-        .search-bar {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            margin: 0 20px;
-        }
-
-        .search-bar input {
-            width: 100%;
-            max-width: 400px;
-            padding: 10px;
-            border: none;
-            border-radius: 20px;
-            background-color: #23263a;
-            color: #fff;
-            font-size: 16px;
-        }
-
-        .search-bar input::placeholder {
-            color: #aaa;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #007BFF;
-        }
-
-        .theme-toggle {
-            width: 40px;
-            height: 40px;
-            background-color: #23263a;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            background-color: #007BFF;
-        }
-
-        #content-container {
-            width: 100%;
-            max-width: 1400px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        #iframe-container {
+            flex: 3;
             padding: 20px;
         }
 
-        .thumbnail-section {
-            width: 100%;
+        #game-grid {
+            flex: 1;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 15px;
-            padding: 10px 0;
-            background-color: #15182b;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            padding: 20px;
+            background-color: #f4f4f4;
         }
 
-        .thumbnail {
-            width: 100%;
-            aspect-ratio: 1;
-            background-color: #e0e0e0;
-            border-radius: 10px;
+        .game-card {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            font-size: 14px;
-            font-weight: bold;
-            color: #666;
+            justify-content: center;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             text-align: center;
             cursor: pointer;
+            transition: transform 0.2s;
         }
 
-        .thumbnail:hover {
-            background-color: #007BFF;
-            color: #fff;
+        .game-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
         }
 
-        .game-container {
-            width: 100%;
-            max-width: 900px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            padding: 20px;
+        .game-card:hover {
+            transform: scale(1.05);
         }
 
-        #game-iframe {
-            width: 100%;
-            height: 550px;
-            border: none;
-        }
-
-        .game-title-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 10px;
-            padding: 0 10px;
-        }
-
-        #game-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .buttons-container {
-            display: flex;
-            gap: 10px;
-        }
-
-        .buttons-container button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 15px;
+        .game-title {
+            margin-top: 8px;
             font-size: 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .buttons-container button:hover {
-            background-color: #0056b3;
-        }
-
-        .like-dislike-count {
-            margin-left: 5px;
-        }
-
-        .active {
-            background-color: #0056b3 !important;
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <a href="index.html" onclick="loadGame('https://bitlifeonline.github.io/', 'Home')">
-                <img src="Eggy Car logo.png" alt="Logo">
-            </a>
-        </div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search">
-        </div>
-        <nav class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Car</a>
-            <a href="#">Skill</a>
-            <a href="#">Action</a>
-            <a href="#">Shooting</a>
-            <a href="#">Sport</a>
-            <a href="#">Idle</a>
-        </nav>
-        <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
-    </header>
 
-    <div class="thumbnail-section">
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/ragdoll-archers/', 'Ragdoll Archers')" class="thumbnail">Game 1</a>
-        <a href="#" onclick="loadGame('https://html5.gamemonetize.co/yyrof22q5fmv3l1pmj9fgego7yzt9yv4/', 'Game 2')" class="thumbnail">Game 2</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/some-other-game/', 'Some Other Game')" class="thumbnail">Game 3</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/yet-another-game/', 'Yet Another Game')" class="thumbnail">Game 4</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/last-game/', 'Last Game')" class="thumbnail">Game 5</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game11/', 'Game 11')" class="thumbnail">Game 11</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game12/', 'Game 12')" class="thumbnail">Game 12</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game13/', 'Game 13')" class="thumbnail">Game 13</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game14/', 'Game 14')" class="thumbnail">Game 14</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game15/', 'Game 15')" class="thumbnail">Game 15</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game16/', 'Game 16')" class="thumbnail">Game 16</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game17/', 'Game 17')" class="thumbnail">Game 17</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game18/', 'Game 18')" class="thumbnail">Game 18</a>
+    <div id="iframe-container">
+        <iframe src="game.html" width="100%" height="600" frameborder="0"></iframe>
     </div>
 
-    <div id="content-container">
-        <div class="game-container">
-            <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
-            <div class="game-title-container">
-                <div id="game-title">Game Title: Default Game</div>
-                <div class="buttons-container">
-                    <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-                    <button id="like-button" onclick="toggleLike()">Like <span id="like-count">0</span></button>
-                    <button id="dislike-button" onclick="toggleDislike()">Dislike <span id="dislike-count">0</span></button>
-                </div>
-            </div>
+    <div id="game-grid">
+        <div class="game-card">
+            <img src="game1-thumbnail.jpg" alt="Game 1">
+            <div class="game-title">Game 1</div>
+        </div>
+        <div class="game-card">
+            <img src="game2-thumbnail.jpg" alt="Game 2">
+            <div class="game-title">Game 2</div>
+        </div>
+        <div class="game-card">
+            <img src="game3-thumbnail.jpg" alt="Game 3">
+            <div class="game-title">Game 3</div>
+        </div>
+        <div class="game-card">
+            <img src="game4-thumbnail.jpg" alt="Game 4">
+            <div class="game-title">Game 4</div>
+        </div>
+        <div class="game-card">
+            <img src="game5-thumbnail.jpg" alt="Game 5">
+            <div class="game-title">Game 5</div>
         </div>
     </div>
 
-    <script>
-        function loadGame(url, gameTitle) {
-            const iframe = document.getElementById('game-iframe');
-            iframe.src = url;
-            document.getElementById('game-title').innerText = `Game Title: ${gameTitle}`;
-        }
-
-        function toggleLike() {
-            const likeButton = document.getElementById('like-button');
-            const dislikeButton = document.getElementById('dislike-button');
-            const likeCount = document.getElementById('like-count');
-            const dislikeCount = document.getElementById('dislike-count');
-            let likeVal = parseInt(likeCount.textContent, 10);
-            let dislikeVal = parseInt(dislikeCount.textContent, 10);
-
-            if (likeButton.classList.contains('active')) {
-                likeButton.classList.remove('active');
-                likeCount.textContent = likeVal - 1;
-            } else {
-                if (dislikeButton.classList.contains('active')) {
-                    dislikeButton.classList.remove('active');
-                    dislikeCount.textContent = dislikeVal - 1;
-                }
-                likeButton.classList.add('active');
-                likeCount.textContent = likeVal + 1;
-            }
-        }
-
-        function toggleDislike() {
-            const dislikeButton = document.getElementById('dislike-button');
-            const likeButton = document.getElementById('like-button');
-            const dislikeCount = document.getElementById('dislike-count');
-            const likeCount = document.getElementById('like-count');
-            let dislikeVal = parseInt(dislikeCount.textContent, 10);
-            let likeVal = parseInt(likeCount.textContent, 10);
-
-            if (dislikeButton.classList.contains('active')) {
-                dislikeButton.classList.remove('active');
-                dislikeCount.textContent = dislikeVal - 1;
-            } else {
-                if (likeButton.classList.contains('active')) {
-                    likeButton.classList.remove('active');
-                    likeCount.textContent = likeVal - 1;
-                }
-                dislikeButton.classList.add('active');
-                dislikeCount.textContent = dislikeVal + 1;
-            }
-        }
-
-        function toggleFullscreen() {
-            const iframe = document.getElementById('game-iframe');
-            if (iframe.requestFullscreen) iframe.requestFullscreen();
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('dark');
-        }
-    </script>
 </body>
 </html>
