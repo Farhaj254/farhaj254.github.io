@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Portal</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         /* General Reset */
         * {
@@ -17,9 +16,9 @@
             font-family: Arial, sans-serif;
             display: grid;
             grid-template-columns: 1fr 3fr 1fr;
-            gap: 10px;
+            gap: 0;
             margin: 0;
-            background-color: #f4f4f4;
+            background-color: #f4f7fb;
             color: #333;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
@@ -31,6 +30,7 @@
 
         header {
             grid-column: span 3;
+            width: 100%;
             background-color: #15182b;
             display: flex;
             align-items: center;
@@ -45,20 +45,13 @@
         }
 
         .logo img {
-            height: 60px;
+            height: 50px;
         }
 
         .logo span {
             font-size: 1.5rem;
             color: #fff;
             font-weight: bold;
-        }
-
-        .search-bar {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            margin: 0 20px;
         }
 
         .search-bar input {
@@ -109,14 +102,26 @@
             background-color: #007BFF;
         }
 
+        #iframe-container {
+            grid-column: 2 / 3;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        iframe {
+            width: 100%;
+            height: 700px;
+            border: none;
+        }
+
         .game-section {
             display: flex;
             flex-direction: column;
             gap: 20px;
             padding: 20px;
+            background-color: #f4f4f4;
             overflow-y: auto;
             height: 100vh;
-            background-color: #f4f4f4;
         }
 
         .grid-section {
@@ -157,18 +162,17 @@
             color: #333;
         }
 
-        #iframe-container {
-            padding: 20px;
-            background-color: #fff;
+        .ad-container {
+            height: 250px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            color: #555;
+            border-radius: 8px;
         }
 
-        iframe {
-            width: 100%;
-            height: 700px;
-            border: none;
-        }
-
-        /* Responsive Design */
         @media (max-width: 1024px) {
             body {
                 grid-template-columns: 1fr;
@@ -183,10 +187,6 @@
                 order: 1;
                 height: auto;
             }
-
-            iframe {
-                height: 500px;
-            }
         }
 
         @media (max-width: 768px) {
@@ -199,63 +199,58 @@
                 height: 400px;
             }
         }
-
-        @media (max-width: 480px) {
-            body {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .game-section {
-                width: 100%;
-                padding: 10px;
-            }
-
-            .grid-section {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
-            }
-
-            iframe {
-                height: 300px;
-            }
-        }
     </style>
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="logo.png" alt="Logo">
+            <img src="Eggy Car logo.png" alt="Logo">
             <span>Game Portal</span>
         </div>
         <div class="search-bar">
-            <input type="text" placeholder="Search Games">
+            <input type="text" placeholder="Search">
         </div>
         <nav class="nav-links">
             <a href="#">Home</a>
-            <a href="#">Categories</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <a href="#">Car</a>
+            <a href="#">Skill</a>
+            <a href="#">Action</a>
+            <a href="#">Shooting</a>
+            <a href="#">Sport</a>
         </nav>
         <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
     </header>
 
-    <div class="game-section">
+    <div class="game-section" id="left-game-section">
         <div class="grid-section">
             <div class="game-card">
-                <img src="game1.jpg" alt="Game 1">
+                <img src="game1-thumbnail.jpg" alt="Game 1">
                 <div class="game-title">Game 1</div>
             </div>
             <div class="game-card">
-                <img src="game2.jpg" alt="Game 2">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
                 <div class="game-title">Game 2</div>
             </div>
         </div>
+        <div class="ad-container">Advertisement</div>
     </div>
 
     <div id="iframe-container">
-        <iframe src="default-game.html"></iframe>
+        <iframe src="game.html"></iframe>
+    </div>
+
+    <div class="game-section" id="right-game-section">
+        <div class="grid-section">
+            <div class="game-card">
+                <img src="game3-thumbnail.jpg" alt="Game 3">
+                <div class="game-title">Game 3</div>
+            </div>
+            <div class="game-card">
+                <img src="game4-thumbnail.jpg" alt="Game 4">
+                <div class="game-title">Game 4</div>
+            </div>
+        </div>
+        <div class="ad-container">Advertisement</div>
     </div>
 
     <script>
