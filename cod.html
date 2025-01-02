@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Portal</title>
     <style>
-        /* Reset styling for all elements to avoid inconsistencies */
+        /* General Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Default body styling with transition for theme toggle */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f7fb;
@@ -23,13 +22,11 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Styling for dark theme mode */
         body.dark {
             background-color: #121212;
             color: #e0e0e0;
         }
 
-        /* Header styles including logo, search bar, and navigation links */
         header {
             width: 100%;
             background-color: #15182b;
@@ -39,7 +36,6 @@
             padding: 10px 20px;
         }
 
-        /* Logo styling with text and image */
         .logo {
             display: flex;
             align-items: center;
@@ -56,7 +52,6 @@
             font-weight: bold;
         }
 
-        /* Search bar styling */
         .search-bar {
             flex-grow: 1;
             display: flex;
@@ -79,7 +74,6 @@
             color: #aaa;
         }
 
-        /* Navigation links styling */
         .nav-links {
             display: flex;
             gap: 20px;
@@ -97,7 +91,6 @@
             color: #007BFF;
         }
 
-        /* Theme toggle button styling */
         .theme-toggle {
             width: 40px;
             height: 40px;
@@ -114,7 +107,6 @@
             background-color: #007BFF;
         }
 
-        /* Main content container for game and ads */
         #content-container {
             width: 100%;
             max-width: 1400px;
@@ -123,20 +115,22 @@
             padding: 20px;
         }
 
-        /* Thumbnail sections styling */
-        .thumbnail-section, .bottom-thumbnails {
-            width: 100%;
+        .ad-section {
+            width: 20%;
             display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 10px 0;
-            background-color: #15182b;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .thumbnail {
-            width: 80px;
-            height: 80px;
+        .ad-section .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .ad-section .thumbnail {
+            width: 100%;
+            aspect-ratio: 1;
             background-color: #e0e0e0;
             border-radius: 10px;
             display: flex;
@@ -149,20 +143,23 @@
             cursor: pointer;
         }
 
-        .thumbnail:hover {
+        .ad-section .thumbnail:hover {
             background-color: #007BFF;
             color: #fff;
         }
 
-        /* Sidebar ad containers */
-        .ad-container {
-            width: 15%;
+        .ad-space {
+            background-color: #ccc;
+            border-radius: 10px;
+            height: 100px;
             display: flex;
-            flex-direction: column;
-            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
         }
 
-        /* Main game container styling */
         .game-container {
             flex-grow: 1;
             background-color: #fff;
@@ -175,14 +172,12 @@
             padding: 20px;
         }
 
-        /* Iframe for game display */
         #game-iframe {
             width: 100%;
             height: 550px;
             border: none;
         }
 
-        /* Title and buttons container styling */
         .game-title-container {
             display: flex;
             justify-content: space-between;
@@ -197,7 +192,6 @@
             color: #333;
         }
 
-        /* Buttons styling */
         .buttons-container {
             display: flex;
             gap: 10px;
@@ -217,21 +211,12 @@
         .buttons-container button:hover {
             background-color: #0056b3;
         }
-
-        .like-dislike-count {
-            margin-left: 5px;
-        }
-
-        .active {
-            background-color: #0056b3 !important;
-        }
     </style>
 </head>
 <body>
-    <!-- Header containing logo, search bar, navigation links, and theme toggle -->
-    <header>
+<header>
     <div class="logo">
-        <a href="index.html" onclick="loadGame('https://bitlifeonline.github.io/', 'Home')">
+        <a href="index.html">
             <img src="Eggy Car logo.png" alt="Logo">
         </a>
     </div>
@@ -250,120 +235,44 @@
     <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
 </header>
 
-<!-- Top thumbnail section displaying clickable game links -->
-    <div class="thumbnail-section">
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/ragdoll-archers/', 'Ragdoll Archers')" class="thumbnail">Game 1</a>
-        <a href="#" onclick="loadGame('https://html5.gamemonetize.co/yyrof22q5fmv3l1pmj9fgego7yzt9yv4/', 'Game 2')" class="thumbnail">Game 2</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/some-other-game/', 'Some Other Game')" class="thumbnail">Game 3</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/yet-another-game/', 'Yet Another Game')" class="thumbnail">Game 4</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/last-game/', 'Last Game')" class="thumbnail">Game 5</a>
+<div id="content-container">
+    <div class="ad-section">
+        <div class="grid">
+            <a href="#" class="thumbnail">Game 11</a>
+            <a href="#" class="thumbnail">Game 12</a>
+            <a href="#" class="thumbnail">Game 13</a>
+            <a href="#" class="thumbnail">Game 14</a>
+        </div>
+        <div class="ad-space">Ad Space</div>
     </div>
 
-    <!-- Main content container with ads and game area -->
-    <div id="content-container">
-        <!-- Left ad section with more game links -->
-        <div class="ad-container">
-            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game11/', 'Game 11')" class="thumbnail">Game 11</a>
-            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game12/', 'Game 12')" class="thumbnail">Game 12</a>
-            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game13/', 'Game 13')" class="thumbnail">Game 13</a>
-            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game14/', 'Game 14')" class="thumbnail">Game 14</a>
-        </div>
-
-        <!-- Game container showing selected game and controls -->
-        <div class="game-container">
-            <!-- Iframe for displaying selected game -->
-            <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
-            <!-- Title and interactive buttons for the game -->
-            <div class="game-title-container">
-                <div id="game-title">Game Title: Default Game</div>
-                <div class="buttons-container">
-                    <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
-                    <button id="like-button" onclick="toggleLike()">Like <span id="like-count">0</span></button>
-                    <button id="dislike-button" onclick="toggleDislike()">Dislike <span id="dislike-count">0</span></button>
-                </div>
+    <div class="game-container">
+        <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
+        <div class="game-title-container">
+            <div id="game-title">Game Title: Default Game</div>
+            <div class="buttons-container">
+                <button id="fullscreen-button">Fullscreen</button>
+                <button id="like-button">Like</button>
+                <button id="dislike-button">Dislike</button>
             </div>
         </div>
+    </div>
 
-        <!-- Right ad section with more game links -->
-        <div class="ad-container">
-            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game15/', 'Game 15')" class="thumbnail">Game 15</a>
-            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game16/', 'Game 16')" class="thumbnail">Game 16</a>
-            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game17/', 'Game 17')" class="thumbnail">Game 17</a>
-            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game18/', 'Game 18')" class="thumbnail">Game 18</a>
+    <div class="ad-section">
+        <div class="grid">
+            <a href="#" class="thumbnail">Game 15</a>
+            <a href="#" class="thumbnail">Game 16</a>
+            <a href="#" class="thumbnail">Game 17</a>
+            <a href="#" class="thumbnail">Game 18</a>
         </div>
+        <div class="ad-space">Ad Space</div>
     </div>
+</div>
 
-    <!-- Bottom thumbnail section with additional games -->
-    <div class="bottom-thumbnails">
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game1/', 'Bottom Game 1')" class="thumbnail">Game 6</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game2/', 'Bottom Game 2')" class="thumbnail">Game 7</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game3/', 'Bottom Game 3')" class="thumbnail">Game 8</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game4/', 'Bottom Game 4')" class="thumbnail">Game 9</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game5/', 'Bottom Game 5')" class="thumbnail">Game 10</a>
-    </div>
-
-    <script>
-        // Function to load a selected game into the iframe
-        function loadGame(url, gameTitle) {
-            const iframe = document.getElementById('game-iframe');
-            iframe.src = url; // Set the iframe source to the selected game's URL
-            document.getElementById('game-title').innerText = `Game Title: ${gameTitle}`; // Update the game title
-        }
-
-        // Function to toggle the like button and update the count
-        function toggleLike() {
-            const likeButton = document.getElementById('like-button');
-            const dislikeButton = document.getElementById('dislike-button');
-            const likeCount = document.getElementById('like-count');
-            const dislikeCount = document.getElementById('dislike-count');
-            let likeVal = parseInt(likeCount.textContent, 10);
-            let dislikeVal = parseInt(dislikeCount.textContent, 10);
-
-            if (likeButton.classList.contains('active')) {
-                likeButton.classList.remove('active');
-                likeCount.textContent = likeVal - 1;
-            } else {
-                if (dislikeButton.classList.contains('active')) {
-                    dislikeButton.classList.remove('active');
-                    dislikeCount.textContent = dislikeVal - 1;
-                }
-                likeButton.classList.add('active');
-                likeCount.textContent = likeVal + 1;
-            }
-        }
-
-        // Function to toggle the dislike button and update the count
-        function toggleDislike() {
-            const dislikeButton = document.getElementById('dislike-button');
-            const likeButton = document.getElementById('like-button');
-            const dislikeCount = document.getElementById('dislike-count');
-            const likeCount = document.getElementById('like-count');
-            let dislikeVal = parseInt(dislikeCount.textContent, 10);
-            let likeVal = parseInt(likeCount.textContent, 10);
-
-            if (dislikeButton.classList.contains('active')) {
-                dislikeButton.classList.remove('active');
-                dislikeCount.textContent = dislikeVal - 1;
-            } else {
-                if (likeButton.classList.contains('active')) {
-                    likeButton.classList.remove('active');
-                    likeCount.textContent = likeVal - 1;
-                }
-                dislikeButton.classList.add('active');
-                dislikeCount.textContent = dislikeVal + 1;
-            }
-        }
-
-        // Function to enable fullscreen mode for the game iframe
-        function toggleFullscreen() {
-            const iframe = document.getElementById('game-iframe');
-            if (iframe.requestFullscreen) iframe.requestFullscreen();
-        }
-
-        // Function to toggle between light and dark themes
-        function toggleTheme() {
-            document.body.classList.toggle('dark');
-        }
-    </script>
+<script>
+    function toggleTheme() {
+        document.body.classList.toggle('dark');
+    }
+</script>
 </body>
 </html>
