@@ -116,18 +116,22 @@
             padding: 20px;
         }
 
-        .thumbnail-section, .bottom-thumbnails {
-            width: 100%;
+        .game-grid {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 20px 0;
+            gap: 20px;
+        }
+
+        .grid-column {
+            display: flex;
+            flex-direction: column;
             gap: 10px;
-            flex-wrap: wrap;
-            padding: 10px 0;
-            background-color: #15182b;
         }
 
         .thumbnail {
-            width: 80px;
+            width: 100%;
             height: 80px;
             background-color: #e0e0e0;
             border-radius: 10px;
@@ -230,22 +234,20 @@
         <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
     </header>
 
-    <div class="thumbnail-section">
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/ragdoll-archers/', 'Ragdoll Archers')" class="thumbnail">Game 1</a>
-        <a href="#" onclick="loadGame('https://html5.gamemonetize.co/yyrof22q5fmv3l1pmj9fgego7yzt9yv4/', 'Game 2')" class="thumbnail">Game 2</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/some-other-game/', 'Some Other Game')" class="thumbnail">Game 3</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/yet-another-game/', 'Yet Another Game')" class="thumbnail">Game 4</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/last-game/', 'Last Game')" class="thumbnail">Game 5</a>
-
-        <!-- Previously in Ad Containers -->
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game11/', 'Game 11')" class="thumbnail">Game 11</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game12/', 'Game 12')" class="thumbnail">Game 12</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game13/', 'Game 13')" class="thumbnail">Game 13</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game14/', 'Game 14')" class="thumbnail">Game 14</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game15/', 'Game 15')" class="thumbnail">Game 15</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game16/', 'Game 16')" class="thumbnail">Game 16</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game17/', 'Game 17')" class="thumbnail">Game 17</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game18/', 'Game 18')" class="thumbnail">Game 18</a>
+    <!-- Game Grid Section (Left and Right) -->
+    <div class="game-grid">
+        <div class="grid-column">
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/ragdoll-archers/', 'Ragdoll Archers')" class="thumbnail">Game 1</a>
+            <a href="#" onclick="loadGame('https://html5.gamemonetize.co/yyrof22q5fmv3l1pmj9fgego7yzt9yv4/', 'Game 2')" class="thumbnail">Game 2</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/some-other-game/', 'Some Other Game')" class="thumbnail">Game 3</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/yet-another-game/', 'Yet Another Game')" class="thumbnail">Game 4</a>
+        </div>
+        <div class="grid-column">
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game11/', 'Game 11')" class="thumbnail">Game 11</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game12/', 'Game 12')" class="thumbnail">Game 12</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game13/', 'Game 13')" class="thumbnail">Game 13</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/game14/', 'Game 14')" class="thumbnail">Game 14</a>
+        </div>
     </div>
 
     <div id="content-container">
