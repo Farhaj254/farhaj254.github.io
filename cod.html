@@ -111,39 +111,9 @@
             width: 100%;
             max-width: 1400px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: space-between;
+            align-items: flex-start;
             padding: 20px;
-        }
-
-        .thumbnail-section, .bottom-thumbnails {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 10px 0;
-            background-color: #15182b;
-        }
-
-        .thumbnail {
-            width: 80px;
-            height: 80px;
-            background-color: #e0e0e0;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 14px;
-            font-weight: bold;
-            color: #666;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .thumbnail:hover {
-            background-color: #007BFF;
-            color: #fff;
         }
 
         .game-container {
@@ -207,19 +177,16 @@
             background-color: #0056b3 !important;
         }
 
-        /* New Game Grid Section (2x2 grid) above the iframe */
-        .game-grid {
-            width: 100%;
-            max-width: 1400px;
+        /* New Grid Layout for Left and Right Thumbnails */
+        .thumbnail-grid {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             gap: 10px;
-            margin-top: 20px;
-            padding: 10px 0;
+            width: 150px;
         }
 
-        .grid-item {
-            width: 48%; /* To make them fit side by side */
+        .thumbnail-grid .thumbnail {
+            width: 100%;
             height: 80px;
             background-color: #e0e0e0;
             border-radius: 10px;
@@ -233,38 +200,11 @@
             cursor: pointer;
         }
 
-        .grid-item:hover {
+        .thumbnail-grid .thumbnail:hover {
             background-color: #007BFF;
             color: #fff;
         }
 
-        /* Ad Container Section - Resize Ads */
-        .ad-container {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .ad-left, .ad-right {
-            width: 45%; /* Shrinking ad containers */
-            height: 300px;
-            background-color: #ddd;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Adjusting bottom-thumbnails section */
-        .bottom-thumbnails {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 10px 0;
-            background-color: #15182b;
-        }
     </style>
 </head>
 <body>
@@ -289,15 +229,17 @@
         <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
     </header>
 
-    <!-- New Game Grid Sections (2x2 grid) above the ad containers -->
-    <div class="game-grid">
-        <div class="grid-item" onclick="loadGame('https://bitlifeonline.github.io/ragdoll-archers/', 'Ragdoll Archers')">Game 1</div>
-        <div class="grid-item" onclick="loadGame('https://html5.gamemonetize.co/yyrof22q5fmv3l1pmj9fgego7yzt9yv4/', 'Game 2')">Game 2</div>
-        <div class="grid-item" onclick="loadGame('https://bitlifeonline.github.io/some-other-game/', 'Some Other Game')">Game 3</div>
-        <div class="grid-item" onclick="loadGame('https://bitlifeonline.github.io/yet-another-game/', 'Yet Another Game')">Game 4</div>
-    </div>
-
     <div id="content-container">
+        <!-- Left Thumbnail Grid -->
+        <div class="thumbnail-grid">
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/ragdoll-archers/', 'Ragdoll Archers')" class="thumbnail">Game 1</a>
+            <a href="#" onclick="loadGame('https://html5.gamemonetize.co/yyrof22q5fmv3l1pmj9fgego7yzt9yv4/', 'Game 2')" class="thumbnail">Game 2</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/some-other-game/', 'Some Other Game')" class="thumbnail">Game 3</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/yet-another-game/', 'Yet Another Game')" class="thumbnail">Game 4</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/last-game/', 'Last Game')" class="thumbnail">Game 5</a>
+        </div>
+
+        <!-- Main Game Container -->
         <div class="game-container">
             <iframe id="game-iframe" src="" frameborder="0" scrolling="no"></iframe>
             <div class="game-title-container">
@@ -309,24 +251,15 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Ad containers: Resized -->
-    <div class="ad-container">
-        <div class="ad-left">
-            Ad Left
+        <!-- Right Thumbnail Grid -->
+        <div class="thumbnail-grid">
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game1/', 'Bottom Game 1')" class="thumbnail">Game 6</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game2/', 'Bottom Game 2')" class="thumbnail">Game 7</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game3/', 'Bottom Game 3')" class="thumbnail">Game 8</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game4/', 'Bottom Game 4')" class="thumbnail">Game 9</a>
+            <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game5/', 'Bottom Game 5')" class="thumbnail">Game 10</a>
         </div>
-        <div class="ad-right">
-            Ad Right
-        </div>
-    </div>
-
-    <div class="bottom-thumbnails">
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game1/', 'Bottom Game 1')" class="thumbnail">Game 6</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game2/', 'Bottom Game 2')" class="thumbnail">Game 7</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game3/', 'Bottom Game 3')" class="thumbnail">Game 8</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game4/', 'Bottom Game 4')" class="thumbnail">Game 9</a>
-        <a href="#" onclick="loadGame('https://bitlifeonline.github.io/bottom-game5/', 'Bottom Game 5')" class="thumbnail">Game 10</a>
     </div>
 
     <script>
