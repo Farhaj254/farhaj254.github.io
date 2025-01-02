@@ -208,6 +208,7 @@
             <button id="fullscreen-button" onclick="toggleFullscreen()">Fullscreen</button>
             <button id="like-button" onclick="toggleLike()">Like <span id="like-count">0</span></button>
             <button id="dislike-button" onclick="toggleDislike()">Dislike <span id="dislike-count">0</span></button>
+            <button id="reload-button" onclick="reloadGame()">Reload</button>
         </div>
     </div>
 
@@ -296,6 +297,12 @@
             } else {
                 document.exitFullscreen();
             }
+        }
+
+        function reloadGame() {
+            const iframe = document.getElementById('game-iframe');
+            iframe.src = iframe.src;
+            alert('Game reloaded');
         }
     </script>
 </body>
