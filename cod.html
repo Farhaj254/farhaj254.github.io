@@ -7,24 +7,33 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            display: flex;
-            flex-direction: row;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 0;
             margin: 0;
             font-family: Arial, sans-serif;
         }
 
         #iframe-container {
-            flex: 3;
             padding: 20px;
+            background-color: #fff;
+        }
+
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
         }
 
         #game-grid {
-            flex: 1;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
             gap: 10px;
             padding: 20px;
             background-color: #f4f4f4;
+            overflow-y: auto;
+            height: 100vh;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
         }
 
         .game-card {
@@ -57,12 +66,26 @@
             font-size: 14px;
             color: #333;
         }
+
+        /* Scrollbar styling */
+        #game-grid::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #game-grid::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 4px;
+        }
+
+        #game-grid::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
 
     <div id="iframe-container">
-        <iframe src="game.html" width="100%" height="600" frameborder="0"></iframe>
+        <iframe src="game.html"></iframe>
     </div>
 
     <div id="game-grid">
@@ -85,6 +108,18 @@
         <div class="game-card">
             <img src="game5-thumbnail.jpg" alt="Game 5">
             <div class="game-title">Game 5</div>
+        </div>
+        <div class="game-card">
+            <img src="game6-thumbnail.jpg" alt="Game 6">
+            <div class="game-title">Game 6</div>
+        </div>
+        <div class="game-card">
+            <img src="game7-thumbnail.jpg" alt="Game 7">
+            <div class="game-title">Game 7</div>
+        </div>
+        <div class="game-card">
+            <img src="game8-thumbnail.jpg" alt="Game 8">
+            <div class="game-title">Game 8</div>
         </div>
     </div>
 
