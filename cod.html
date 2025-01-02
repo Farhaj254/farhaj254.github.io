@@ -38,7 +38,7 @@
         .grid-section {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px; /* Reduced gap between game cards */
+            gap: 10px;
         }
 
         .ad-container {
@@ -97,6 +97,48 @@
 
         .game-section::-webkit-scrollbar-thumb:hover {
             background-color: #555;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            body {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+            }
+
+            #iframe-container {
+                order: 2;
+            }
+
+            .game-section {
+                order: 1;
+                height: auto;
+            }
+
+            iframe {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-section {
+                grid-template-columns: 1fr;
+            }
+
+            .game-card {
+                width: 90px;
+                height: 90px;
+            }
+
+            .game-card img {
+                width: 70px;
+                height: 70px;
+            }
+
+            .ad-container {
+                height: 150px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
