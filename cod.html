@@ -37,8 +37,8 @@
 
         .grid-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
         }
 
         .ad-container {
@@ -64,14 +64,12 @@
             text-align: center;
             cursor: pointer;
             transition: transform 0.2s;
-            width: 100%;
-            height: auto;
             aspect-ratio: 1;
         }
 
         .game-card img {
             width: 80%;
-            height: 80%;
+            height: auto;
             object-fit: cover;
             border-radius: 4px;
         }
@@ -120,19 +118,12 @@
             iframe {
                 height: 500px;
             }
-
-            .grid-section {
-                gap: 15px;
-            }
         }
 
         @media (max-width: 768px) {
             .grid-section {
-                grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-            }
-
-            .game-card {
-                aspect-ratio: 1;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
             }
 
             .ad-container {
@@ -158,12 +149,8 @@
             }
 
             .grid-section {
-                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
                 gap: 8px;
-            }
-
-            .game-card {
-                aspect-ratio: 1;
             }
 
             .ad-container {
