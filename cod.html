@@ -1,238 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Portal</title>
-    <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            display: grid;
-            grid-template-columns: 1fr 3fr 1fr;
-            gap: 0;
-            margin: 0;
-            background-color: #f4f7fb;
-            color: #333;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        body.dark {
-            background-color: #121212;
-            color: #e0e0e0;
-        }
-
-        header {
-            grid-column: 1 / -1;
-            width: 100%;
-            background-color: #15182b;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-            color: #fff;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo img {
-            height: 60px;
-        }
-
-        .logo span {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .search-bar {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            margin: 0 20px;
-        }
-
-        .search-bar input {
-            width: 100%;
-            max-width: 400px;
-            padding: 10px;
-            border: none;
-            border-radius: 20px;
-            background-color: #23263a;
-            color: #fff;
-            font-size: 16px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .theme-toggle {
-            width: 40px;
-            height: 40px;
-            background-color: #23263a;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .game-section {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 20px;
-            background-color: #f4f4f4;
-            overflow-y: auto;
-            height: 100vh;
-        }
-
-        .grid-section {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .game-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-            background-color: #fff;
-            border-radius: 8px;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .game-card img {
-            width: 80%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
-        .game-card:hover {
-            transform: scale(1.05);
-        }
-
-        #iframe-container {
-            padding: 20px;
-            background-color: #fff;
-        }
-
-        iframe {
-            width: 100%;
-            height: 700px;
-            border: none;
-        }
-
-        .ad-container {
-            height: 250px;
-            background-color: #ddd;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 16px;
-            color: #555;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            body {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto auto auto;
-            }
-            .game-section {
-                height: auto;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                display: flex;
-                flex-direction: column;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Hub</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Hub</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<header>
+  <button id="theme-toggle">Toggle Theme</button>
+</header>
+<main>
+  <div class="game-grid">
+    <!-- Game cards -->
+    <div class="game-card" onclick="loadGame('game1.html')">Game 1</div>
+    <div class="game-card" onclick="loadGame('game2.html')">Game 2</div>
+    <!-- Add more game cards as needed -->
+  </div>
+  <div class="game-display">
+    <iframe id="game-frame" src="" frameborder="0"></iframe>
+  </div>
+</main>
+<script>
+  const themeToggle = document.getElementById('theme-toggle');
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+  });
+</script>
+<script>
+  const loadGame = (url) => {
+    const iframe = document.getElementById('game-frame');
+    iframe.src = url;
+  };
+</script>
+<footer>
+  <p>&copy; 2025 Game Hub</p>
+</footer>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Hub</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="logo.png" alt="Logo">
-            <span>Game Portal</span>
-        </div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search">
-        </div>
-        <nav class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Categories</a>
-            <a href="#">Top Games</a>
-        </nav>
-        <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
-    </header>
-
-    <div class="game-section">
-        <div class="grid-section">
-            <div class="game-card" onclick="loadGame('game1.html', 'Game 1')">
-                <img src="game1-thumbnail.jpg" alt="Game 1">
-                <div>Game 1</div>
-            </div>
-            <div class="game-card" onclick="loadGame('game2.html', 'Game 2')">
-                <img src="game2-thumbnail.jpg" alt="Game 2">
-                <div>Game 2</div>
-            </div>
-        </div>
-        <div class="ad-container">Advertisement</div>
+  <header>
+    <button id="theme-toggle">Toggle Theme</button>
+  </header>
+  <main>
+    <div class="game-grid">
+      <div class="game-card" onclick="loadGame('game1.html')">Game 1</div>
+      <div class="game-card" onclick="loadGame('game2.html')">Game 2</div>
     </div>
-
-    <div id="iframe-container">
-        <iframe id="game-iframe" src=""></iframe>
+    <div class="game-display">
+      <iframe id="game-frame" src="" frameborder="0"></iframe>
     </div>
-
-    <div class="game-section">
-        <div class="grid-section">
-            <div class="game-card" onclick="loadGame('game3.html', 'Game 3')">
-                <img src="game3-thumbnail.jpg" alt="Game 3">
-                <div>Game 3</div>
-            </div>
-            <div class="game-card" onclick="loadGame('game4.html', 'Game 4')">
-                <img src="game4-thumbnail.jpg" alt="Game 4">
-                <div>Game 4</div>
-            </div>
-        </div>
-        <div class="ad-container">Advertisement</div>
-    </div>
-
-    <script>
-        function loadGame(url, gameTitle) {
-            document.getElementById('game-iframe').src = url;
-            console.log(`Loading: ${gameTitle}`);
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('dark');
-        }
-    </script>
+  </main>
+  <footer>
+    <p>&copy; 2025 Game Hub</p>
+  </footer>
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+    });
+  </script>
+  <script>
+    const loadGame = (url) => {
+      const iframe = document.getElementById('game-frame');
+      iframe.src = url;
+    };
+  </script>
 </body>
 </html>
