@@ -1,83 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Hub</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Hub</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<header>
-  <button id="theme-toggle">Toggle Theme</button>
-</header>
-<main>
-  <div class="game-grid">
-    <!-- Game cards -->
-    <div class="game-card" onclick="loadGame('game1.html')">Game 1</div>
-    <div class="game-card" onclick="loadGame('game2.html')">Game 2</div>
-    <!-- Add more game cards as needed -->
-  </div>
-  <div class="game-display">
-    <iframe id="game-frame" src="" frameborder="0"></iframe>
-  </div>
-</main>
-<script>
-  const themeToggle = document.getElementById('theme-toggle');
-  themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-theme');
-  });
-</script>
-<script>
-  const loadGame = (url) => {
-    const iframe = document.getElementById('game-frame');
-    iframe.src = url;
-  };
-</script>
-<footer>
-  <p>&copy; 2025 Game Hub</p>
-</footer>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Hub</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: grid;
+            grid-template-columns: 1fr 3fr 1fr;
+            gap: 0;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #iframe-container {
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        iframe {
+            width: 100%;
+            height: 700px;
+            border: none;
+        }
+
+        .game-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            overflow-y: auto;
+            height: 100vh;
+        }
+
+        .grid-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .ad-container {
+            height: 250px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            color: #555;
+            border-radius: 8px;
+        }
+
+        .game-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+            aspect-ratio: 1;
+        }
+
+        .game-card img {
+            width: 80%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .game-card:hover {
+            transform: scale(1.05);
+        }
+
+        .game-title {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #333;
+        }
+
+        /* Scrollbar styling */
+        .game-section::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .game-section::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 4px;
+        }
+
+        .game-section::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            body {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+            }
+
+            #iframe-container {
+                order: 2;
+            }
+
+            .game-section {
+                order: 1;
+                height: auto;
+                padding: 15px;
+            }
+
+            iframe {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-section {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .ad-container {
+                height: 150px;
+                font-size: 14px;
+            }
+
+            iframe {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .game-section {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .grid-section {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .ad-container {
+                height: 120px;
+                font-size: 12px;
+            }
+
+            iframe {
+                height: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <button id="theme-toggle">Toggle Theme</button>
-  </header>
-  <main>
-    <div class="game-grid">
-      <div class="game-card" onclick="loadGame('game1.html')">Game 1</div>
-      <div class="game-card" onclick="loadGame('game2.html')">Game 2</div>
+
+    <div class="game-section" id="left-game-section">
+        <div class="grid-section">
+            <div class="game-card">
+                <img src="game1-thumbnail.jpg" alt="Game 1">
+                <div class="game-title">Game 1</div>
+            </div>
+            <div class="game-card">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div>
+            <div class="game-card">
+                <img src="game3-thumbnail.jpg" alt="Game 3">
+                <div class="game-title">Game 3</div>
+            </div>
+            <div class="game-card">
+                <img src="game4-thumbnail.jpg" alt="Game 4">
+                <div class="game-title">Game 4</div>
+            </div>
+        </div>
+        <div class="ad-container">Advertisement</div>
+        <div class="grid-section">
+            <div class="game-card">
+                <img src="game5-thumbnail.jpg" alt="Game 5">
+                <div class="game-title">Game 5</div>
+            </div>
+            <div class="game-card">
+                <img src="game6-thumbnail.jpg" alt="Game 6">
+                <div class="game-title">Game 6</div>
+            </div>
+            <div class="game-card">
+                <img src="game7-thumbnail.jpg" alt="Game 7">
+                <div class="game-title">Game 7</div>
+            </div>
+            <div class="game-card">
+                <img src="game8-thumbnail.jpg" alt="Game 8">
+                <div class="game-title">Game 8</div>
+            </div>
+        </div>
     </div>
-    <div class="game-display">
-      <iframe id="game-frame" src="" frameborder="0"></iframe>
+
+    <div id="iframe-container">
+        <iframe src="game.html"></iframe>
     </div>
-  </main>
-  <footer>
-    <p>&copy; 2025 Game Hub</p>
-  </footer>
-  <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-theme');
-    });
-  </script>
-  <script>
-    const loadGame = (url) => {
-      const iframe = document.getElementById('game-frame');
-      iframe.src = url;
-    };
-  </script>
+
+    <div class="game-section" id="right-game-section">
+        <div class="grid-section">
+            <div class="game-card">
+                <img src="game1-thumbnail.jpg" alt="Game 1">
+                <div class="game-title">Game 1</div>
+            </div>
+            <div class="game-card">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div>
+            <div class="game-card">
+                <img src="game3-thumbnail.jpg" alt="Game 3">
+                <div class="game-title">Game 3</div>
+            </div>
+            <div class="game-card">
+                <img src="game4-thumbnail.jpg" alt="Game 4">
+                <div class="game-title">Game 4</div>
+            </div>
+        </div>
+        <div class="ad-container">Advertisement</div>
+        <div class="grid-section">
+            <div class="game-card">
+                <img src="game5-thumbnail.jpg" alt="Game 5">
+                <div class="game-title">Game 5</div>
+            </div>
+            <div class="game-card">
+                <img src="game6-thumbnail.jpg" alt="Game 6">
+                <div class="game-title">Game 6</div>
+            </div>
+            <div class="game-card">
+                <img src="game7-thumbnail.jpg" alt="Game 7">
+                <div class="game-title">Game 7</div>
+            </div>
+            <div class="game-card">
+                <img src="game8-thumbnail.jpg" alt="Game 8">
+                <div class="game-title">Game 8</div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
