@@ -224,18 +224,23 @@
         }
 
         .related-games {
-            width: 100%;
             margin-top: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
         }
 
-        .related-games h3 {
-            font-size: 20px;
+        body.dark-mode .related-games {
+            background-color: #444;
+        }
+
+        .related-games h2 {
+            font-size: 18px;
             margin-bottom: 10px;
-            color: #333;
         }
 
-        body.dark-mode .related-games h3 {
-            color: #fff;
+        .related-games .grid-section {
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
         }
 
         /* Scrollbar styling */
@@ -375,4 +380,78 @@
             document.getElementById("dislike-count").textContent = dislikeCount;
         }
 
-        function
+        function toggleFullscreen() {
+            const iframe = document.querySelector("iframe");
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { // Firefox
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { // IE/Edge
+                iframe.msRequestFullscreen();
+            }
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            document.querySelector('header').classList.toggle('dark-mode');
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Eggy Car Logo">
+            <span>Eggy Car</span>
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Car</a>
+            <a href="#">Skill</a>
+            <a href="#">Action</a>
+            <a href="#">Shooting</a>
+        </nav>
+        <div class="search-container">
+            <input type="text" placeholder="Search...">
+        </div>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    </header>
+    <main>
+        <div id="iframe-container">
+            <iframe src=""></iframe>
+            <div class="game-info">
+                <span id="game-title">Select a Game</span>
+                <div class="button-container">
+                    <button id="like-button" onclick="toggleLike()">Like</button>
+                    <button id="dislike-button" onclick="toggleDislike()">Dislike</button>
+                    <button onclick="toggleFullscreen()">Fullscreen</button>
+                </div>
+                <div>
+                    <span>Likes: <span id="like-count">0</span></span>
+                    <span>Dislikes: <span id="dislike-count">0</span></span>
+                </div>
+            </div>
+        </div>
+        <div class="game-section">
+            <h2>Available Games</h2>
+            <div class="grid-section">
+                <!-- Example Game Cards -->
+                <div class="game-card" onclick="loadGame('Game 1', 'game1.html')">
+                    <img src="game1.png" alt="Game 1">
+                    <span class="game-title">Game 1</span>
+                </div>
+                <div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
+                    <img src="game2.png" alt="Game 2">
+                    <span class="game-title">Game 2</span>
+                </div>
+                <!-- Add more game cards as needed -->
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="ad-container">Advertisement</div>
+        <div>© 2025 Game Website</div>
+    </footer>
+</body>
+</html>
