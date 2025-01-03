@@ -9,12 +9,13 @@
         body {
             display: grid;
             grid-template-columns: 1fr 3fr 1fr;
-            gap: 0;
+            grid-template-rows: auto 1fr auto;
+            gap: 10px;
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;
-            transition: background-color 0.3s, color 0.3s;
+            height: 100vh;
         }
 
         body.dark-mode {
@@ -30,10 +31,6 @@
             background-color: #1a1a3d;
             color: white;
             padding: 10px 20px;
-        }
-
-        header.dark-mode {
-            background-color: #333;
         }
 
         header .logo {
@@ -55,42 +52,18 @@
             color: white;
             text-decoration: none;
             font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        header nav a:hover {
-            color: #f4a261;
-        }
-
-        header .search-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        header .search-container input {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-        }
-
-        header .dark-mode-toggle {
-            background-color: #333;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            color: white;
         }
 
         #iframe-container {
-            position: relative;
-            padding: 20px;
+            grid-column: 2 / 3;
             background-color: #fff;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
             align-items: center;
+            gap: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         body.dark-mode #iframe-container {
@@ -99,7 +72,7 @@
 
         iframe {
             width: 100%;
-            height: 700px;
+            height: 500px;
             border: none;
         }
 
@@ -108,14 +81,12 @@
             justify-content: space-between;
             width: 100%;
             align-items: center;
-            margin-top: 10px;
         }
 
         #game-title {
             font-size: 24px;
             font-weight: bold;
             color: #333;
-            text-align: left;
         }
 
         body.dark-mode #game-title {
@@ -125,18 +96,15 @@
         .button-container {
             display: flex;
             gap: 10px;
-            align-items: center;
-            justify-content: flex-end;
         }
 
         .button-container button {
             background-color: #333;
             color: white;
             border: none;
-            padding: 8px;
+            padding: 8px 12px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
         }
 
         .button-container button:hover {
@@ -148,13 +116,11 @@
         }
 
         .game-section {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 20px;
+            grid-column: 1 / 2;
             background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
             overflow-y: auto;
-            height: 100vh;
         }
 
         body.dark-mode .game-section {
@@ -163,241 +129,54 @@
 
         .grid-section {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
         }
 
         .ad-container {
-            height: 250px;
+            grid-column: 3 / 4;
             background-color: #ddd;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 16px;
-            color: #555;
+            height: 250px;
             border-radius: 8px;
         }
 
         body.dark-mode .ad-container {
             background-color: #555;
-            color: #ddd;
         }
 
-        .game-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        footer {
+            grid-column: 1 / -1;
             text-align: center;
-            cursor: pointer;
-            transition: transform 0.2s;
-            aspect-ratio: 1;
-        }
-
-        body.dark-mode .game-card {
-            background-color: #444;
-        }
-
-        .game-card img {
-            width: 80%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
-        .game-card:hover {
-            transform: scale(1.05);
-        }
-
-        .game-title {
-            margin-top: 8px;
-            font-size: 12px;
-            color: #333;
-        }
-
-        body.dark-mode .game-title {
-            color: #ddd;
-        }
-
-        .related-games {
-            margin-top: 20px;
             padding: 10px;
-            background-color: #f4f4f4;
-            border-radius: 8px;
-        }
-
-        body.dark-mode .related-games {
-            background-color: #444;
-        }
-
-        .related-games h2 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .related-games .grid-section {
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        }
-
-        /* Scrollbar styling */
-        .game-section::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .game-section::-webkit-scrollbar-thumb {
-            background-color: #888;
-            border-radius: 4px;
-        }
-
-        .game-section::-webkit-scrollbar-thumb:hover {
-            background-color: #555;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            body {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto auto auto;
-            }
-
-            #iframe-container {
-                order: 2;
-            }
-
-            .game-section {
-                order: 1;
-                height: auto;
-                padding: 15px;
-            }
-
-            iframe {
-                height: 500px;
-            }
+            background-color: #1a1a3d;
+            color: white;
         }
 
         @media (max-width: 768px) {
-            .grid-section {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-
-            .ad-container {
-                height: 150px;
-                font-size: 14px;
-            }
-
-            iframe {
-                height: 400px;
-            }
-        }
-
-        @media (max-width: 480px) {
             body {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto 1fr auto;
             }
 
             .game-section {
-                width: 100%;
-                padding: 10px;
+                grid-column: 1 / -1;
+                order: 2;
             }
 
-            .grid-section {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
+            #iframe-container {
+                grid-column: 1 / -1;
+                order: 1;
             }
 
             .ad-container {
-                height: 120px;
-                font-size: 12px;
-            }
-
-            iframe {
-                height: 300px;
+                grid-column: 1 / -1;
+                order: 3;
             }
         }
     </style>
-    <script>
-        let likeCount = 0;
-        let dislikeCount = 0;
-        let isLiked = false;
-        let isDisliked = false;
-
-        function loadGame(gameTitle, gameUrl) {
-            const iframe = document.querySelector("iframe");
-            const gameTitleElement = document.getElementById("game-title");
-            gameTitleElement.textContent = gameTitle;
-            iframe.src = gameUrl;
-        }
-
-        function toggleLike() {
-            const likeButton = document.getElementById("like-button");
-            const dislikeButton = document.getElementById("dislike-button");
-            if (isLiked) {
-                likeButton.style.backgroundColor = '#333';
-                likeCount--;
-                isLiked = false;
-            } else {
-                likeButton.style.backgroundColor = '#00FF00';  // Green for like
-                likeCount++;
-                isLiked = true;
-                if (isDisliked) {
-                    dislikeButton.style.backgroundColor = '#333';  // Reset dislike
-                    dislikeCount--;
-                    isDisliked = false;
-                }
-            }
-            updateButtonCounts();
-        }
-
-        function toggleDislike() {
-            const likeButton = document.getElementById("like-button");
-            const dislikeButton = document.getElementById("dislike-button");
-            if (isDisliked) {
-                dislikeButton.style.backgroundColor = '#333';
-                dislikeCount--;
-                isDisliked = false;
-            } else {
-                dislikeButton.style.backgroundColor = '#FF0000';  // Red for dislike
-                dislikeCount++;
-                isDisliked = true;
-                if (isLiked) {
-                    likeButton.style.backgroundColor = '#333';  // Reset like
-                    likeCount--;
-                    isLiked = false;
-                }
-            }
-            updateButtonCounts();
-        }
-
-        function updateButtonCounts() {
-            document.getElementById("like-count").textContent = likeCount;
-            document.getElementById("dislike-count").textContent = dislikeCount;
-        }
-
-        function toggleFullscreen() {
-            const iframe = document.querySelector("iframe");
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            } else if (iframe.mozRequestFullScreen) { // Firefox
-                iframe.mozRequestFullScreen();
-            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
-                iframe.webkitRequestFullscreen();
-            } else if (iframe.msRequestFullscreen) { // IE/Edge
-                iframe.msRequestFullscreen();
-            }
-        }
-
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            document.querySelector('header').classList.toggle('dark-mode');
-        }
-    </script>
 </head>
 <body>
     <header>
@@ -412,46 +191,94 @@
             <a href="#">Action</a>
             <a href="#">Shooting</a>
         </nav>
-        <div class="search-container">
-            <input type="text" placeholder="Search...">
-        </div>
-        <button class="dark-mode-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+        <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
     </header>
-    <main>
-        <div id="iframe-container">
-            <iframe src=""></iframe>
-            <div class="game-info">
-                <span id="game-title">Select a Game</span>
-                <div class="button-container">
-                    <button id="like-button" onclick="toggleLike()">Like</button>
-                    <button id="dislike-button" onclick="toggleDislike()">Dislike</button>
-                    <button onclick="toggleFullscreen()">Fullscreen</button>
-                </div>
-                <div>
-                    <span>Likes: <span id="like-count">0</span></span>
-                    <span>Dislikes: <span id="dislike-count">0</span></span>
-                </div>
-            </div>
+
+    <section class="game-section">
+        <h2>Select a Game</h2>
+        <div class="grid-section">
+            <!-- Game cards go here -->
         </div>
-        <div class="game-section">
-            <h2>Available Games</h2>
-            <div class="grid-section">
-                <!-- Example Game Cards -->
-                <div class="game-card" onclick="loadGame('Game 1', 'game1.html')">
-                    <img src="game1.png" alt="Game 1">
-                    <span class="game-title">Game 1</span>
-                </div>
-                <div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
-                    <img src="game2.png" alt="Game 2">
-                    <span class="game-title">Game 2</span>
-                </div>
-                <!-- Add more game cards as needed -->
-            </div>
+    </section>
+
+    <section id="iframe-container">
+        <h2 id="game-title">Select a Game to Play</h2>
+        <iframe src=""></iframe>
+        <div class="button-container">
+            <button id="like-button" onclick="toggleLike()">Like</button>
+            <button id="dislike-button" onclick="toggleDislike()">Dislike</button>
+            <button onclick="toggleFullscreen()">Fullscreen</button>
         </div>
-    </main>
+        <p>Likes: <span id="like-count">0</span> | Dislikes: <span id="dislike-count">0</span></p>
+    </section>
+
+    <section class="ad-container">
+        <p>Advertisement</p>
+    </section>
+
     <footer>
-        <div class="ad-container">Advertisement</div>
-        <div>© 2025 Game Website</div>
+        &copy; 2025 Game Website
     </footer>
+
+    <script>
+        let likeCount = 0;
+        let dislikeCount = 0;
+        let isLiked = false;
+        let isDisliked = false;
+
+        function toggleLike() {
+            const likeButton = document.getElementById("like-button");
+            if (isLiked) {
+                likeCount--;
+                likeButton.style.backgroundColor = "#333";
+                isLiked = false;
+            } else {
+                likeCount++;
+                likeButton.style.backgroundColor = "#00FF00";
+                isLiked = true;
+                if (isDisliked) {
+                    dislikeCount--;
+                    document.getElementById("dislike-button").style.backgroundColor = "#333";
+                    isDisliked = false;
+                }
+            }
+            updateCounts();
+        }
+
+        function toggleDislike() {
+            const dislikeButton = document.getElementById("dislike-button");
+            if (isDisliked) {
+                dislikeCount--;
+                dislikeButton.style.backgroundColor = "#333";
+                isDisliked = false;
+            } else {
+                dislikeCount++;
+                dislikeButton.style.backgroundColor = "#FF0000";
+                isDisliked = true;
+                if (isLiked) {
+                    likeCount--;
+                    document.getElementById("like-button").style.backgroundColor = "#333";
+                    isLiked = false;
+                }
+            }
+            updateCounts();
+        }
+
+        function updateCounts() {
+            document.getElementById("like-count").textContent = likeCount;
+            document.getElementById("dislike-count").textContent = dislikeCount;
+        }
+
+        function toggleFullscreen() {
+            const iframe = document.querySelector("iframe");
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            }
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+    </script>
 </body>
 </html>
