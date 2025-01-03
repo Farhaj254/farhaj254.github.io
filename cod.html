@@ -9,13 +9,12 @@
         body {
             display: grid;
             grid-template-columns: 1fr 3fr 1fr;
-            grid-template-rows: auto 1fr auto;
-            gap: 10px;
+            gap: 0;
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;
-            height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         body.dark-mode {
@@ -31,6 +30,10 @@
             background-color: #1a1a3d;
             color: white;
             padding: 10px 20px;
+        }
+
+        header.dark-mode {
+            background-color: #333;
         }
 
         header .logo {
@@ -52,18 +55,42 @@
             color: white;
             text-decoration: none;
             font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        header nav a:hover {
+            color: #f4a261;
+        }
+
+        header .search-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        header .search-container input {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        header .dark-mode-toggle {
+            background-color: #333;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
         }
 
         #iframe-container {
-            grid-column: 2 / 3;
-            background-color: #fff;
+            position: relative;
             padding: 20px;
+            background-color: #fff;
             display: flex;
             flex-direction: column;
+            gap: 10px;
             align-items: center;
-            gap: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         body.dark-mode #iframe-container {
@@ -72,7 +99,7 @@
 
         iframe {
             width: 100%;
-            height: 500px;
+            height: 700px;
             border: none;
         }
 
@@ -81,12 +108,14 @@
             justify-content: space-between;
             width: 100%;
             align-items: center;
+            margin-top: 10px;
         }
 
         #game-title {
             font-size: 24px;
             font-weight: bold;
             color: #333;
+            text-align: left;
         }
 
         body.dark-mode #game-title {
@@ -96,15 +125,18 @@
         .button-container {
             display: flex;
             gap: 10px;
+            align-items: center;
+            justify-content: flex-end;
         }
 
         .button-container button {
             background-color: #333;
             color: white;
             border: none;
-            padding: 8px 12px;
+            padding: 8px;
             border-radius: 4px;
             cursor: pointer;
+            font-size: 16px;
         }
 
         .button-container button:hover {
@@ -116,11 +148,13 @@
         }
 
         .game-section {
-            grid-column: 1 / 2;
-            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
             padding: 20px;
-            border-radius: 8px;
+            background-color: #f4f4f4;
             overflow-y: auto;
+            height: 100vh;
         }
 
         body.dark-mode .game-section {
@@ -129,54 +163,221 @@
 
         .grid-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
         }
 
         .ad-container {
-            grid-column: 3 / 4;
+            height: 250px;
             background-color: #ddd;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 250px;
+            font-size: 16px;
+            color: #555;
             border-radius: 8px;
         }
 
         body.dark-mode .ad-container {
             background-color: #555;
+            color: #ddd;
         }
 
-        footer {
-            grid-column: 1 / -1;
-            text-align: center;
+        .game-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             padding: 10px;
-            background-color: #1a1a3d;
-            color: white;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+            aspect-ratio: 1;
         }
 
-        @media (max-width: 768px) {
+        body.dark-mode .game-card {
+            background-color: #444;
+        }
+
+        .game-card img {
+            width: 80%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .game-card:hover {
+            transform: scale(1.05);
+        }
+
+        .game-title {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #333;
+        }
+
+        body.dark-mode .game-title {
+            color: #ddd;
+        }
+
+        /* Scrollbar styling */
+        .game-section::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .game-section::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 4px;
+        }
+
+        .game-section::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
             body {
                 grid-template-columns: 1fr;
-                grid-template-rows: auto auto 1fr auto;
-            }
-
-            .game-section {
-                grid-column: 1 / -1;
-                order: 2;
+                grid-template-rows: auto auto auto;
             }
 
             #iframe-container {
-                grid-column: 1 / -1;
+                order: 2;
+            }
+
+            .game-section {
                 order: 1;
+                height: auto;
+                padding: 15px;
+            }
+
+            iframe {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-section {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
             }
 
             .ad-container {
-                grid-column: 1 / -1;
-                order: 3;
+                height: 150px;
+                font-size: 14px;
+            }
+
+            iframe {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .game-section {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .grid-section {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .ad-container {
+                height: 120px;
+                font-size: 12px;
+            }
+
+            iframe {
+                height: 300px;
             }
         }
     </style>
+    <script>
+        let likeCount = 0;
+        let dislikeCount = 0;
+        let isLiked = false;
+        let isDisliked = false;
+
+        function loadGame(gameTitle, gameUrl) {
+            const iframe = document.querySelector("iframe");
+            const gameTitleElement = document.getElementById("game-title");
+            gameTitleElement.textContent = gameTitle;
+            iframe.src = gameUrl;
+        }
+
+        function toggleLike() {
+            const likeButton = document.getElementById("like-button");
+            const dislikeButton = document.getElementById("dislike-button");
+            if (isLiked) {
+                likeButton.style.backgroundColor = '#333';
+                likeCount--;
+                isLiked = false;
+            } else {
+                likeButton.style.backgroundColor = '#00FF00';  // Green for like
+                likeCount++;
+                isLiked = true;
+                if (isDisliked) {
+                    dislikeButton.style.backgroundColor = '#333';  // Reset dislike
+                    dislikeCount--;
+                    isDisliked = false;
+                }
+            }
+            updateButtonCounts();
+        }
+
+        function toggleDislike() {
+            const likeButton = document.getElementById("like-button");
+            const dislikeButton = document.getElementById("dislike-button");
+            if (isDisliked) {
+                dislikeButton.style.backgroundColor = '#333';
+                dislikeCount--;
+                isDisliked = false;
+            } else {
+                dislikeButton.style.backgroundColor = '#FF0000';  // Red for dislike
+                dislikeCount++;
+                isDisliked = true;
+                if (isLiked) {
+                    likeButton.style.backgroundColor = '#333';  // Reset like
+                    likeCount--;
+                    isLiked = false;
+                }
+            }
+            updateButtonCounts();
+        }
+
+        function updateButtonCounts() {
+            document.getElementById("like-count").textContent = likeCount;
+            document.getElementById("dislike-count").textContent = dislikeCount;
+        }
+
+        function toggleFullscreen() {
+            const iframe = document.querySelector("iframe");
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { // Firefox
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { // IE/Edge
+                iframe.msRequestFullscreen();
+            }
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            document.querySelector('header').classList.toggle('dark-mode');
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -190,95 +391,105 @@
             <a href="#">Skill</a>
             <a href="#">Action</a>
             <a href="#">Shooting</a>
+            <a href="#">Sport</a>
+            <a href="#">Idle</a>
         </nav>
-        <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+        <div class="search-container">
+            <input type="text" placeholder="Search">
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+        </div>
     </header>
 
-    <section class="game-section">
-        <h2>Select a Game</h2>
+    <div class="game-section" id="left-game-section">
         <div class="grid-section">
-            <!-- Game cards go here -->
+            <div class="game-card" onclick="loadGame('Game 1', 'https://html5.gamemonetize.co/368m41ohqh8lg665jvzlgtlpnwxokm8w/')">
+                <img src="game1-thumbnail.jpg" alt="Game 1">
+                <div class="game-title">Game 1</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 3', 'game3.html')">
+                <img src="game3-thumbnail.jpg" alt="Game 3">
+                <div class="game-title">Game 3</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 4', 'game4.html')">
+                <img src="game4-thumbnail.jpg" alt="Game 4">
+                <div class="game-title">Game 4</div>
+            </div>
         </div>
-    </section>
-
-    <section id="iframe-container">
-        <h2 id="game-title">Select a Game to Play</h2>
-        <iframe src=""></iframe>
-        <div class="button-container">
-            <button id="like-button" onclick="toggleLike()">Like</button>
-            <button id="dislike-button" onclick="toggleDislike()">Dislike</button>
-            <button onclick="toggleFullscreen()">Fullscreen</button>
+        <div class="ad-container">Advertisement</div>
+        <div class="grid-section">
+            <div class="game-card" onclick="loadGame('Game 5', 'game5.html')">
+                <img src="game5-thumbnail.jpg" alt="Game 5">
+                <div class="game-title">Game 5</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 6', 'game6.html')">
+                <img src="game6-thumbnail.jpg" alt="Game 6">
+                <div class="game-title">Game 6</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 7', 'game7.html')">
+                <img src="game7-thumbnail.jpg" alt="Game 7">
+                <div class="game-title">Game 7</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 8', 'game8.html')">
+                <img src="game8-thumbnail.jpg" alt="Game 8">
+                <div class="game-title">Game 8</div>
+            </div>
         </div>
-        <p>Likes: <span id="like-count">0</span> | Dislikes: <span id="dislike-count">0</span></p>
-    </section>
+    </div>
 
-    <section class="ad-container">
-        <p>Advertisement</p>
-    </section>
+    <div id="iframe-container">
+        <iframe src="game.html"></iframe>
+        <div class="game-info">
+            <div id="game-title">Select a Game</div>
+            <div class="button-container">
+                <button onclick="toggleFullscreen()">&#x26F6;</button>
+                <button id="like-button" onclick="toggleLike()">👍 <span id="like-count">0</span></button>
+                <button id="dislike-button" onclick="toggleDislike()">👎 <span id="dislike-count">0</span></button>
+            </div>
+        </div>
+    </div>
 
-    <footer>
-        &copy; 2025 Game Website
-    </footer>
-
-    <script>
-        let likeCount = 0;
-        let dislikeCount = 0;
-        let isLiked = false;
-        let isDisliked = false;
-
-        function toggleLike() {
-            const likeButton = document.getElementById("like-button");
-            if (isLiked) {
-                likeCount--;
-                likeButton.style.backgroundColor = "#333";
-                isLiked = false;
-            } else {
-                likeCount++;
-                likeButton.style.backgroundColor = "#00FF00";
-                isLiked = true;
-                if (isDisliked) {
-                    dislikeCount--;
-                    document.getElementById("dislike-button").style.backgroundColor = "#333";
-                    isDisliked = false;
-                }
-            }
-            updateCounts();
-        }
-
-        function toggleDislike() {
-            const dislikeButton = document.getElementById("dislike-button");
-            if (isDisliked) {
-                dislikeCount--;
-                dislikeButton.style.backgroundColor = "#333";
-                isDisliked = false;
-            } else {
-                dislikeCount++;
-                dislikeButton.style.backgroundColor = "#FF0000";
-                isDisliked = true;
-                if (isLiked) {
-                    likeCount--;
-                    document.getElementById("like-button").style.backgroundColor = "#333";
-                    isLiked = false;
-                }
-            }
-            updateCounts();
-        }
-
-        function updateCounts() {
-            document.getElementById("like-count").textContent = likeCount;
-            document.getElementById("dislike-count").textContent = dislikeCount;
-        }
-
-        function toggleFullscreen() {
-            const iframe = document.querySelector("iframe");
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            }
-        }
-
-        function toggleDarkMode() {
-            document.body.classList.toggle("dark-mode");
-        }
-    </script>
+    <div class="game-section" id="right-game-section">
+        <div class="grid-section">
+            <div class="game-card" onclick="loadGame('Game 1', 'game1.html')">
+                <img src="game1-thumbnail.jpg" alt="Game 1">
+                <div class="game-title">Game 1</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 3', 'game3.html')">
+                <img src="game3-thumbnail.jpg" alt="Game 3">
+                <div class="game-title">Game 3</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 4', 'game4.html')">
+                <img src="game4-thumbnail.jpg" alt="Game 4">
+                <div class="game-title">Game 4</div>
+            </div>
+        </div>
+        <div class="ad-container">Advertisement</div>
+        <div class="grid-section">
+            <div class="game-card" onclick="loadGame('Game 5', 'game5.html')">
+                <img src="game5-thumbnail.jpg" alt="Game 5">
+                <div class="game-title">Game 5</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 6', 'game6.html')">
+                <img src="game6-thumbnail.jpg" alt="Game 6">
+                <div class="game-title">Game 6</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 7', 'game7.html')">
+                <img src="game7-thumbnail.jpg" alt="Game 7">
+                <div class="game-title">Game 7</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 8', 'game8.html')">
+                <img src="game8-thumbnail.jpg" alt="Game 8">
+                <div class="game-title">Game 8</div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
