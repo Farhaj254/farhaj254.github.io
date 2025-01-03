@@ -72,6 +72,7 @@
         }
 
         #iframe-container {
+            position: relative;
             padding: 20px;
             background-color: #fff;
             display: flex;
@@ -87,10 +88,31 @@
         }
 
         #game-title {
+            position: absolute;
+            top: 10px;
+            left: 20px;
             font-size: 24px;
             font-weight: bold;
-            text-align: center;
             color: #333;
+        }
+
+        .button-container {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .button-container button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
         }
 
         .game-section {
@@ -232,11 +254,59 @@
         }
     </style>
     <script>
+        let isLiked = false;
+        let isDisliked = false;
+
         function loadGame(gameTitle, gameUrl) {
             const iframe = document.querySelector("iframe");
             const gameTitleElement = document.getElementById("game-title");
             gameTitleElement.textContent = gameTitle;
             iframe.src = gameUrl;
+        }
+
+        function toggleLike() {
+            const likeButton = document.getElementById("like-button");
+            const dislikeButton = document.getElementById("dislike-button");
+            if (isLiked) {
+                likeButton.style.backgroundColor = '#333';
+                isLiked = false;
+            } else {
+                likeButton.style.backgroundColor = '#00FF00';  // Green for like
+                isLiked = true;
+                if (isDisliked) {
+                    dislikeButton.style.backgroundColor = '#333';  // Reset dislike
+                    isDisliked = false;
+                }
+            }
+        }
+
+        function toggleDislike() {
+            const likeButton = document.getElementById("like-button");
+            const dislikeButton = document.getElementById("dislike-button");
+            if (isDisliked) {
+                dislikeButton.style.backgroundColor = '#333';
+                isDisliked = false;
+            } else {
+                dislikeButton.style.backgroundColor = '#FF0000';  // Red for dislike
+                isDisliked = true;
+                if (isLiked) {
+                    likeButton.style.backgroundColor = '#333';  // Reset like
+                    isLiked = false;
+                }
+            }
+        }
+
+        function toggleFullscreen() {
+            const iframe = document.querySelector("iframe");
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { // Firefox
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { // IE/Edge
+                iframe.msRequestFullscreen();
+            }
         }
     </script>
 </head>
@@ -304,6 +374,11 @@
     <div id="iframe-container">
         <iframe src="game.html"></iframe>
         <div id="game-title">Select a Game</div>
+        <div class="button-container">
+            <button onclick="toggleFullscreen()">&#x26F6;</button>
+            <button id="like-button" onclick="toggleLike()">👍</button>
+            <button id="dislike-button" onclick="toggleDislike()">👎</button>
+        </div>
     </div>
 
     <div class="game-section" id="right-game-section">
