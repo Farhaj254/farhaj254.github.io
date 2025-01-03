@@ -7,49 +7,31 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            display: grid;
-            grid-template-columns: 1fr 3fr 1fr;
-            gap: 0;
             margin: 0;
             font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        #iframe-container {
-            padding: 20px;
-            background-color: #fff;
-        }
-
-        iframe {
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #222;
+            padding: 10px 20px;
+            color: white;
             width: 100%;
-            height: 700px;
-            border: none;
         }
 
         .game-section {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
             padding: 20px;
             background-color: #f4f4f4;
-            overflow-y: auto;
-            height: 100vh;
-        }
-
-        .grid-section {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .ad-container {
-            height: 250px;
-            background-color: #ddd;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 16px;
-            color: #555;
-            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .game-card {
@@ -64,7 +46,6 @@
             text-align: center;
             cursor: pointer;
             transition: transform 0.2s;
-            aspect-ratio: 1;
         }
 
         .game-card img {
@@ -84,80 +65,30 @@
             color: #333;
         }
 
-        /* Scrollbar styling */
-        .game-section::-webkit-scrollbar {
-            width: 8px;
+        #iframe-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
         }
 
-        .game-section::-webkit-scrollbar-thumb {
-            background-color: #888;
-            border-radius: 4px;
-        }
-
-        .game-section::-webkit-scrollbar-thumb:hover {
-            background-color: #555;
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
         }
 
         /* Responsive Design */
-        @media (max-width: 1024px) {
-            body {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto auto auto;
-            }
-
-            #iframe-container {
-                order: 2;
-            }
-
-            .game-section {
-                order: 1;
-                height: auto;
-                padding: 15px;
-            }
-
-            iframe {
-                height: 500px;
-            }
-        }
-
         @media (max-width: 768px) {
-            .grid-section {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-
-            .ad-container {
-                height: 150px;
-                font-size: 14px;
-            }
-
             iframe {
                 height: 400px;
             }
         }
 
         @media (max-width: 480px) {
-            body {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .game-section {
-                width: 100%;
-                padding: 10px;
-            }
-
-            .grid-section {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
-            }
-
-            .ad-container {
-                height: 120px;
-                font-size: 12px;
-            }
-
             iframe {
                 height: 300px;
             }
@@ -178,7 +109,7 @@
 </head>
 <body>
 
-    <header style="display: flex; align-items: center; justify-content: space-between; background-color: #222; padding: 10px 20px; color: white;">
+    <header>
         <div style="display: flex; align-items: center; gap: 10px;">
             <img src="logo.png" alt="Logo" style="height: 40px;">
             <h1 style="margin: 0; font-size: 1.5em;">Game Website</h1>
@@ -195,88 +126,43 @@
         <input type="text" placeholder="Search" style="padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
     </header>
 
-    <div class="game-section" id="left-game-section">
-        <div class="grid-section">
-            <div class="game-card" data-game-url="game1.html">
-                <img src="game1-thumbnail.jpg" alt="Game 1">
-                <div class="game-title">Game 1</div>
-            </div>
-            <div class="game-card" data-game-url="game2.html">
-                <img src="game2-thumbnail.jpg" alt="Game 2">
-                <div class="game-title">Game 2</div>
-            </div>
-            <div class="game-card" data-game-url="game3.html">
-                <img src="game3-thumbnail.jpg" alt="Game 3">
-                <div class="game-title">Game 3</div>
-            </div>
-            <div class="game-card" data-game-url="game4.html">
-                <img src="game4-thumbnail.jpg" alt="Game 4">
-                <div class="game-title">Game 4</div>
-            </div>
+    <div class="game-section">
+        <div class="game-card" data-game-url="game1.html">
+            <img src="game1-thumbnail.jpg" alt="Game 1">
+            <div class="game-title">Game 1</div>
         </div>
-        <div class="ad-container">Advertisement</div>
-        <div class="grid-section">
-            <div class="game-card" data-game-url="game5.html">
-                <img src="game5-thumbnail.jpg" alt="Game 5">
-                <div class="game-title">Game 5</div>
-            </div>
-            <div class="game-card" data-game-url="game6.html">
-                <img src="game6-thumbnail.jpg" alt="Game 6">
-                <div class="game-title">Game 6</div>
-            </div>
-            <div class="game-card" data-game-url="game7.html">
-                <img src="game7-thumbnail.jpg" alt="Game 7">
-                <div class="game-title">Game 7</div>
-            </div>
-            <div class="game-card" data-game-url="game8.html">
-                <img src="game8-thumbnail.jpg" alt="Game 8">
-                <div class="game-title">Game 8</div>
-            </div>
+        <div class="game-card" data-game-url="game2.html">
+            <img src="game2-thumbnail.jpg" alt="Game 2">
+            <div class="game-title">Game 2</div>
+        </div>
+        <div class="game-card" data-game-url="game3.html">
+            <img src="game3-thumbnail.jpg" alt="Game 3">
+            <div class="game-title">Game 3</div>
+        </div>
+        <div class="game-card" data-game-url="game4.html">
+            <img src="game4-thumbnail.jpg" alt="Game 4">
+            <div class="game-title">Game 4</div>
+        </div>
+        <div class="game-card" data-game-url="game5.html">
+            <img src="game5-thumbnail.jpg" alt="Game 5">
+            <div class="game-title">Game 5</div>
+        </div>
+        <div class="game-card" data-game-url="game6.html">
+            <img src="game6-thumbnail.jpg" alt="Game 6">
+            <div class="game-title">Game 6</div>
+        </div>
+        <div class="game-card" data-game-url="game7.html">
+            <img src="game7-thumbnail.jpg" alt="Game 7">
+            <div class="game-title">Game 7</div>
+        </div>
+        <div class="game-card" data-game-url="game8.html">
+            <img src="game8-thumbnail.jpg" alt="Game 8">
+            <div class="game-title">Game 8</div>
         </div>
     </div>
 
     <div id="iframe-container">
         <iframe id="game-iframe" src="game.html"></iframe>
-    </div>
-
-    <div class="game-section" id="right-game-section">
-        <div class="grid-section">
-            <div class="game-card" data-game-url="game1.html">
-                <img src="game1-thumbnail.jpg" alt="Game 1">
-                <div class="game-title">Game 1</div>
-            </div>
-            <div class="game-card" data-game-url="game2.html">
-                <img src="game2-thumbnail.jpg" alt="Game 2">
-                <div class="game-title">Game 2</div>
-            </div>
-            <div class="game-card" data-game-url="game3.html">
-                <img src="game3-thumbnail.jpg" alt="Game 3">
-                <div class="game-title">Game 3</div>
-            </div>
-            <div class="game-card" data-game-url="game4.html">
-                <img src="game4-thumbnail.jpg" alt="Game 4">
-                <div class="game-title">Game 4</div>
-            </div>
-        </div>
-        <div class="ad-container">Advertisement</div>
-        <div class="grid-section">
-            <div class="game-card" data-game-url="game5.html">
-                <img src="game5-thumbnail.jpg" alt="Game 5">
-                <div class="game-title">Game 5</div>
-            </div>
-            <div class="game-card" data-game-url="game6.html">
-                <img src="game6-thumbnail.jpg" alt="Game 6">
-                <div class="game-title">Game 6</div>
-            </div>
-            <div class="game-card" data-game-url="game7.html">
-                <img src="game7-thumbnail.jpg" alt="Game 7">
-                <div class="game-title">Game 7</div>
-            </div>
-            <div class="game-card" data-game-url="game8.html">
-                <img src="game8-thumbnail.jpg" alt="Game 8">
-                <div class="game-title">Game 8</div>
-            </div>
-        </div>
     </div>
 
 </body>
