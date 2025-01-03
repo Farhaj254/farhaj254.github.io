@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play the best online games including car, action, skill, shooting, and more!">
+    <meta name="keywords" content="online games, action games, car games, shooting games, skill games">
+    <meta name="author" content="Your Name">
     <title>Game Website</title>
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -12,6 +15,12 @@
             gap: 0;
             margin: 0;
             font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: white;
         }
 
         header {
@@ -100,6 +109,10 @@
             background-color: #f4f4f4;
             overflow-y: auto;
             height: 100vh;
+        }
+
+        .game-section.dark-mode {
+            background-color: #333;
         }
 
         .grid-section {
@@ -237,6 +250,12 @@
             gameTitleElement.textContent = gameTitle;
             iframe.src = gameUrl;
         }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const gameSections = document.querySelectorAll('.game-section');
+            gameSections.forEach(section => section.classList.toggle('dark-mode'));
+        }
     </script>
 </head>
 <body>
@@ -256,7 +275,7 @@
         </nav>
         <div class="search-container">
             <input type="text" placeholder="Search">
-            <button class="dark-mode-toggle">&#9728;</button>
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()">&#9728;</button>
         </div>
     </header>
 
