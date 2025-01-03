@@ -12,6 +12,14 @@
             gap: 0;
             margin: 0;
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a3d;
+            color: white;
         }
 
         header {
@@ -22,6 +30,10 @@
             background-color: #1a1a3d;
             color: white;
             padding: 10px 20px;
+        }
+
+        header.dark-mode {
+            background-color: #333;
         }
 
         header .logo {
@@ -81,6 +93,10 @@
             align-items: center;
         }
 
+        body.dark-mode #iframe-container {
+            background-color: #2c2c2c;
+        }
+
         iframe {
             width: 100%;
             height: 700px;
@@ -92,7 +108,7 @@
             justify-content: space-between;
             width: 100%;
             align-items: center;
-            margin-top: 10px; /* Directly under the iframe */
+            margin-top: 10px;
         }
 
         #game-title {
@@ -100,6 +116,10 @@
             font-weight: bold;
             color: #333;
             text-align: left;
+        }
+
+        body.dark-mode #game-title {
+            color: #fff;
         }
 
         .button-container {
@@ -119,6 +139,14 @@
             font-size: 16px;
         }
 
+        .button-container button:hover {
+            background-color: #444;
+        }
+
+        body.dark-mode .button-container button {
+            background-color: #555;
+        }
+
         .game-section {
             display: flex;
             flex-direction: column;
@@ -127,6 +155,10 @@
             background-color: #f4f4f4;
             overflow-y: auto;
             height: 100vh;
+        }
+
+        body.dark-mode .game-section {
+            background-color: #333;
         }
 
         .grid-section {
@@ -146,6 +178,11 @@
             border-radius: 8px;
         }
 
+        body.dark-mode .ad-container {
+            background-color: #555;
+            color: #ddd;
+        }
+
         .game-card {
             display: flex;
             flex-direction: column;
@@ -159,6 +196,10 @@
             cursor: pointer;
             transition: transform 0.2s;
             aspect-ratio: 1;
+        }
+
+        body.dark-mode .game-card {
+            background-color: #444;
         }
 
         .game-card img {
@@ -176,6 +217,10 @@
             margin-top: 8px;
             font-size: 12px;
             color: #333;
+        }
+
+        body.dark-mode .game-title {
+            color: #ddd;
         }
 
         /* Scrollbar styling */
@@ -327,6 +372,11 @@
                 iframe.msRequestFullscreen();
             }
         }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            document.querySelector('header').classList.toggle('dark-mode');
+        }
     </script>
 </head>
 <body>
@@ -346,7 +396,7 @@
         </nav>
         <div class="search-container">
             <input type="text" placeholder="Search">
-            <button class="dark-mode-toggle">&#9728;</button>
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
         </div>
     </header>
 
