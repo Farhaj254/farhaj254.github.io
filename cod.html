@@ -244,38 +244,38 @@
 
     <div class="game-section" id="left-game-section">
         <div class="grid-section">
-            <div class="game-card">
+            <div class="game-card" data-game-url="game1.html">
                 <img src="game1-thumbnail.jpg" alt="Game 1">
                 <div class="game-title">Game 1</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" data-game-url="game2.html">
                 <img src="game2-thumbnail.jpg" alt="Game 2">
                 <div class="game-title">Game 2</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" data-game-url="game3.html">
                 <img src="game3-thumbnail.jpg" alt="Game 3">
                 <div class="game-title">Game 3</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" data-game-url="game4.html">
                 <img src="game4-thumbnail.jpg" alt="Game 4">
                 <div class="game-title">Game 4</div>
             </div>
         </div>
         <div class="ad-container">Advertisement</div>
         <div class="grid-section">
-            <div class="game-card">
+            <div class="game-card" data-game-url="game5.html">
                 <img src="game5-thumbnail.jpg" alt="Game 5">
                 <div class="game-title">Game 5</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" data-game-url="game6.html">
                 <img src="game6-thumbnail.jpg" alt="Game 6">
                 <div class="game-title">Game 6</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" data-game-url="game7.html">
                 <img src="game7-thumbnail.jpg" alt="Game 7">
                 <div class="game-title">Game 7</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" data-game-url="game8.html">
                 <img src="game8-thumbnail.jpg" alt="Game 8">
                 <div class="game-title">Game 8</div>
             </div>
@@ -283,47 +283,59 @@
     </div>
 
     <div id="iframe-container">
-        <iframe src="game.html"></iframe>
+        <iframe id="game-iframe" src=""></iframe>
     </div>
 
     <div class="game-section" id="right-game-section">
         <div class="grid-section">
-            <div class="game-card">
+            <div class="game-card" data-game-url="game1.html">
                 <img src="game1-thumbnail.jpg" alt="Game 1">
                 <div class="game-title">Game 1</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" data-game-url="game2.html">
                 <img src="game2-thumbnail.jpg" alt="Game 2">
                 <div class="game-title">Game 2</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" data-game-url="game3.html">
                 <img src="game3-thumbnail.jpg" alt="Game 3">
                 <div class="game-title">Game 3</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" data-game-url="game4.html">
                 <img src="game4-thumbnail.jpg" alt="Game 4">
                 <div class="game-title">Game 4</div>
             </div>
         </div>
         <div class="ad-container">Advertisement</div>
         <div class="grid-section">
-            <div class="game-card">
+            <div class="game-card" data-game-url="game5.html">
                 <img src="game5-thumbnail.jpg" alt="Game 5">
                 <div class="game-title">Game 5</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" data-game-url="game6.html">
                 <img src="game6-thumbnail.jpg" alt="Game 6">
                 <div class="game-title">Game 6</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" data-game-url="game7.html">
                 <img src="game7-thumbnail.jpg" alt="Game 7">
                 <div class="game-title">Game 7</div>
             </div>
-            <div class="game-card">
+            <div class="game-card" data-game-url="game8.html">
                 <img src="game8-thumbnail.jpg" alt="Game 8">
                 <div class="game-title">Game 8</div>
             </div>
         </div>
     </div>
+
+    <script>
+        const gameCards = document.querySelectorAll('.game-card');
+        const iframe = document.getElementById('game-iframe');
+
+        gameCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const gameUrl = card.getAttribute('data-game-url');
+                iframe.src = gameUrl;
+            });
+        });
+    </script>
 </body>
 </html>
