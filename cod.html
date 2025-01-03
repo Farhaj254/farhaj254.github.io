@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Website</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             display: grid;
@@ -111,6 +110,26 @@
             color: white;
         }
 
+        .game-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .game-controls button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .game-controls button:hover {
+            background-color: #0056b3;
+        }
+
         .game-section {
             display: flex;
             flex-direction: column;
@@ -192,15 +211,6 @@
 
         .game-section::-webkit-scrollbar-thumb:hover {
             background-color: #555;
-        }
-
-        .dark-mode-toggle {
-            background-color: #333;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            color: white;
         }
 
         /* Responsive Design */
@@ -325,24 +335,6 @@
             </div>
         </div>
         <div class="ad-container">Advertisement</div>
-        <div class="grid-section">
-            <div class="game-card" onclick="loadGame('Game 5', 'game5.html')">
-                <img src="game5-thumbnail.jpg" alt="Game 5">
-                <div class="game-title">Game 5</div>
-            </div>
-            <div class="game-card" onclick="loadGame('Game 6', 'game6.html')">
-                <img src="game6-thumbnail.jpg" alt="Game 6">
-                <div class="game-title">Game 6</div>
-            </div>
-            <div class="game-card" onclick="loadGame('Game 7', 'game7.html')">
-                <img src="game7-thumbnail.jpg" alt="Game 7">
-                <div class="game-title">Game 7</div>
-            </div>
-            <div class="game-card" onclick="loadGame('Game 8', 'game8.html')">
-                <img src="game8-thumbnail.jpg" alt="Game 8">
-                <div class="game-title">Game 8</div>
-            </div>
-        </div>
     </div>
 
     <div id="iframe-container">
@@ -375,24 +367,6 @@
             </div>
         </div>
         <div class="ad-container">Advertisement</div>
-        <div class="grid-section">
-            <div class="game-card" onclick="loadGame('Game 5', 'game5.html')">
-                <img src="game5-thumbnail.jpg" alt="Game 5">
-                <div class="game-title">Game 5</div>
-            </div>
-            <div class="game-card" onclick="loadGame('Game 6', 'game6.html')">
-                <img src="game6-thumbnail.jpg" alt="Game 6">
-                <div class="game-title">Game 6</div>
-            </div>
-            <div class="game-card" onclick="loadGame('Game 7', 'game7.html')">
-                <img src="game7-thumbnail.jpg" alt="Game 7">
-                <div class="game-title">Game 7</div>
-            </div>
-            <div class="game-card" onclick="loadGame('Game 8', 'game8.html')">
-                <img src="game8-thumbnail.jpg" alt="Game 8">
-                <div class="game-title">Game 8</div>
-            </div>
-        </div>
     </div>
 </body>
 </html>
